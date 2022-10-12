@@ -29,5 +29,9 @@
     <fragment
         android:id="@+id/createChoreView"
         android:name="com.example.dat367_projekt_11.view.CreateChoreView"
-        android:label="CreateChoreView" />
+        android:label="CreateChoreView" >
+        <action
+            android:id="@+id/action_createChoreView_to_navigation_mainpage"
+            app:destination="@id/navigation_mainpage" />
+    </fragment>
 </navigation>

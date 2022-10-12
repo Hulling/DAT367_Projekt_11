@@ -25,7 +25,7 @@ public class MainPageView extends Fragment {
     private Button createButton;
     private FragmentMainpageBinding binding;
     private MainPageViewModel mainPageViewModel;
-    
+
 
     @Nullable
     @Override

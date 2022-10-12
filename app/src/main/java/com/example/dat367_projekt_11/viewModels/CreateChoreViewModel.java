@@ -25,12 +25,16 @@ public class CreateChoreViewModel extends ViewModel {
         return userMutableLiveData;
     }
     public void onDoneClicked() {
-        Chore chore = new Chore(name.getValue(), description.getValue(), points.getValue());
-        userMutableLiveData.setValue(chore);
-        chore.setName(name.getValue());
-        chore.setDescription(description.getValue());
-        chore.setPoints(points.getValue());
-        addChore(chore);
+        try {
+            Chore chore = new Chore(name.getValue(), description.getValue(), points.getValue());
+            userMutableLiveData.setValue(chore);
+            chore.setName(name.getValue());
+            chore.setDescription(description.getValue());
+            chore.setPoints(points.getValue());
+            addChore(chore);
+        } catch (NullPointerException e){
+            System.out.println("null");
+        }
 
     }
     private MutableLiveData<String> getName () {
