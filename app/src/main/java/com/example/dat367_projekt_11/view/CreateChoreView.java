@@ -1,7 +1,5 @@
 package com.example.dat367_projekt_11.view;
 
-import androidx.annotation.IdRes;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,30 +9,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.provider.MediaStore;
-import android.text.TextUtils;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 import android.widget.Toast;
 
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
-import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
-import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
 import com.example.dat367_projekt_11.R;
 
-import java.util.Objects;
 
 public class CreateChoreView extends Fragment {
-    private RadioGroup radioGroup;
-    private RadioButton radioButton;
     private CreateChoreViewModel createChoreViewModel;
     private FragmentCreateChorePageBinding binding;
+
 
     public static CreateChoreView newInstance() {
         return new CreateChoreView();
@@ -56,41 +47,32 @@ public class CreateChoreView extends Fragment {
         binding.setLifecycleOwner(this);
         createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
         binding.setCreateChoreViewModel(createChoreViewModel);
-        /*createChoreViewModel.getChore().observe(getViewLifecycleOwner(), new Observer<Chore>() {
-
-
-            public void onChanged(@Nullable Chore chore) {
-                if (TextUtils.isEmpty(Objects.requireNonNull(chore).getName())) {
-                    Toast.makeText(getActivity(),"Enter the chore's name",Toast.LENGTH_SHORT).show();
-                }
-
-                if (TextUtils.isEmpty(Objects.requireNonNull(chore).getDescription())) {
-                    Toast.makeText(getActivity(),"Enter the chore's description",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    binding.descriptionText.setText(chore.getDescription());
-
-                }
-                if (Objects.nonNull(radioGroup.getCheckedRadioButtonId())){
-                    Toast.makeText(getActivity(),"Pick the chore's points",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });*/
-
         setDoneButtonAction(binding.getRoot());
         return binding.getRoot();
     }
 
     private void setDoneButtonAction(View view){
         Button doneButton = view.findViewById(R.id.prominentDoneButton);
+        String nameField = createChoreViewModel.getName().getValue();
+        String descField = createChoreViewModel.getDescription().getValue();
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
+                try {
+                    createChoreViewModel.onDoneClicked(nameField, descField, getPoints());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
+                }catch(NullPointerException n){
+                    Toast.makeText(getContext() ,"Please fill in all empty fields", Toast.LENGTH_LONG).show();
+
+                }
+
 
             }
         });
+    }
+
+    public int getPoints(){
+        return 10;
     }
 
     @Override
