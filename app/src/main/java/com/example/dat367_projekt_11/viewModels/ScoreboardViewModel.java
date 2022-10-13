@@ -70,14 +70,16 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
     public void onLeaderboardClicked(){
 
-        ScoreboardModel.rankProfiles();
+        /*ScoreboardModel.rankProfiles();
 
-        MainActivity.setRankingText(rankingOfScores);
+        ScoreboardFragment.setRankingText(rankingOfScores);*/
+
+
 
 
         /*rankingText.setValue("Hej");
-        System.out.println(rankingText.getValue());
-        System.out.println("bajsa på dig");*/
+        System.out.println(rankingText.getValue());*/
+        System.out.println("bajsa på dig");
 
     }
 
