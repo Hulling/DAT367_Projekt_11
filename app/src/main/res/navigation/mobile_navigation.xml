@@ -9,7 +9,7 @@
         android:id="@+id/navigation_donechores"
         android:name="com.example.dat367_projekt_11.view.DoneChoresView"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_donechoresmodel" />
+        tools:layout="@layout/fragment_donechores" />
 
     <fragment
         android:id="@+id/navigation_mainpage"

@@ -38,7 +38,7 @@ public class StartFragment extends Fragment {
         gotoRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_startFragment_to_registrationActivity);
+                Navigation.findNavController(view).navigate(R.id.action_startFragment_to_registrationFragment);
             }
         });
 

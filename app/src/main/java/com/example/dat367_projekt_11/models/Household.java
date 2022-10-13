@@ -1,53 +1,78 @@
 package com.example.dat367_projekt_11.models;
 
+import android.database.Observable;
+
+import androidx.databinding.ObservableArrayList;
+
+import com.google.firebase.database.Exclude;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class User implements ChoreStatusListener{ //lyssnar på chores boolean{
-    private final FirebaseAuth mAuth;
+public class Household implements IsCompleteListener { //lyssnar på chores boolean{
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     private String householdName;
     private List<Profile> profileList;
     private String password;
     private String email;
-    private final ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
-    private ArrayList<ChoreListStatusListener> listeners;
+
+
+    public String getUid() {
+        return uid;
+    }
+
+    private String uid;
+    private ArrayList<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
+  //  private ArrayList<AvailableChoresListener> listeners;
     //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
 //kolla att sakerna är nollskilda, objekt required non null.
     //design by contract
 
 
-    public User(String email, String password, String householdName) {
-        this.password = password;
+    public Household(String uid, String email, String householdName) {
+        this.uid = uid;
         this.email = email;
         this.householdName = householdName;
         this.mAuth = FirebaseAuth.getInstance();
+        this.currentUser = mAuth.getCurrentUser();
         this.householdChores = new ArrayList<Chore>();
+
         this.profileList = new ArrayList<>();
     }
+    public Household() {}
 
-    public FirebaseAuth getmAuth(){
+   /* public FirebaseAuth getmAuth(){
         return  mAuth;
     }
-    //returnera kopia? orginal kan mixtas med.
+    //returnera kopia? orginal kan mixtas med.*/
 
+    @Exclude
+    public boolean isNew, isCreated;
+
+    @Exclude
+    public boolean isAuthenticated;
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void addNewChoreToList(String name, String description, int points){ //när en chore skapas, meddelas alla som im. chorelist status listener
-       Chore chore = new Chore(name, description, points);
-       householdChores.add(chore);
-       //notifyListeners(); // --> notifiera mainpageview
+    public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
+        chore.subscribe(this);
+        householdChores.add(chore);
+      // notifyListeners(); // --> notifiera
     }
 
-    private void removeCompletedChore(Chore chore){ //när en chore tas bort meddelas alla som implementerar choreliststatuslistener
+
+    private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
             if (chore.isComplete()){
+                chore.unsubscribe(this);
                 householdChores.remove(chore);
-                //notifyListeners(); //--> notifiera completeschoreview
+               // notifyListeners(); //--> notifiera
 
         }
     }
@@ -91,25 +116,24 @@ public class User implements ChoreStatusListener{ //lyssnar på chores boolean{
     }
     @Override
     public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        this.removeCompletedChore(chore);
-
+        this.removeChoreFromList(chore);
     }
 
 
-    private void subscribe(ChoreListStatusListener listener) { //broadcast
+  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
         listeners.add(listener);
-    }
+    }*/
 
     public void setCurrentProfile(Profile profile) {
 
     }
 
 
-    private void notifyListeners() {
-        for (ChoreListStatusListener listener : listeners) {  //broadcast
+/*    private void notifyListeners() {
+        for (AvailableChoresListener listener : listeners) {  //broadcast
             listener.update(householdChores);
         }
 
-    }
+    }*/
 
 }

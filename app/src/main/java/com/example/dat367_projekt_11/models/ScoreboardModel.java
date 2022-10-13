@@ -21,6 +21,14 @@ public class ScoreboardModel extends AppCompatActivity {
         return null;
     }
 
+    /*private ScoreboardViewModel mViewModel;
+
+/*
+    Profile currentPoints=new Profile();
+    int memberScore = currentPoints.getCurrentPoints();
+
+
+    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;
 
 
     private String rankingOfScoresText;

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.dat367_projekt_11.viewModels.RegistrationViewModel" />
+            type="com.example.dat367_projekt_11.viewModels.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
 
         <EditText
             android:id="@+id/passwordTextView"
-            android:text="@={viewModel.userPassword}"
+            android:text="@={viewModel.password}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -51,7 +51,7 @@
 
         <EditText
             android:id="@+id/emailTextView"
-            android:text="@={viewModel.userEmail}"
+            android:text="@={viewModel.email}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -68,9 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
         <Button
-            android:id="@+id/btn"
-            android:onClick="@{()-> viewModel.onRegistrationClicked()}"
-            app:toastMessage="@{viewModel.toastMessage}"
+            android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

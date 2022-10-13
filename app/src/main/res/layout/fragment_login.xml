@@ -7,8 +7,8 @@
 
     <data>
         <variable
-            name="LoginViewModel"
-            type="com.example.dat367_projekt_11.viewModels.LoginViewModel" />
+            name="AuthViewModel"
+            type="com.example.dat367_projekt_11.viewModels.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
 
         <EditText
             android:id="@+id/emailTextView"
-            android:text="@={LoginViewModel.email}"
+            android:text="@={AuthViewModel.email}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/passwordTextView"
@@ -51,7 +51,7 @@
 
         <EditText
             android:id="@+id/passwordTextView"
-            android:text="@={LoginViewModel.password}"
+            android:text="@={AuthViewModel.password}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -68,7 +68,6 @@
 
         <Button
             android:id="@+id/login"
-            android:onClick="@{()-> LoginViewModel.onLoginClicked()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -1,5 +1,6 @@
 package com.example.dat367_projekt_11.models;
 
-public interface ChoreStatusListener {
+
+public interface IsCompleteListener {
     public void update(Chore chore);
 }

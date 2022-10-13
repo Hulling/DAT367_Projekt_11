@@ -1,7 +1,6 @@
 package com.example.dat367_projekt_11.view;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +10,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
-import com.example.dat367_projekt_11.models.User;
-import com.example.dat367_projekt_11.viewModels.LoginViewModel;
+import com.example.dat367_projekt_11.models.Household;
+import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
-import java.util.Objects;
+public class LoginFragment extends Fragment {
 
-public class LoginFragment extends Fragment{
-    private Button signIn;
-
-    private LoginViewModel loginViewModel;
+    private AuthViewModel authViewModel;
     private FragmentLoginBinding binding;
 
-   /* public static LoginFragment newInstance() {
-        return new LoginFragment();
-    }*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,32 +34,64 @@ public class LoginFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         binding.setLifecycleOwner(this);
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        binding.setLoginViewModel(loginViewModel);
-        loginViewModel.getUser().observe(getViewLifecycleOwner(), new Observer<User>() {
-            @Override
-            public void onChanged(@Nullable User loginUser) {
-
-                if (TextUtils.isEmpty(Objects.requireNonNull(loginUser).getEmail())) {
-                    Toast.makeText(getActivity(),"Enter an E-Mail Address",Toast.LENGTH_SHORT).show();
-                }
-                else if (TextUtils.isEmpty(Objects.requireNonNull(loginUser).getPassword())) {
-                    Toast.makeText(getActivity(),"Enter a password",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    binding.emailTextView.setText(loginUser.getEmail());
-                    binding.passwordTextView.setText(loginUser.getPassword());
-                }
-
-            }
-        });
+        authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+        binding.setAuthViewModel(authViewModel);
+        setLoginBtnOnAction(binding.getRoot());
         return binding.getRoot();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void setLoginBtnOnAction(View view) {
+        Button loginButton = view.findViewById(R.id.login);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = authViewModel.getEmail().getValue();
+                String password = authViewModel.getPassword().getValue();
+                if (email.length() > 0 && password.length() > 0) {
+                    signIn(email, password);
+                } else {
+                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
+    private void signIn(String email, String password) {
+        authViewModel.login(email, password);
+        authViewModel.getAuthenticatedHousehold().observe(this, authenticatedHousehold -> {
+            if (authenticatedHousehold.isNew) {
+                createNewHousehold(authenticatedHousehold);
+                authViewModel.makeListOfProfiles(authenticatedHousehold);
+            } else {
+                authViewModel.makeListOfProfiles(authenticatedHousehold);
+                goToProfileFragment();
+            }
+        });
+    }
+
+    private void createNewHousehold(Household authenticatedHousehold) {
+        authViewModel.createHousehold(authenticatedHousehold);
+        authViewModel.getCreatedHousehold().observe(this, household -> {
+            if (authenticatedHousehold.isCreated) {
+                toastMessage(household.getHouseholdName());
+            }
+            goToProfileFragment();
+        });
+    }
+
+    /*private void goToMainActivity(Household household) {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra("USER", household);
+        startActivity(intent);
+    }*/
+
+    private void goToProfileFragment() {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_profileFragment);
+    }
+
+    private void toastMessage(String name) {
+        Toast.makeText(getContext(), "Hi " + name + "!\n" + "Your account was successfully created.", Toast.LENGTH_LONG).show();
+    }
 }
+

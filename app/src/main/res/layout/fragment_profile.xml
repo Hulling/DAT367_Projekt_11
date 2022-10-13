@@ -9,8 +9,8 @@
             name="profileAdapter"
             type="com.example.dat367_projekt_11.view.ProfileAdapter" />
         <variable
-            name="loginViewModel"
-            type="com.example.dat367_projekt_11.viewModels.LoginViewModel" />
+            name="authViewModel"
+            type="com.example.dat367_projekt_11.viewModels.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,15 +20,29 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="50dp"
             android:adapter="@{profileAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/profile_card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/profile_card" />
+
+        <Button
+            android:id="@+id/addProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="139dp"
+            android:layout_marginEnd="163dp"
+            android:layout_marginBottom="1dp"
+            android:text="Add Profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

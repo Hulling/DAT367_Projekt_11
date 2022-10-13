@@ -6,15 +6,19 @@
         <variable
             name="model"
             type="com.example.dat367_projekt_11.models.Profile" />
+        <variable
+            name="householdmodel"
+            type="com.example.dat367_projekt_11.models.Household" />
 
         <variable
             name="itemClickListener"
-            type="com.example.dat367_projekt_11.view.CustomClickListener" />
+            type="com.example.dat367_projekt_11.models.CustomClickListener" />
 
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:onClick="@{() -> itemClickListener.cardClicked(model)}"
         android:layout_height="105dp">
 
 

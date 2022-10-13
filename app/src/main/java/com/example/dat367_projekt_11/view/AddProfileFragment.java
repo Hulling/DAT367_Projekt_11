@@ -9,11 +9,17 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
+import com.example.dat367_projekt_11.databinding.FragmentAddProfileBinding;
+import com.example.dat367_projekt_11.models.Profile;
+import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
 public class AddProfileFragment extends Fragment {
+    private FragmentAddProfileBinding binding;
+    private AuthViewModel authViewModel;
     private Button addBtn;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,14 +29,26 @@ public class AddProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_profile, container, false);
+        binding = FragmentAddProfileBinding.inflate(inflater, container, false);
+        binding.setLifecycleOwner(this);
+        authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+        binding.setAuthViewModel(authViewModel);
+
+        setAddBtnOnClick(binding.getRoot());
+
+        return binding.getRoot();
+    }
+
+    private void setAddBtnOnClick(View view) {
         addBtn = view.findViewById(R.id.createProfileBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_addProfileFragment_to_mainActivity);
+                authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedUser -> {
+                    authViewModel.addProfile(authenticatedUser, new Profile(authViewModel.getProfileName().getValue()));
+                });
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addProfileFragment_to_mainActivity);
             }
         });
-        return view;
     }
 }

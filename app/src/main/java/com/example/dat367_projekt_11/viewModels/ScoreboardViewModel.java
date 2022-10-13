@@ -14,6 +14,7 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
 import com.example.dat367_projekt_11.models.User;
 import com.example.dat367_projekt_11.view.MainActivity;
+import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.ScoreboardFragment;
 
 public class ScoreboardViewModel extends AndroidViewModel {
@@ -49,9 +50,9 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> rankingText = new MutableLiveData<>();
 
-    private MutableLiveData<User> userMutableLiveData;
+    private MutableLiveData<Household> userMutableLiveData;
 
-    public MutableLiveData<User> getUser() {
+    public MutableLiveData<Household> getUser() {
 
         if (userMutableLiveData == null) {
             userMutableLiveData = new MutableLiveData<>();

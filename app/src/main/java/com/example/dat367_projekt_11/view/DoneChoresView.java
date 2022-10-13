@@ -4,36 +4,56 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dat367_projekt_11.databinding.FragmentDonechoresmodelBinding;
 
+import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
+
+
+import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
+import java.util.List;
 
 public class DoneChoresView extends Fragment {
+    private FragmentDonechoresBinding binding;
+    private DoneChoresViewModel doneChoresViewModel;
 
-private FragmentDonechoresmodelBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        DoneChoresViewModel doneChoresViewModel =
-                new ViewModelProvider(this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(DoneChoresViewModel.class);
-
-    binding = FragmentDonechoresmodelBinding.inflate(inflater, container, false);
-    View root = binding.getRoot();
-
-        final TextView textView = binding.textDashboard;
-        doneChoresViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
-@Override
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentDonechoresBinding.inflate(inflater, container, false);
+        binding.setLifecycleOwner(this);
+        doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
+        binding.setDoneChoresViewModel(doneChoresViewModel);
+        populateData();
+        return binding.getRoot();
+    }
+
+    private void populateData() {
+        List<Chore> choreModelList = doneChoresViewModel.getChoreModellist();
+
+        ChoreAdapter choreAdapter = new ChoreAdapter(choreModelList, getContext());
+        binding.setChoreAdapter(choreAdapter);
+
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
 
 }

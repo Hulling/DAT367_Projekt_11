@@ -1,27 +1,39 @@
 package com.example.dat367_projekt_11.models;
 
 
+
+
 import java.util.ArrayList;
+import java.util.Observer;
+
 
 public class Chore{
-    private final String name;
-    private final String description;
-    private final int points;
+    private String name;
+    private String description;
+    private int points;
     private boolean isComplete;
-    private ArrayList<ChoreStatusListener> listeners;
+    private ArrayList<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
 
 
     public Chore(String name, String description, int points){
         this.name = name;
         this.description = description;
         this.points = points;
-        this.listeners = listeners;
+        this.isComplete = false;
+        this.listeners = new ArrayList<>();
     }
 
     public void completeChore(){
         this.isComplete = true;
-        notifySubscribers();
+        //notifySubscribers();
     }
+    public void unCompleteChore(){
+        this.isComplete = false;
+        notifySubscribers();
+
+    }
+
+
 
     public String getName() {
         return this.name;
@@ -30,8 +42,6 @@ public class Chore{
     public String getDescription(){
         return this.description;
     }
-
-
     public int getPoints(){
         return this.points;
     }
@@ -39,15 +49,34 @@ public class Chore{
         return this.isComplete;
     }
 
-    private void subscribe(ChoreStatusListener listener){
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void subscribe(IsCompleteListener listener){ //lägg till lyssnare
         listeners.add(listener);
 
     }
-    private void notifySubscribers() {
-        for (ChoreStatusListener listener : listeners) {
+
+    public void unsubscribe(IsCompleteListener listener){
+        listeners.remove(listener);
+    }
+
+    private void notifySubscribers() {  //notifiera lyssnare
+        for (IsCompleteListener listener : listeners) {
                 listener.update(this);
         }
     }
+
+
 
 
 
