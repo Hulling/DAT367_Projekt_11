@@ -28,7 +28,7 @@ public class ScoreboardModel extends AppCompatActivity {
     int memberScore = currentPoints.getCurrentPoints();
 
 
-    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;
+    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;*/
 
 
     private String rankingOfScoresText;

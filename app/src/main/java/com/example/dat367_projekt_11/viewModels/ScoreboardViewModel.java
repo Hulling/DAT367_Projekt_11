@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
-import com.example.dat367_projekt_11.models.User;
+import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.MainActivity;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.ScoreboardFragment;
