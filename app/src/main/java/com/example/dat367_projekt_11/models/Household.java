@@ -15,11 +15,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     private String email;
     private Profile currentProfile;
 
-
-    public String getUid() {
-        return uid;
-    }
-
     private String uid;
     private List<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
   //  private ArrayList<AvailableChoresListener> listeners;
@@ -190,6 +185,9 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         return currentProfile;
     }
 
+    public void addChoreToList(Chore chore){
+        householdChores.add(chore);
+    }
 
   /*  private void subscribe(AvailableChoresListener listener) { //broadcast
         listeners.add(listener);
