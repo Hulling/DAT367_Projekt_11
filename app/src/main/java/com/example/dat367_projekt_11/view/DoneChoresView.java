@@ -9,12 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
-
 import java.util.List;
 
 public class DoneChoresView extends Fragment {
@@ -31,7 +34,7 @@ public class DoneChoresView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDonechoresBinding.inflate(inflater, container, false);
-        //binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this);
         doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
         binding.setDoneChoresViewModel(doneChoresViewModel);
         populateData();

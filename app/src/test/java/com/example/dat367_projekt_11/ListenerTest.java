@@ -20,6 +20,7 @@ public class ListenerTest {
         donechoreslist.add(chore);
         profile.addToDoneChores(chore); //lägg till sysslan i donechoreslistan -> subscriba chore
         chore.unCompleteChore(); //sätt boolean till uncompleted (false) -> notifysubscribers -> remove
+        chore.completeChore();
 
 
         assertEquals(donechoreslist, profile.getDoneChores());
