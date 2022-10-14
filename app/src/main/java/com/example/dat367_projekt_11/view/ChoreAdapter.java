@@ -25,7 +25,6 @@ import java.util.List;
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
     private List<Chore>choreModelList; //lista för kort
     private Context context;
-    private ChoreAdapterDataModel choreAdapterDataModel;
     private List<Chore> completedChoreModellist;
     private CheckBox checkBox;
 
@@ -38,13 +37,13 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
 
     @Override
     public void CheckBoxClicked(Chore chore) {
-          if(chore.isComplete()){
+/*          if(chore.isComplete()){
             chore.unCompleteChore();
             Toast.makeText(context,"available",Toast.LENGTH_SHORT).show();
         } else{
             chore.completeChore();
             Toast.makeText(context,"done",Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
 
     }

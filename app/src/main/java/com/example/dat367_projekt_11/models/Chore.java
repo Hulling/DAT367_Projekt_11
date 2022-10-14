@@ -127,28 +127,5 @@ public class Chore implements Serializable, ModelFacade {
         return this;
     }
 
-  /*  public void subscribe(IsCompleteListener listener){
-        if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
-            listeners.add(listener);
-        }
-    }*/
-/*
-    public void unsubscribe(IsCompleteListener listener){
-        listeners.remove(listener); //reset när timern går ut antar jag?
-    }
-
-    private void notifySubscribers() {  //notifiera lyssnare
-        for (IsCompleteListener listener : listeners) {
-                listener.update(this);
-        }
-    }*/
-
-
-
-
-
-
-
-
 
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Household implements IsCompleteListener { //lyssnar på chores boolean{
+public class Household{
     private String householdName;
     private List<Profile> profileList;
     private String password;
@@ -45,16 +45,16 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.password = password;
     }
 
-    public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
+    public void addChoreToList(Chore chore) {
         householdChores.add(chore);
-      // notifyListeners(); // --> notifiera
     }
 
     private void getCurrentProfile(){
 
     }
 
-   /* public void markChoreasDone(Chore chore){
+/*
+   public void markChoreasDone(Chore chore){
         boolean found = householdChores.remove(chore);
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
@@ -70,13 +70,14 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
             throw new IllegalArgumentException("Chore not found" + chore);
         }
         this.householdChores.add(chore);
-    }*/
+    }
+*/
 
 
-    private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
+    private void removeChoreFromList(Chore chore){
             if (chore.isComplete()){
                 householdChores.remove(chore);
-               // notifyListeners(); //--> notifiera
+
 
         }
     }
@@ -120,14 +121,8 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     public void setHouseholdName(String householdName) {
         this.householdName = householdName;
     }
-    @Override
-    public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        if (!chore.isComplete()) { // om true -> syssla ej klar
-            addChoreToList(chore); // lägg till syssla i lista av tillgängliga sysslor,
-        }else if (chore.isComplete()){ //om false
-            removeChoreFromList(chore); //ta bort syssla från lista
-        }
-    }
+
+
 
 
   /*  public void setCurrentProfile(Profile profile) {

@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.dat367_projekt_11.models.Chore" />
+            type="com.example.dat367_projekt_11.models.ModelFacade" />
 
         <variable
             name="checkBoxClickListener"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="232dp"
                     android:layout_marginTop="4dp"
-                    android:text="@{Integer.toString(model.points)}"
+                    android:text="@{Integer.toString(model.getChore().points)}"
                     android:textColor="#212121"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -87,7 +87,7 @@
                     android:layout_marginTop="64dp"
                     android:ems="10"
                     android:gravity="start|top"
-                    android:text="@={model.description}"
+                    android:text="@={model.getChore().description}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +98,7 @@
 
                     android:layout_marginStart="68dp"
                     android:layout_marginTop="4dp"
-                    android:text="@={model.name}"
+                    android:text="@={model.getChore().name}"
                     android:textColor="#212121"
                     android:textSize="20sp"
                     android:textStyle="bold"

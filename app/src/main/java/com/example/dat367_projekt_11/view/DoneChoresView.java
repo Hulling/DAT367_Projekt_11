@@ -40,6 +40,8 @@ public class DoneChoresView extends Fragment {
         populateData();
         return binding.getRoot();
     }
+   /// -> hämta profilen från view -> skickar in profilen till modellen. //
+   ///  doneChoresViewModel.setProfile();
 
     private void populateData() {
         List<Chore> choreModelList = doneChoresViewModel.getChoreModellist();

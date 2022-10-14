@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Profile implements IsCompleteListener, Serializable {
+public class Profile implements Serializable {
     private String name;
     private int currentPoints;
     private List<Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
@@ -54,14 +54,14 @@ public class Profile implements IsCompleteListener, Serializable {
 
 
 
-    @Override
+/*    @Override
     public void update(Chore chore) {
         if (chore.isComplete()) { // om true -> syssla klar
             addToDoneChores(chore); // lägg till syssla i lista av gjrda sysslor, -> subscribe
         }else if (!chore.isComplete()){ //om false
             removeFromDoneChores(chore); //ta bort syssla från lista
         }
-    }
+    }*/
 
 
     public void setName(String name){
