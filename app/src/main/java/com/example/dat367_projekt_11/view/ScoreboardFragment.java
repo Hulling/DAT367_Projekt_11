@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentScoreboardBinding;
+import com.example.dat367_projekt_11.models.ScoreboardModel;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
 public class ScoreboardFragment extends Fragment{
@@ -25,8 +26,10 @@ public class ScoreboardFragment extends Fragment{
 
     private FragmentScoreboardBinding binding;
 
-    private String testText = "printa fan";
+    /*private String testText = "printa fan";*/
 
+    /*private static final ScoreboardViewModel rankingOfScoresTwoText = new ScoreboardViewModel();
+    private static final String rankingOfScoresTwo = rankingOfScoresTwoText.getRankingOfScoresTwoText();*/
 
     public static ScoreboardFragment newInstance() {
         return new ScoreboardFragment();
@@ -39,10 +42,9 @@ public class ScoreboardFragment extends Fragment{
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);
-        System.out.println("Kommer den hit?");
+
         fViewModel.onLeaderboardClicked();
-        setRankingText(testText);
-        System.out.println("Hit då?");
+        setRankingText(fViewModel.getRankingOfScoresTwoText());
 
         return binding.getRoot(); /*inflater.inflate(R.layout.fragment_scoreboard, container, false);*/
     }

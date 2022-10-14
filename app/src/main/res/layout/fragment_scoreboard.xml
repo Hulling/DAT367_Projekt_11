@@ -24,7 +24,7 @@
             android:gravity="center"
             android:shadowColor="#000"
             android:shadowRadius="10"
-            android:text="@={ScoreboardViewModel.rankingText}"
+            android:text=""
             android:textColor="#FFF"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"

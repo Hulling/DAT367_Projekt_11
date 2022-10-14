@@ -28,9 +28,11 @@
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/menu/nav.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.241" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3635" />
+        <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/background_color.xml" value="0.2285" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1735" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1735" />
+        <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/ic_leaderboard_black_24dp.xml" value="0.1735" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1705" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
@@ -41,6 +43,7 @@
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_profile.xml" value="0.1322463768115942" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_scoreboard.xml" value="0.23233695652173914" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/background_color.xml" value="0.141" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/ic_donechores_black_24dp.xml" value="0.141" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.141" />
@@ -52,7 +55,6 @@
         <entry key="app/src/main/res/drawable/background_color.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/ic_donechores_black_24dp.xml" value="0.215" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.12183383991894631" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12183383991894631" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12183383991894631" />
         <entry key="app/src/main/res/layout/chore_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_profile.xml" value="0.12183383991894631" />

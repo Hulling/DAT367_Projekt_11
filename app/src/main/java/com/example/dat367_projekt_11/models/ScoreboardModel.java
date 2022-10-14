@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
 
-public class ScoreboardModel extends AppCompatActivity {
+public class ScoreboardModel {
 
 
     /*private static final Profile currentPoints = new Profile();
@@ -21,17 +21,12 @@ public class ScoreboardModel extends AppCompatActivity {
         return null;
     }
 
-    /*private ScoreboardViewModel mViewModel;
-
-/*
-    Profile currentPoints=new Profile();
-    int memberScore = currentPoints.getCurrentPoints();
+    /*så här såg det ut innan:
+    int bestOne = preferences.getInt("points1", 0);
+    int bestTwo = preferences.getInt("points2", 0);*/
 
 
-    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;*/
-
-
-    private String rankingOfScoresText;
+    /*private String rankingOfScoresText = "hejdå";*/
 
 
     @SuppressLint("SetTextI18n")
@@ -43,8 +38,8 @@ public class ScoreboardModel extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
         int memberScore = preferences != null ? preferences.getInt("memberScore", 0/*memberScore*/) : 0;
-        /*int bestOne = preferences.getInt("points1", 0);
-        int bestTwo = preferences.getInt("points2", 0);*/
+        /*int bestOne = preferences != null ? preferences.getInt("points1", 0) : 0;
+        int bestTwo = preferences != null ? preferences.getInt("points2", 0) : 0;*/
         int bestThree = preferences != null ? preferences.getInt("points3", 0) : 0;
 
 
@@ -76,9 +71,9 @@ public class ScoreboardModel extends AppCompatActivity {
         }*/
 
 
-        rankingOfScoresText = "Hejsan svejsan" /*"1" + best1 + "\n" +
-                "#2" + best2 + "\n" +
-                "#3" + bestThree*/;
+        String rankingOfScoresText = /*"1" + " " + bestOne + "\n" +
+                "#2" + " " + bestTwo + "\n" +*/
+                "#3" + " " + bestThree;
 
 
         return rankingOfScoresText;
@@ -86,9 +81,7 @@ public class ScoreboardModel extends AppCompatActivity {
     }
 
 
-
-    public String getRankingOfScoresText(){return rankingOfScoresText;}
-
+    public String getRankingOfScoresText(){return rankProfiles();}
 
 
 }

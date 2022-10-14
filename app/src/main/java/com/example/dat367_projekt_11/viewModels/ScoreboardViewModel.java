@@ -36,6 +36,8 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
     }
 
+
+
     private MutableLiveData<ScoreboardViewModel> scoreboardModelMutableLiveData;
 
     public MutableLiveData<ScoreboardViewModel> getScoreboardModel() {
@@ -49,6 +51,7 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
 
     public MutableLiveData<String> rankingText = new MutableLiveData<>();
+
 
     private MutableLiveData<Household> userMutableLiveData;
 
@@ -65,24 +68,20 @@ public class ScoreboardViewModel extends AndroidViewModel {
     private static final TextView rankingScoresText = scoresText.getScoresText();*/
 
 
+    String rankingOfScoresTwoText;
 
     private static final ScoreboardModel rankingOfScoresText = new ScoreboardModel();
     private static final String rankingOfScores = rankingOfScoresText.getRankingOfScoresText();
 
     public void onLeaderboardClicked(){
 
-        /*ScoreboardModel.rankProfiles();
+        /*ScoreboardModel.rankProfiles();*/
 
-        ScoreboardFragment.setRankingText(rankingOfScores);*/
-
-
-
-
-        /*rankingText.setValue("Hej");
-        System.out.println(rankingText.getValue());*/
-        System.out.println("bajsa på dig");
+        rankingOfScoresTwoText = rankingOfScores;
 
     }
+
+    public String getRankingOfScoresTwoText(){return rankingOfScoresTwoText;}
 
 
 }
