@@ -25,7 +25,6 @@ import com.example.dat367_projekt_11.R;
 
 
 public class CreateChoreView extends Fragment {
-    private final int points = 10;
     private CreateChoreViewModel createChoreViewModel;
     private FragmentCreateChorePageBinding binding;
 
@@ -56,15 +55,20 @@ public class CreateChoreView extends Fragment {
 
     private void setDoneButtonAction(View view){
         Button doneButton = view.findViewById(R.id.prominentDoneButton);
-        String nameField = createChoreViewModel.getName().getValue();
-        String descField = createChoreViewModel.getDescription().getValue();
         RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nameField = createChoreViewModel.getName().getValue();
+                String descField = createChoreViewModel.getDescription().getValue();
+                int points = 10;switch(radioGroup.getCheckedRadioButtonId()){
+                    case R.id.radioButton: points = 10;break;
+                    case R.id.radioButton2: points = 20;break;
+                    case R.id.radioButton3: points = 30;break;
+                }
                 try {
                 System.out.println(createChoreViewModel.getName().getValue() +"\n" + createChoreViewModel.getDescription().getValue() + "\n"+ points);
-                    createChoreViewModel.onDoneClicked(createChoreViewModel.getName().getValue(), createChoreViewModel.getDescription().getValue(), points);
+                    createChoreViewModel.onDoneClicked(nameField, descField, points);
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
                 }catch(NullPointerException n){
                     Toast.makeText(getContext() ,"Please fill in all empty fields", Toast.LENGTH_LONG).show();
