@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
+import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
@@ -74,7 +75,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void createNewHousehold(Household authenticatedHousehold) {
-        //authenticatedHousehold.addChoreToList(new Chore("hej", "hj", 10));
+        authenticatedHousehold.addChoreToList(new Chore("hej", "hj", 10));
         authViewModel.createHousehold(authenticatedHousehold);
         authViewModel.getCreatedHousehold().observe(this, household -> {
             if (authenticatedHousehold.isCreated) {

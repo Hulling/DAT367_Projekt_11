@@ -1,7 +1,5 @@
 package com.example.dat367_projekt_11.models;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
@@ -9,8 +7,6 @@ import java.util.List;
 
 
 public class Household implements IsCompleteListener { //lyssnar på chores boolean{
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
     private String householdName;
     private List<Profile> profileList;
     private String password;
@@ -33,8 +29,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.uid = uid;
         this.email = email;
         this.householdName = householdName;
-        this.mAuth = FirebaseAuth.getInstance();
-        this.currentUser = mAuth.getCurrentUser();
         this.householdChores = new ArrayList<Chore>();
         this.profileList = new ArrayList<>();
     }
@@ -47,9 +41,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
     @Exclude
     public boolean isNew, isCreated;
-
-/*    @Exclude
-    public boolean isAuthenticated;*/
 
     public void setPassword(String password) {
         this.password = password;
@@ -119,11 +110,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
   /*  private void subscribe(AvailableChoresListener listener) { //broadcast
         listeners.add(listener);
     }*/
-
-    public void setCurrentProfile(Profile profile) {
-
-    }
-
 
 /*    private void notifyListeners() {
         for (AvailableChoresListener listener : listeners) {  //broadcast

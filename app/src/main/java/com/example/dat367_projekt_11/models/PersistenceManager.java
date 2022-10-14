@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersistenceManager implements FirebasePersistenceManager { //Svårt att testa denna klass, kolla upp mocking
@@ -166,20 +165,20 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         myRef.child(household.getUid()).child("userinfo").child("chores").setValue(chore);
     }
 
-    public Household getHousehold(String householdUid){
-        ArrayList<Household> list = new ArrayList<>();
+    public MutableLiveData<Household> getHousehold(String householdUid){
+        MutableLiveData<Household> householdMutableLiveData = new MutableLiveData<>();
        myRef.child(householdUid).child("userinfo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Household household = snapshot.getValue(Household.class);
-                list.add(household);
+                householdMutableLiveData.setValue(household);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "loadPost:onCancelled", error.toException());
             }
         });
-        return list.get(1);
+        return householdMutableLiveData;
     }
 
 

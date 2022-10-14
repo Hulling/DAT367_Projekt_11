@@ -12,10 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dat367_projekt_11.databinding.FragmentMainpageBinding;
-import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.ConfigHandler;
+import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.viewModels.MainPageViewModel;
-
-import java.util.List;
 
 public class MainPageView extends Fragment {
     private Button createButton;
@@ -47,13 +46,14 @@ public class MainPageView extends Fragment {
     }
 
     private void populateData() {
-       /* ConfigHandler configHandler = new ConfigHandler(getContext());
+        ConfigHandler configHandler = new ConfigHandler(getContext());
         PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
-        Household household = persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser());*/
-        List<Chore> choreModelList = mainPageViewModel.getChoreModellist();
+        persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser()).observe(getViewLifecycleOwner(), household -> {
+            ChoreAdapter choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext());
+            binding.setChoreAdapter(choreAdapter);
+        });
+        //List<Chore> choreModelList = mainPageViewModel.getChoreModellist();
 
-        ChoreAdapter choreAdapter = new ChoreAdapter(choreModelList, getContext());
-        binding.setChoreAdapter(choreAdapter);
 
     }
 
