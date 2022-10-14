@@ -74,7 +74,6 @@ public class CreateChoreView extends Fragment {
                     case R.id.radioButton3: points = 30;break;
                 }
                 try {
-                System.out.println(createChoreViewModel.getName().getValue() +"\n" + createChoreViewModel.getDescription().getValue() + "\n"+ points);
                     Chore chore = new Chore(nameField,descField,points);
                     addChore(chore);
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
