@@ -162,7 +162,7 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         return newListOfProfiles;
     }
     public void addChoreToHousehold(Household household, Chore chore){
-        myRef.child(household.getUid()).child("userinfo").child("chores").setValue(chore);
+        myRef.child(household.getUid()).child("userinfo").child("householdChores").child("1").setValue(chore);
     }
 
     public MutableLiveData<Household> getHousehold(String householdUid){

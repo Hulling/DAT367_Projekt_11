@@ -1,28 +1,24 @@
 package com.example.dat367_projekt_11.view;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeGetHousehold;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
-import com.example.dat367_projekt_11.R;
 
 
 public class CreateChoreView extends Fragment {
@@ -70,6 +66,7 @@ public class CreateChoreView extends Fragment {
                     case R.id.radioButton3: points = 30;break;
                 }
                 try {
+                System.out.println(createChoreViewModel.getName().getValue() +"\n" + createChoreViewModel.getDescription().getValue() + "\n"+ points);
                     Chore chore = new Chore(nameField,descField,points);
                     addChore(chore);
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
@@ -86,7 +83,8 @@ public class CreateChoreView extends Fragment {
     private void addChore(Chore chore){
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-            household.addChore(chore);
+            household.addChoreToList(chore);
+            facadeGetHousehold.addChore(household, chore);
         });
 
     }
