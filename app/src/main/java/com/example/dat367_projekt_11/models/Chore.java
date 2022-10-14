@@ -1,5 +1,6 @@
 package com.example.dat367_projekt_11.models;
 /**
+ * KLASSER OCH INTERFACES
  Describe what an object of this type represents. Use “this” to refer to an object of the current class
  Give all the information that a developer using your class would
  need to know
@@ -37,6 +38,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observer;
 
+/**
+ *
+ */
 
 public class Chore implements Serializable {
     private String name;
@@ -45,6 +49,12 @@ public class Chore implements Serializable {
     private boolean isComplete;
     private Collection<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
 
+    /**
+     *
+     * @param name the name of the chore from user input
+     * @param description the description of the chore from user input
+     * @param points the value of the chore when done
+     */
 
     public Chore(String name, String description, int points){
         this.name = name;
