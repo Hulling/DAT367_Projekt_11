@@ -38,8 +38,8 @@ public class ScoreboardModel {
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
         int memberScore = preferences != null ? preferences.getInt("memberScore", 0/*memberScore*/) : 0;
-        /*int bestOne = preferences != null ? preferences.getInt("points1", 0) : 0;
-        int bestTwo = preferences != null ? preferences.getInt("points2", 0) : 0;*/
+        int bestOne = preferences != null ? preferences.getInt("points1", 0) : 0;
+        int bestTwo = preferences != null ? preferences.getInt("points2", 0) : 0;
         int bestThree = preferences != null ? preferences.getInt("points3", 0) : 0;
 
 
@@ -50,7 +50,7 @@ public class ScoreboardModel {
             editor.apply();
         }
 
-        /*if (memberScore > bestTwo) {
+        if (memberScore > bestTwo) {
             int temp = bestTwo;
             bestTwo = memberScore;
             bestThree = temp;
@@ -68,11 +68,11 @@ public class ScoreboardModel {
             editor.putInt("points2", bestTwo);
             editor.putInt("points1", bestOne);
             editor.apply();
-        }*/
+        }
 
 
-        String rankingOfScoresText = /*"1" + " " + bestOne + "\n" +
-                "#2" + " " + bestTwo + "\n" +*/
+        String rankingOfScoresText = "#1" + " " + bestOne + "\n" +
+                "#2" + " " + bestTwo + "\n" +
                 "#3" + " " + bestThree;
 
 
