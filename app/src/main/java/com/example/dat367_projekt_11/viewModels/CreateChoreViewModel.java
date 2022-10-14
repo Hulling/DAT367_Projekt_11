@@ -6,7 +6,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
+import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
+import com.example.dat367_projekt_11.view.ChoreAdapter;
+import com.example.dat367_projekt_11.view.CreateChoreView;
 
 import java.util.Objects;
 
@@ -15,7 +19,7 @@ public class CreateChoreViewModel extends ViewModel {
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> description = new MutableLiveData<>();
     private MutableLiveData<Chore> userMutableLiveData;
-    private Household household;
+    private CreateChoreView createChoreView = new CreateChoreView();
 
     public MutableLiveData<Chore> getChore() {
 
@@ -41,14 +45,18 @@ public class CreateChoreViewModel extends ViewModel {
     public void onDoneClicked(String name, String desc, int points) {
             Chore chore = new Chore(name, desc, points);
             addChore(chore);
-          //  hur ska man lägga till chores i listan?
 
 
     }
 
 
+
     private void addChore(Chore chore) {
+        ConfigHandler configHandler = new ConfigHandler(createChoreView.getContext());
+        PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
+        persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser()).observe(createChoreView.getViewLifecycleOwner(), household -> {
             household.addChoreToList(chore);
+        });
         }
 
 
