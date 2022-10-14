@@ -2,7 +2,6 @@ package com.example.dat367_projekt_11.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Observer;
 
 /**
  *This class represents the chore object.
@@ -103,7 +102,7 @@ public class Chore implements Serializable {
 
     /**
      * Sets the description.
-     * @param description the description to set.
+     * @param description the description to be set.
      */
 
     public void setDescription(String description) {
@@ -112,7 +111,7 @@ public class Chore implements Serializable {
 
     /**
      * Sets the points.
-     * @param points the points to set.
+     * @param points the points to be set.
      */
 
     public void setPoints(int points) {
