@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentMainpageBinding;
 import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
