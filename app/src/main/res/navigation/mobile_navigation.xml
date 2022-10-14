@@ -34,4 +34,9 @@
             android:id="@+id/action_createChoreView_to_navigation_mainpage"
             app:destination="@id/navigation_mainpage" />
     </fragment>
+    <fragment
+        android:id="@+id/winnerPopUp"
+        android:name="com.example.dat367_projekt_11.view.WinnerPopUp"
+        android:label="fragment_winner_pop_up"
+        tools:layout="@layout/fragment_winner_pop_up" />
 </navigation>

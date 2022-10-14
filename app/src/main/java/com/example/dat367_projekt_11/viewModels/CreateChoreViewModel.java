@@ -41,6 +41,7 @@ public class CreateChoreViewModel extends ViewModel {
     public void onDoneClicked(String name, String desc, int points) {
             Chore chore = new Chore(name, desc, points);
             addChore(chore);
+          //  hur ska man lägga till chores i listan?
 
 
     }

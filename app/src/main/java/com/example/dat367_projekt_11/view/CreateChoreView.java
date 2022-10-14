@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
@@ -23,6 +25,7 @@ import com.example.dat367_projekt_11.R;
 
 
 public class CreateChoreView extends Fragment {
+    private final int points = 10;
     private CreateChoreViewModel createChoreViewModel;
     private FragmentCreateChorePageBinding binding;
 
@@ -44,7 +47,7 @@ public class CreateChoreView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentCreateChorePageBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+        //binding.setLifecycleOwner(this);
         createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
         binding.setCreateChoreViewModel(createChoreViewModel);
         setDoneButtonAction(binding.getRoot());
@@ -55,11 +58,13 @@ public class CreateChoreView extends Fragment {
         Button doneButton = view.findViewById(R.id.prominentDoneButton);
         String nameField = createChoreViewModel.getName().getValue();
         String descField = createChoreViewModel.getDescription().getValue();
+        RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    createChoreViewModel.onDoneClicked(nameField, descField, getPoints());
+                System.out.println(createChoreViewModel.getName().getValue() +"\n" + createChoreViewModel.getDescription().getValue() + "\n"+ points);
+                    createChoreViewModel.onDoneClicked(createChoreViewModel.getName().getValue(), createChoreViewModel.getDescription().getValue(), points);
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
                 }catch(NullPointerException n){
                     Toast.makeText(getContext() ,"Please fill in all empty fields", Toast.LENGTH_LONG).show();
@@ -67,13 +72,16 @@ public class CreateChoreView extends Fragment {
                 }
 
 
+
+
+
+
             }
         });
+
+
     }
 
-    public int getPoints(){
-        return 10;
-    }
 
     @Override
     public void onDestroyView() {
