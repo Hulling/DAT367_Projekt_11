@@ -75,7 +75,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void createNewHousehold(Household authenticatedHousehold) {
-        authenticatedHousehold.addChoreToList(new Chore("hej", "hj", 10));
+        authenticatedHousehold.addChore(new Chore("hej", "hj", 10));
         authViewModel.createHousehold(authenticatedHousehold);
         authViewModel.getCreatedHousehold().observe(this, household -> {
             if (authenticatedHousehold.isCreated) {

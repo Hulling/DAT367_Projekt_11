@@ -23,6 +23,7 @@ public class ConfigHandler {
         File file = new File(context.getFilesDir(), "textfile.txt");
         try {
             FileWriter fw = new FileWriter(file);
+            fw.flush();
             fw.write(household.getUid());
             fw.close();
 
