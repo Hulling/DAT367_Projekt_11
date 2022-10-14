@@ -6,23 +6,26 @@ import java.util.ArrayList;
 
 public class Profile implements IsCompleteListener {
     private String name;
-    private int currentPoints;
+    private int currentPoints = 0;
     private ArrayList<Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
-    private ArrayList<DoneChoresListener> listeners;
+   // private ArrayList<DoneChoresListener> listeners;
+    //private Chore chore;
 
 
     public Profile(String name) {
         this.name = name;
         this.doneChores = new ArrayList<Chore>();
+
     }
 
-    /*public Profile(int currentPoints, ArrayList<Chore> doneChores) {
+   /* public Profile(int currentPoints, ArrayList<Chore> doneChores) {
         this.currentPoints = currentPoints;
         this.doneChores = doneChores;
     }*/
 
 
-    public Profile() {}
+
+ //   public Profile() {}
 
     public String getName() {
         return name;
@@ -33,13 +36,22 @@ public class Profile implements IsCompleteListener {
     }
 
 
-    private void addToDoneChores(Chore chore){
+    public void addToDoneChores(Chore chore){
         doneChores.add(chore);
+        increaseCurrentPoints(chore);
+        chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
+    }
+    public void removeFromDoneChores(Chore chore){
+        doneChores.remove(chore);
+        decreseCurrentPoints(chore); //ta bort poäng från profilen
+
     }
 
     private void increaseCurrentPoints(Chore chore){
         this.currentPoints += chore.getPoints();
     }
+
+    private void decreseCurrentPoints(Chore chore){this.currentPoints -= chore.getPoints();}
 
 
     public ArrayList<Chore> getDoneChores(){
@@ -51,19 +63,22 @@ public class Profile implements IsCompleteListener {
 
     @Override
     public void update(Chore chore) {
-        increaseCurrentPoints(chore);
-        addToDoneChores(chore);
-        notifyListeners();
+        if (chore.isComplete()) { // om true -> syssla klar
+            addToDoneChores(chore); // lägg till syssla i lista av gjrda sysslor, -> subscribe
+        }else if (!chore.isComplete()){ //om false
+            removeFromDoneChores(chore); //ta bort syssla från lista
+        }
+       // notifyListeners();
     }
 
-    private void notifyListeners() {
+/*    private void notifyListeners() {
         for(DoneChoresListener listener : listeners){
             listener.update(doneChores);
         }
-    }
-    public void subscribe(DoneChoresListener listener) {
+    }*/
+/*    public void subscribe(DoneChoresListener listener) {
         listeners.add(listener);
-    }
+    }*/
 
     public void setName(String name){
         this.name = name;

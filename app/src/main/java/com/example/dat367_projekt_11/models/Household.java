@@ -1,5 +1,9 @@
 package com.example.dat367_projekt_11.models;
 
+import android.database.Observable;
+
+import androidx.databinding.ObservableArrayList;
+
 import com.google.firebase.database.Exclude;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,13 +21,14 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     private String password;
     private String email;
 
+
     public String getUid() {
         return uid;
     }
 
     private String uid;
-    private ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
-    private ArrayList<AvailableChoresListener> listeners;
+    private ArrayList<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
+  //  private ArrayList<AvailableChoresListener> listeners;
     //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
 //kolla att sakerna är nollskilda, objekt required non null.
     //design by contract
@@ -36,6 +41,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.mAuth = FirebaseAuth.getInstance();
         this.currentUser = mAuth.getCurrentUser();
         this.householdChores = new ArrayList<Chore>();
+
         this.profileList = new ArrayList<>();
     }
     public Household() {}
@@ -56,14 +62,17 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
 
     public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-       householdChores.add(chore);
-       notifyListeners(); // --> notifiera
+        chore.subscribe(this);
+        householdChores.add(chore);
+      // notifyListeners(); // --> notifiera
     }
+
 
     private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
             if (chore.isComplete()){
+                chore.unsubscribe(this);
                 householdChores.remove(chore);
-                notifyListeners(); //--> notifiera
+               // notifyListeners(); //--> notifiera
 
         }
     }
@@ -111,20 +120,20 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
 
 
-    private void subscribe(AvailableChoresListener listener) { //broadcast
+  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
         listeners.add(listener);
-    }
+    }*/
 
     public void setCurrentProfile(Profile profile) {
 
     }
 
 
-    private void notifyListeners() {
+/*    private void notifyListeners() {
         for (AvailableChoresListener listener : listeners) {  //broadcast
             listener.update(householdChores);
         }
 
-    }
+    }*/
 
 }

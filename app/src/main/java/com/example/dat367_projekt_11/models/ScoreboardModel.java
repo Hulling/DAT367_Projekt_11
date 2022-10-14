@@ -16,6 +16,7 @@ public class ScoreboardModel extends AppCompatActivity {
 
    /* Behöver en instans av user för att få tillgång till alla profiler - Hanna och Malin*/
 
+/*
     Profile currentPoints=new Profile();
     int memberScore = currentPoints.getCurrentPoints();
 
@@ -72,7 +73,7 @@ public class ScoreboardModel extends AppCompatActivity {
                 "#2" + best2 + "\n" +
                 "#3" + best3);
 
-    }
+    }*/
 
     /*@Override
     public void onBackPressed(){
