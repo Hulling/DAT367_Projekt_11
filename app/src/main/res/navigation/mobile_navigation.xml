@@ -15,11 +15,28 @@
         android:id="@+id/navigation_mainpage"
         android:name="com.example.dat367_projekt_11.view.MainPageView"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_mainpage" />
+        tools:layout="@layout/fragment_mainpage" >
+        <action
+            android:id="@+id/action_navigation_mainpage_to_createChoreView"
+            app:destination="@id/createChoreView" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_leaderboard"
         android:name="com.example.dat367_projekt_11.view.ScoreboardFragment"
         android:label="Scoreboard"
         tools:layout="@layout/fragment_scoreboard" />
+    <fragment
+        android:id="@+id/createChoreView"
+        android:name="com.example.dat367_projekt_11.view.CreateChoreView"
+        android:label="CreateChoreView" >
+        <action
+            android:id="@+id/action_createChoreView_to_navigation_mainpage"
+            app:destination="@id/navigation_mainpage" />
+    </fragment>
+    <fragment
+        android:id="@+id/winnerPopUp"
+        android:name="com.example.dat367_projekt_11.view.WinnerPopUp"
+        android:label="fragment_winner_pop_up"
+        tools:layout="@layout/fragment_winner_pop_up" />
 </navigation>

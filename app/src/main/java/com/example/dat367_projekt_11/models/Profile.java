@@ -41,12 +41,20 @@ public class Profile implements IsCompleteListener, Serializable {
 
     public void addToDoneChores(Chore chore){
         doneChores.add(chore);
-        chore.subscribe(this);
+        increaseCurrentPoints(chore);
+        chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
+    }
+    public void removeFromDoneChores(Chore chore){
+        doneChores.remove(chore);
+        decreseCurrentPoints(chore); //ta bort poäng från profilen
+
     }
 
     private void increaseCurrentPoints(Chore chore){
         this.currentPoints += chore.getPoints();
     }
+
+    private void decreseCurrentPoints(Chore chore){this.currentPoints -= chore.getPoints();}
 
 
     public List<Chore> getDoneChores(){
@@ -58,12 +66,10 @@ public class Profile implements IsCompleteListener, Serializable {
 
     @Override
     public void update(Chore chore) {
-        increaseCurrentPoints(chore);
-        if (chore.isComplete()) { // om true
-            addToDoneChores(chore);
+        if (chore.isComplete()) { // om true -> syssla klar
+            addToDoneChores(chore); // lägg till syssla i lista av gjrda sysslor, -> subscribe
         }else if (!chore.isComplete()){ //om false
-            doneChores.remove(chore);
-           // chore.unsubscribe(this);
+            removeFromDoneChores(chore); //ta bort syssla från lista
         }
        // notifyListeners();
     }
