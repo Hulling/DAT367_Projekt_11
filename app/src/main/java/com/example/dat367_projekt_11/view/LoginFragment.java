@@ -61,6 +61,9 @@ public class LoginFragment extends Fragment {
 
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
+        authViewModel.getToastMessage().observe(this, toastMessage ->{
+            Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+        });
         authViewModel.getAuthenticatedHousehold().observe(this, authenticatedHousehold -> {
             configHandler = new ConfigHandler(getContext());
             configHandler.writeCurrentUser(authenticatedHousehold); // Write the logged in user to file

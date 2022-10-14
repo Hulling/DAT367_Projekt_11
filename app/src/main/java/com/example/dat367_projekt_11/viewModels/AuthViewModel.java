@@ -107,5 +107,9 @@ public class AuthViewModel extends AndroidViewModel {
         chosenProfile.setValue(inProfile);
     }
 
+    public MutableLiveData<String> getToastMessage(){
+        return persistenceManagerFactory.getPersistenceManager().getToastMessage();
+    }
+
 
 }

@@ -24,19 +24,27 @@ import java.util.List;
 
 public class PersistenceManager implements FirebasePersistenceManager { //Svårt att testa denna klass, kolla upp mocking
 
+    //https://medium.com/firebase-tips-tricks/how-to-create-a-clean-firebase-authentication-using-mvvm-37f9b8eb7336
+
     private static final PersistenceManager instance = new PersistenceManager(); // Singelton patterns
 
-    private FirebaseAuth firebaseAuth;
+    private final FirebaseAuth firebaseAuth;
     private MutableLiveData<String> toastMessage;
 
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private final DatabaseReference myRef;
+
+    public MutableLiveData<String> getToastMessage (){
+        if (toastMessage == null) {
+            toastMessage = new MutableLiveData<>();
+        }
+        return toastMessage;
+    }
 
 
     private PersistenceManager() {
         this.firebaseAuth = FirebaseAuth.getInstance(); // svårt att testa, kommentarer
         this.toastMessage = new MutableLiveData<>();
-        this.database = FirebaseDatabase.getInstance("https://dat367-projekt-11-default-rtdb.europe-west1.firebasedatabase.app/");
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://dat367-projekt-11-default-rtdb.europe-west1.firebasedatabase.app/");
         this.myRef = database.getReference("users");
 
     }
@@ -60,6 +68,7 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
                     authenticatedHouseholdMutableLiveData.setValue(household);
                 }
             } else {
+                toastMessage.setValue("Login failure " + authTask.getException().getMessage());
                 Log.d("LOG", authTask.getException().getMessage());
             }
         });
