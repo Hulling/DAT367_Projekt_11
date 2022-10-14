@@ -1,14 +1,13 @@
 package com.example.dat367_projekt_11.models;
 
 
-
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observer;
 
 
-public class Chore{
+public class Chore implements Serializable {
     private String name;
     private String description;
     private int points;
@@ -24,6 +23,10 @@ public class Chore{
         this.points = points;
         this.isComplete = false;
        // this.listeners = new ArrayList<>();
+    }
+
+    public Chore(){
+
     }
 
     public void completeChore(){

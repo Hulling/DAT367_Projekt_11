@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
-
-
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 import java.util.List;
 
@@ -45,8 +43,8 @@ public class DoneChoresView extends Fragment {
 
     private void populateData() {
         List<Chore> choreModelList = doneChoresViewModel.getChoreModellist();
-
-        ChoreAdapter choreAdapter = new ChoreAdapter(choreModelList, getContext());
+        Profile profile = (Profile) getActivity().getIntent().getSerializableExtra("PROFILE");
+        ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext());
         binding.setChoreAdapter(choreAdapter);
 
     }

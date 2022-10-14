@@ -98,13 +98,13 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     public void addProfile(Household household, Profile profile){
-        listOfProfiles = persistenceManagerFactory.getPersistenceManager().addNewProfileToDatabase(household, profile);
+        persistenceManagerFactory.getPersistenceManager().addNewProfileToDatabase(household, profile);
     }
     public void makeListOfProfiles(Household household){
         listOfProfiles = persistenceManagerFactory.getPersistenceManager().getListFromFirestore(household);
     }
-    public void chooseProfile(Household household, Profile profile){
-        chosenProfile = persistenceManagerFactory.getPersistenceManager().getChosenProfile(household, profile);
+    public void chooseProfile(Profile inProfile){
+        chosenProfile.setValue(inProfile);
     }
 
 

@@ -15,6 +15,8 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
+import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
@@ -22,6 +24,7 @@ public class LoginFragment extends Fragment {
 
     private AuthViewModel authViewModel;
     private FragmentLoginBinding binding;
+    private ConfigHandler configHandler;
 
 
     @Override
@@ -42,7 +45,6 @@ public class LoginFragment extends Fragment {
 
     private void setLoginBtnOnAction(View view) {
         Button loginButton = view.findViewById(R.id.login);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,17 +62,20 @@ public class LoginFragment extends Fragment {
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
         authViewModel.getAuthenticatedHousehold().observe(this, authenticatedHousehold -> {
-            if (authenticatedHousehold.isNew) {
+            configHandler = new ConfigHandler(getContext());
+            configHandler.writeCurrentUser(authenticatedHousehold); // Write the logged in user to file
+            createNewHousehold(authenticatedHousehold);
+            goToProfileFragment();
+            /*if (authenticatedHousehold.isNew) {
                 createNewHousehold(authenticatedHousehold);
-                authViewModel.makeListOfProfiles(authenticatedHousehold);
             } else {
-                authViewModel.makeListOfProfiles(authenticatedHousehold);
                 goToProfileFragment();
-            }
+            }*/
         });
     }
 
     private void createNewHousehold(Household authenticatedHousehold) {
+        authenticatedHousehold.addChoreToList(new Chore("hej", "hj", 10));
         authViewModel.createHousehold(authenticatedHousehold);
         authViewModel.getCreatedHousehold().observe(this, household -> {
             if (authenticatedHousehold.isCreated) {
@@ -79,12 +84,6 @@ public class LoginFragment extends Fragment {
             goToProfileFragment();
         });
     }
-
-    /*private void goToMainActivity(Household household) {
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.putExtra("USER", household);
-        startActivity(intent);
-    }*/
 
     private void goToProfileFragment() {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_profileFragment);

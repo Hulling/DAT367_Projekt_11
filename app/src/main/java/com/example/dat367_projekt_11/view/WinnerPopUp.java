@@ -1,5 +1,6 @@
 package com.example.dat367_projekt_11.view;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -9,9 +10,11 @@ import android.os.TestLooperManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentWinnerPopUpBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.resources.TextAppearance;
 
 /**
@@ -30,7 +33,6 @@ public class WinnerPopUp extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       //TODO inte klart
         binding.winnerText.setText("hej");
     }
 
@@ -40,4 +42,7 @@ public class WinnerPopUp extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_winner_pop_up, container, false);
     }
+
+
+
 }

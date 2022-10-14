@@ -82,6 +82,7 @@
 
         <EditText
             android:id="@+id/nameTextView"
+            android:text="@={viewModel.householdName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

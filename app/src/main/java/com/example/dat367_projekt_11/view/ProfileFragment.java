@@ -45,11 +45,17 @@ public class ProfileFragment extends Fragment{
     }
 
     private void populateData() {
+      authViewModel.makeListOfProfiles(authViewModel.getAuthenticatedHousehold().getValue());
+       /* ProfileAdapter profileAdapter = new ProfileAdapter(authViewModel.getListOfProfiles().getValue(), getContext());
+            profileAdapter.getClickedProfile().observe(getViewLifecycleOwner(), clickedProfile -> {
+                authViewModel.chooseProfile(clickedProfile);
+            });
+        binding.setProfileAdapter(profileAdapter);*/
         authViewModel.getListOfProfiles().observe(getViewLifecycleOwner(), listOfProfiles -> {
             ProfileAdapter profileAdapter = new ProfileAdapter(listOfProfiles, getContext());
-            profileAdapter.getClickedProfile().observe(getViewLifecycleOwner(), clickedProfile -> {
-                authViewModel.chooseProfile(authViewModel.getAuthenticatedHousehold().getValue(), clickedProfile);
-            });
+           /* profileAdapter.getClickedProfile().observe(getViewLifecycleOwner(), clickedProfile -> {
+                authViewModel.chooseProfile(clickedProfile);
+            });*/
             binding.setProfileAdapter(profileAdapter);
         });
     }

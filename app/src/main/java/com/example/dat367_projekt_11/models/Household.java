@@ -1,18 +1,12 @@
 package com.example.dat367_projekt_11.models;
 
-
 import com.google.firebase.database.Exclude;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Household implements IsCompleteListener { //lyssnar på chores boolean{
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
     private String householdName;
     private List<Profile> profileList;
     private String password;
@@ -20,10 +14,11 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
 
     public String getUid() {
-        return uid;}
+        return uid;
+    }
 
     private String uid;
-    private ArrayList<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
+    private List<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
   //  private ArrayList<AvailableChoresListener> listeners;
 //kolla att sakerna är nollskilda, objekt required non null.
     //design by contract
@@ -33,10 +28,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.uid = uid;
         this.email = email;
         this.householdName = householdName;
-  //      this.mAuth = FirebaseAuth.getInstance();  //kommenterat ut för att tillfälligt testa
-  //      this.currentUser = mAuth.getCurrentUser(); //kommenterat ut för att tillfälligt testa
         this.householdChores = new ArrayList<Chore>();
-
         this.profileList = new ArrayList<>();
     }
     public Household() {}
@@ -49,13 +41,9 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     @Exclude
     public boolean isNew, isCreated;
 
-    @Exclude
-    public boolean isAuthenticated;
-
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
       //  chore.subscribe(this);
@@ -92,13 +80,11 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
                // notifyListeners(); //--> notifiera
 
         }
-
     }
-
 
     //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
 
-    public ArrayList<Chore> getHouseholdChores() { //jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
+    public List<Chore> getHouseholdChores() { //jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
         return householdChores;
     }
 
@@ -117,6 +103,8 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     public String getHouseholdName() {
         return householdName;
     }
+
+    public void setProfileList(List<Profile> profileList){this.profileList = profileList;}
 
     public List<Profile> getProfileList() {
         return profileList;

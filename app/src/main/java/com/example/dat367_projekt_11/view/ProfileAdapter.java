@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dat367_projekt_11.R;
@@ -23,19 +22,18 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     private List<Profile> profileModelList;
     private Context context;
 
-    private MutableLiveData<Profile> clickedProfile = new MutableLiveData<>();
+    //private MutableLiveData<Profile> clickedProfile = new MutableLiveData<>();
 
     public ProfileAdapter(List<Profile> profileModelList, Context context) {
         this.profileModelList = profileModelList;
         this.context = context;
     }
-
-    public MutableLiveData<Profile> getClickedProfile(){
+    /*public MutableLiveData<Profile> getClickedProfile(){
         if(clickedProfile == null){
             clickedProfile = new MutableLiveData<>();
         }
         return clickedProfile;
-    }
+    }*/
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder {
         public ProfileCardBinding profileCardBinding;
@@ -77,12 +75,14 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
    @Override
     public void cardClicked(Profile profile) {
-        clickedProfile.setValue(profile);
+        //clickedProfile.setValue(profile);
         Toast.makeText(context, "Du klickade på " + profile.getName(),
                 Toast.LENGTH_LONG).show();
-
-       Intent intent = new Intent(context.getApplicationContext(), MainActivity.class);
-       context.startActivity(intent);
+       Intent i = new Intent(context.getApplicationContext(),MainActivity.class);
+       i.putExtra("PROFILE",profile);
+       context.startActivity(i);
+       //Intent intent = new Intent(context.getApplicationContext(), MainActivity.class);
+       //context.startActivity(intent);
 
     }
 }

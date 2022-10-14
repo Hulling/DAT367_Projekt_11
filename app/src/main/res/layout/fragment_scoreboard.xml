@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ScoreboardFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/Scores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="300dp"
-        android:gravity="center"
-        android:shadowColor="#000"
-        android:shadowRadius="10"
-        android:text=""
-        android:textColor="#FFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LeaderboardTitel" />
+    <data>
+        <variable
+            name="ScoreboardViewModel"
+            type="com.example.dat367_projekt_11.viewModels.ScoreboardViewModel" />
 
-    <TextView
-        android:id="@+id/LeaderboardTitel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:shadowColor="#000"
-        android:shadowRadius="10"
-        android:text="@string/leaderboard_titel"
-        android:textColor="#FFF"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/Scores"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TidyAPPLeaderboard" />
+    </data>
 
-    <TextView
-        android:id="@+id/TidyAPPLeaderboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp"
-        android:gravity="center"
-        android:shadowColor="#000"
-        android:shadowRadius="10"
-        android:text="@string/app_name"
-        android:textColor="#FFF"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/LeaderboardTitel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ScoreboardFragment">
+
+        <TextView
+            android:id="@+id/Scores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="300dp"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowRadius="10"
+            android:text="@={ScoreboardViewModel.rankingText}"
+            android:textColor="#FFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LeaderboardTitel" />
+
+        <TextView
+            android:id="@+id/LeaderboardTitel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowRadius="10"
+            android:text="@string/leaderboard_titel"
+            android:textColor="#FFF"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/Scores"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TidyAPPLeaderboard" />
+
+        <TextView
+            android:id="@+id/TidyAPPLeaderboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowRadius="10"
+            android:text="@string/app_name"
+            android:textColor="#FFF"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toTopOf="@+id/LeaderboardTitel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

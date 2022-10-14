@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentAddProfileBinding;
+import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
@@ -44,9 +45,15 @@ public class AddProfileFragment extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedUser -> {
-                    authViewModel.addProfile(authenticatedUser, new Profile(authViewModel.getProfileName().getValue()));
-                });
+                /*authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedHousehold -> {
+                    authViewModel.addProfile(authenticatedHousehold, new Profile(authViewModel.getProfileName().getValue()));
+                });*/
+                Chore chore = new Chore("hej","hej", 12);
+                chore.completeChore();
+                Profile profile = new Profile(authViewModel.getProfileName().getValue());
+                profile.addToDoneChores(chore);
+                profile.update(chore);
+                authViewModel.addProfile(authViewModel.getAuthenticatedHousehold().getValue(), profile);
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addProfileFragment_to_mainActivity);
             }
         });
