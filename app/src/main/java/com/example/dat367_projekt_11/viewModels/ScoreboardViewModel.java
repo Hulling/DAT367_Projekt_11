@@ -86,4 +86,3 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
 }
 
-

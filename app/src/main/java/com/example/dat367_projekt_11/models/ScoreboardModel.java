@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
+import java.util.Objects;
+
 
 public class ScoreboardModel {
 
@@ -37,7 +39,7 @@ public class ScoreboardModel {
         /*getSharedPreferences("PREF", +0);*/
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 0/*memberScore*/) : 0;
+        int memberScore = preferences != null ? preferences.getInt("memberScore", 3/*memberScore*/) : 3;
         int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
         int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
@@ -45,7 +47,7 @@ public class ScoreboardModel {
 
         if (memberScore > bestThree) {
             bestThree = memberScore;
-            SharedPreferences.Editor editor = preferences.edit();
+            SharedPreferences.Editor editor = Objects.requireNonNull(preferences).edit();
             editor.putInt("points3", bestThree);
             editor.apply();
         }

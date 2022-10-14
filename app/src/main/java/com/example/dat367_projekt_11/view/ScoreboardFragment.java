@@ -46,7 +46,7 @@ public class ScoreboardFragment extends Fragment{
         fViewModel.onLeaderboardClicked();
         setRankingText(fViewModel.getRankingOfScoresTwoText());
 
-        return binding.getRoot(); /*inflater.inflate(R.layout.fragment_scoreboard, container, false);*/
+        return binding.getRoot();
     }
 
 
