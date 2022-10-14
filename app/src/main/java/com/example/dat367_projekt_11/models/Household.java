@@ -11,6 +11,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     private List<Profile> profileList;
     private String password;
     private String email;
+    private Profile currentProfile;
 
 
     public String getUid() {
@@ -31,6 +32,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.householdName = householdName;
         this.householdChores = new ArrayList<Chore>();
         this.profileList = new ArrayList<>();
+        this.currentProfile = new Profile();
     }
     public Household() {}
 
@@ -104,6 +106,14 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     @Override
     public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
         this.removeChoreFromList(chore);
+    }
+
+    public void setCurrentProfile(Profile profile){
+        currentProfile = profile;
+    }
+
+    private Profile getCurrentProfile(){
+        return currentProfile;
     }
 
 
