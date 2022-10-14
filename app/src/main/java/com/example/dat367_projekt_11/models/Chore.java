@@ -35,7 +35,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *
+     *TODO kommentera
      */
 
     public Chore(){
@@ -43,7 +43,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *
+     *TODO kommentera
      */
 
     public void completeChore(){
@@ -52,7 +52,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *
+     *TODO kommentera
      */
     public void unCompleteChore(){
         this.isComplete = false;
