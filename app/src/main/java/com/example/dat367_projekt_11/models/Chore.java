@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Observer;
 
 
-public class Chore implements Serializable {
+public class Chore implements Serializable, ModelFacade {
     private String name;
     private String description;
     private int points;
@@ -79,6 +79,11 @@ public class Chore implements Serializable {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public Chore getChore() {
+        return this;
     }
 
   /*  public void subscribe(IsCompleteListener listener){

@@ -61,7 +61,6 @@
                     android:layout_marginStart="232dp"
                     android:layout_marginTop="108dp"
                     android:text="@string/text_checkBox"
-                    android:onClick="@{()-> checkBoxClickListener.CheckBoxClicked(model)}"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -112,6 +111,4 @@
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-<!--    android:onCheckedChanged="@{()-> checkBoxClickListener.onCheckboxClicked(model)}"-->
-<!--    android:onClick="@{() -> checkBoxClickListener.CheckBoxClicked(model)}"-->
-<!--    android:onCheckedChanged="@{()-> checkBoxClickListener.CheckBoxClicked(model)}"-->
+<!--    android:onClick="@{()-> checkBoxClickListener.CheckBoxClicked(model.)}"-->

@@ -3,13 +3,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.ModelFacade;
 
 public class ChoreUnitTest {
-    /*
-    private final Chore chore;
+
+
+
+/*    private final Chore chore;
 
     public ChoreUnitTest(Chore chore) {
-        this.chore = new Chore("Chore","This is a chore", 30, listeners);
+        this.chore = new Chore("Chore","This is a chore", 30);
     }
 
     @Test
@@ -25,8 +28,9 @@ public class ChoreUnitTest {
     public void getPointsTest(){assertEquals(30, chore.getPoints());}
 
     @Test
-    public void isCompleteTest(){assertFalse(chore.isComplete());}
+    public void isCompleteTest(){assertFalse(chore.isComplete());}*/
 
-     */
+
+
 
 }
