@@ -34,7 +34,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *TODO kommentera
+     *Empty constructor for database reasons
      */
 
     public Chore(){
@@ -42,7 +42,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *TODO kommentera
+     *Sets chore to complete and notifies the listeners
      */
 
     public void completeChore(){
