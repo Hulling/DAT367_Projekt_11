@@ -11,7 +11,6 @@ public class Profile implements IsCompleteListener, Serializable {
     private int currentPoints;
     private List<Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
    // private ArrayList<DoneChoresListener> listeners;
-    //private Chore chore;
 
 
     public Profile(String name) {
@@ -21,16 +20,6 @@ public class Profile implements IsCompleteListener, Serializable {
     }
     public Profile(){}
 
-
-
-   /* public Profile(int currentPoints, ArrayList<Chore> doneChores) {
-        this.currentPoints = currentPoints;
-        this.doneChores = doneChores;
-    }*/
-
-
-
- //   public Profile() {}
 
     public String getName() {
         return name;
@@ -72,17 +61,8 @@ public class Profile implements IsCompleteListener, Serializable {
         }else if (!chore.isComplete()){ //om false
             removeFromDoneChores(chore); //ta bort syssla från lista
         }
-       // notifyListeners();
     }
 
-/*    private void notifyListeners() {
-        for(DoneChoresListener listener : listeners){
-            listener.update(doneChores);
-        }
-    }*/
-/*    public void subscribe(DoneChoresListener listener) {
-        listeners.add(listener);
-    }*/
 
     public void setName(String name){
         this.name = name;

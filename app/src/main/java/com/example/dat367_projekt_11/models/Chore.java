@@ -4,6 +4,7 @@ package com.example.dat367_projekt_11.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Observer;
 
 
@@ -27,6 +28,19 @@ public class Chore implements Serializable {
 
     public Chore(){
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chore chore = (Chore) o;
+        return points == chore.points && isComplete == chore.isComplete && name.equals(chore.name) && description.equals(chore.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, points, isComplete);
     }
 
     public void completeChore(){

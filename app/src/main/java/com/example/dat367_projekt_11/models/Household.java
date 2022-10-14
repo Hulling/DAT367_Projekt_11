@@ -46,7 +46,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
 
     public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-      //  chore.subscribe(this);
         householdChores.add(chore);
       // notifyListeners(); // --> notifiera
     }
@@ -131,19 +130,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
 
 
-  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
-        listeners.add(listener);
-    }*/
-
   /*  public void setCurrentProfile(Profile profile) {
-
-    }*/
-
-
-/*    private void notifyListeners() {
-        for (AvailableChoresListener listener : listeners) {  //broadcast
-            listener.update(householdChores);
-        }
 
     }*/
 
