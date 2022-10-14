@@ -34,7 +34,6 @@ public class Chore implements Serializable, ModelFacade {
         this.description = description;
         this.points = points;
         this.isComplete = false;
-       // this.listeners = new ArrayList<>();
     }
 
     /**
@@ -135,44 +134,12 @@ public class Chore implements Serializable, ModelFacade {
         this.points = points;
     }
 
-    /**
-     * Subscribes the client as a listener.
-     * @param listener the listener to subscribe as a listener.
-     */
 
-    public void subscribe(IsCompleteListener listener){
-        if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
-            listeners.add(listener);
-        }
+
     @Override
     public Chore getChore() {
         return this;
     }
-
-    /**
-     * Unsubscribes the client as a listener.
-     * @param listener the listener to unsunscribe as a listener.
-     */
-
-    public void unsubscribe(IsCompleteListener listener){
-        listeners.remove(listener); //reset när timern går ut antar jag?
-    }
-
-    /**
-     * Notifies all subscribers
-     */
-
-    private void notifySubscribers() {
-        for (IsCompleteListener listener : listeners) {
-                listener.update(this);
-        }
-    }
-
-
-
-
-
-
 
 
 
