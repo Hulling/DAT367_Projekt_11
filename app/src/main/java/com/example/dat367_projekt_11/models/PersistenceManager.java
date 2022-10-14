@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersistenceManager implements FirebasePersistenceManager { //Svårt att testa denna klass, kolla upp mocking
@@ -161,26 +162,24 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         myRef.child(household.getUid()).child("profiles").addChildEventListener(childEventListener);
         return newListOfProfiles;
     }
-    public void addChoreToHousehold(Chore chore){
-        myRef.child(firebaseAuth.getCurrentUser().getUid()).child("userinfo").child("chores").setValue(chore);
+    public void addChoreToHousehold(Household household, Chore chore){
+        myRef.child(household.getUid()).child("userinfo").child("chores").setValue(chore);
     }
 
-    public MutableLiveData<Household> getCurrentHousehold(){
-        MutableLiveData<Household> currentHousehold = new MutableLiveData<>();
-        myRef.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+    public Household getHousehold(String householdUid){
+        ArrayList<Household> list = new ArrayList<>();
+       myRef.child(householdUid).child("userinfo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot profileSnapPost: snapshot.getChildren()) {
-                    Household household = profileSnapPost.getValue(Household.class);
-                    currentHousehold.setValue(household);
-                }
+                Household household = snapshot.getValue(Household.class);
+                list.add(household);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "loadPost:onCancelled", error.toException());
             }
         });
-        return currentHousehold;
+        return list.get(1);
     }
 
 

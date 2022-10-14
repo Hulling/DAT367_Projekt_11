@@ -47,6 +47,9 @@ public class MainPageView extends Fragment {
     }
 
     private void populateData() {
+       /* ConfigHandler configHandler = new ConfigHandler(getContext());
+        PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
+        Household household = persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser());*/
         List<Chore> choreModelList = mainPageViewModel.getChoreModellist();
 
         ChoreAdapter choreAdapter = new ChoreAdapter(choreModelList, getContext());

@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
+import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
@@ -22,6 +23,7 @@ public class LoginFragment extends Fragment {
 
     private AuthViewModel authViewModel;
     private FragmentLoginBinding binding;
+    private ConfigHandler configHandler;
 
 
     @Override
@@ -42,7 +44,6 @@ public class LoginFragment extends Fragment {
 
     private void setLoginBtnOnAction(View view) {
         Button loginButton = view.findViewById(R.id.login);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +61,8 @@ public class LoginFragment extends Fragment {
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
         authViewModel.getAuthenticatedHousehold().observe(this, authenticatedHousehold -> {
+            configHandler = new ConfigHandler(getContext());
+            configHandler.writeCurrentUser(authenticatedHousehold); // Write the logged in user to file
             createNewHousehold(authenticatedHousehold);
             goToProfileFragment();
             /*if (authenticatedHousehold.isNew) {
