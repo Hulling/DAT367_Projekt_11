@@ -2,6 +2,7 @@ package com.example.dat367_projekt_11.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -33,7 +35,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         this.context = context;
     }
 
-       @Override
+    @Override
     public void CheckBoxClicked(Chore chore) {
           if(chore.isComplete()){
             chore.unCompleteChore();
@@ -45,7 +47,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
 
 
     }
-
 
 
     public static class ChoreViewHolder extends RecyclerView.ViewHolder {
@@ -83,6 +84,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         holder.choreCardBinding.setModel(choreModel);
         holder.choreCardBinding.setCheckBoxClickListener(this);
     }
+
 
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.dat367_projekt_11.viewModels;
 
+import android.widget.EditText;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,10 +12,8 @@ import java.util.Objects;
 
 public class CreateChoreViewModel extends ViewModel {
 
-
-    public MutableLiveData<String> name = new MutableLiveData<>();
-    public MutableLiveData<String> description = new MutableLiveData<>();
-    public MutableLiveData<Integer> points = new MutableLiveData<>();//
+    private MutableLiveData<String> name = new MutableLiveData<>();
+    private MutableLiveData<String> description = new MutableLiveData<>();
     private MutableLiveData<Chore> userMutableLiveData;
     private Household household;
 
@@ -24,40 +24,33 @@ public class CreateChoreViewModel extends ViewModel {
         }
         return userMutableLiveData;
     }
-    public void onDoneClicked() {
-        Chore chore = new Chore(name.getValue(), description.getValue(), points.getValue());
-        userMutableLiveData.setValue(chore);
-        chore.setName(name.getValue());
-        chore.setDescription(description.getValue());
-        chore.setPoints(points.getValue());
-        addChore(chore);
-
-    }
-    private MutableLiveData<String> getName () {
-        return Objects.requireNonNull(this.name);
+    public MutableLiveData<String> getName () {
+        if(name == null) {
+        name = new MutableLiveData<>();
         }
+        return Objects.requireNonNull(this.name);
+    }
 
-    private MutableLiveData<String> getDescription () {
+    public MutableLiveData<String> getDescription () {
+        if(description== null) {
+            description = new MutableLiveData<>();
+        }
         return description;
     }
 
-    private MutableLiveData<Integer> getPoints () {
-        return points;}
+    public void onDoneClicked(String name, String desc, int points) {
+            Chore chore = new Chore(name, desc, points);
+            addChore(chore);
+          //  hur ska man lägga till chores i listan?
+
+
+    }
 
 
     private void addChore(Chore chore) {
             household.addChoreToList(chore);
         }
 
-    public void onClickRB1() {
-        points.setValue(10);
-    }
-    public void onClickRB2(){
-        points.setValue(20);
-    }
-    public void onClickRB3(){
-        points.setValue(30);
-    }
 
 }
 
