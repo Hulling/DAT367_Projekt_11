@@ -1,8 +1,5 @@
 package com.example.dat367_projekt_11.models;
 
-import android.database.Observable;
-
-import androidx.databinding.ObservableArrayList;
 
 import com.google.firebase.database.Exclude;
 
@@ -23,13 +20,11 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
 
     public String getUid() {
-        return uid;
-    }
+        return uid;}
 
     private String uid;
     private ArrayList<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
   //  private ArrayList<AvailableChoresListener> listeners;
-    //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
 //kolla att sakerna är nollskilda, objekt required non null.
     //design by contract
 
@@ -38,8 +33,8 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.uid = uid;
         this.email = email;
         this.householdName = householdName;
-        this.mAuth = FirebaseAuth.getInstance();
-        this.currentUser = mAuth.getCurrentUser();
+  //      this.mAuth = FirebaseAuth.getInstance();  //kommenterat ut för att tillfälligt testa
+  //      this.currentUser = mAuth.getCurrentUser(); //kommenterat ut för att tillfälligt testa
         this.householdChores = new ArrayList<Chore>();
 
         this.profileList = new ArrayList<>();
@@ -61,21 +56,45 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.password = password;
     }
 
+
     public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-        chore.subscribe(this);
+      //  chore.subscribe(this);
         householdChores.add(chore);
       // notifyListeners(); // --> notifiera
     }
 
+    private void getCurrentProfile(){
+
+    }
+
+   /* public void markChoreasDone(Chore chore){
+        boolean found = householdChores.remove(chore);
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }
+        this.getCurrentProfile().addToDoneChores(chore);
+    }
+
+    //facade för hela model. -> facaden som model i chore_card_fragment
+
+    public void markChoreasAvailable(Chore chore){
+        boolean found = getCurrentProfile().removeFromDoneChores();
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }
+        this.householdChores.add(chore);
+    }*/
+
 
     private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
             if (chore.isComplete()){
-                chore.unsubscribe(this);
                 householdChores.remove(chore);
                // notifyListeners(); //--> notifiera
 
         }
+
     }
+
 
     //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
 
@@ -116,7 +135,11 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
     @Override
     public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        this.removeChoreFromList(chore);
+        if (!chore.isComplete()) { // om true -> syssla ej klar
+            addChoreToList(chore); // lägg till syssla i lista av tillgängliga sysslor,
+        }else if (chore.isComplete()){ //om false
+            removeChoreFromList(chore); //ta bort syssla från lista
+        }
     }
 
 
@@ -124,9 +147,9 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         listeners.add(listener);
     }*/
 
-    public void setCurrentProfile(Profile profile) {
+  /*  public void setCurrentProfile(Profile profile) {
 
-    }
+    }*/
 
 
 /*    private void notifyListeners() {

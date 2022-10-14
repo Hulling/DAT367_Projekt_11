@@ -13,7 +13,9 @@ public class Chore{
     private String description;
     private int points;
     private boolean isComplete;
-    private Collection<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
+  //  private Collection<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
+
+    //Måste ha equals och hashcode.
 
 
     public Chore(String name, String description, int points){
@@ -21,16 +23,16 @@ public class Chore{
         this.description = description;
         this.points = points;
         this.isComplete = false;
-        this.listeners = new ArrayList<>();
+       // this.listeners = new ArrayList<>();
     }
 
     public void completeChore(){
         this.isComplete = true;
-        notifySubscribers();
+        //notifySubscribers();
     }
     public void unCompleteChore(){
         this.isComplete = false;
-        notifySubscribers();
+       // notifySubscribers();
 
     }
 
@@ -62,12 +64,12 @@ public class Chore{
         this.points = points;
     }
 
-    public void subscribe(IsCompleteListener listener){
+  /*  public void subscribe(IsCompleteListener listener){
         if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
             listeners.add(listener);
         }
-    }
-
+    }*/
+/*
     public void unsubscribe(IsCompleteListener listener){
         listeners.remove(listener); //reset när timern går ut antar jag?
     }
@@ -76,7 +78,7 @@ public class Chore{
         for (IsCompleteListener listener : listeners) {
                 listener.update(this);
         }
-    }
+    }*/
 
 
 

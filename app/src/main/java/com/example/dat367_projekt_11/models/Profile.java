@@ -18,6 +18,8 @@ public class Profile implements IsCompleteListener {
 
     }
 
+
+
    /* public Profile(int currentPoints, ArrayList<Chore> doneChores) {
         this.currentPoints = currentPoints;
         this.doneChores = doneChores;
@@ -39,7 +41,6 @@ public class Profile implements IsCompleteListener {
     public void addToDoneChores(Chore chore){
         doneChores.add(chore);
         increaseCurrentPoints(chore);
-        chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
     }
     public void removeFromDoneChores(Chore chore){
         doneChores.remove(chore);

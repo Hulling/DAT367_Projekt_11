@@ -29,6 +29,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     private List<Chore> completedChoreModellist;
     private CheckBox checkBox;
 
+    //klassens syfte och vad gör metoden- ALLA METODER OCH ALLA ATTRIBUT
 
     public ChoreAdapter(List<Chore> choreModelList, Context context) {
         this.choreModelList = choreModelList;
