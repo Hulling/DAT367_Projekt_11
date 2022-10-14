@@ -1,85 +1,99 @@
 package com.example.dat367_projekt_11.models;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.dat367_projekt_11.R;
-import com.example.dat367_projekt_11.view.MainActivity;
 
 
 public class ScoreboardModel extends AppCompatActivity {
 
-   /* Behöver en instans av user för att få tillgång till alla profiler - Hanna och Malin*/
+
+    /*private static final Profile currentPoints = new Profile();
+    private static int memberScore = currentPoints.getCurrentPoints();*/
+
+
+    public SharedPreferences getSharedPreferences(String pref, int i) {
+        return null;
+    }
+
+    /*private ScoreboardViewModel mViewModel;
 
 /*
     Profile currentPoints=new Profile();
     int memberScore = currentPoints.getCurrentPoints();
 
-    TextView Scores;
 
-    int best1;
-    int best2;
-    int best3;
+    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;
 
+    public MutableLiveData<ScoreboardViewModel> getScoreboardViewModel() {
+
+        if (scoreboardViewModelMutableLiveData == null) {
+            scoreboardViewModelMutableLiveData = new MutableLiveData<>();
+        }
+        return scoreboardViewModelMutableLiveData;
+    }*/
+
+    private String rankingOfScoresText;
 
 
     @SuppressLint("SetTextI18n")
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_scoreboard);
+    public String rankProfiles() {
 
-        Scores = (TextView) findViewById(R.id.Scores);
+        /*mViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);*/
 
-        SharedPreferences preferences = getSharedPreferences("PREF", +0);
-        memberScore = preferences.getInt("memberScore", memberScore);
-        best1 = preferences.getInt("points1", 0);
-        best2 = preferences.getInt("points2", 0);
-        best3 = preferences.getInt("points3", 0);
 
-        if( memberScore > best3){
-            best3 = memberScore;
+        /*getSharedPreferences("PREF", +0);*/
+
+        SharedPreferences preferences = getSharedPreferences("PREF", 0);
+        int memberScore = preferences != null ? preferences.getInt("memberScore", 0/*memberScore*/) : 0;
+        /*int bestOne = preferences.getInt("points1", 0);
+        int bestTwo = preferences.getInt("points2", 0);*/
+        int bestThree = preferences != null ? preferences.getInt("points3", 0) : 0;
+
+
+        if (memberScore > bestThree) {
+            bestThree = memberScore;
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points3", best3);
+            editor.putInt("points3", bestThree);
             editor.apply();
         }
 
-        if( memberScore > best2){
-            int temp = best2;
-            best2 = memberScore;
-            best3 = temp;
+        /*if (memberScore > bestTwo) {
+            int temp = bestTwo;
+            bestTwo = memberScore;
+            bestThree = temp;
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points3", best3);
-            editor.putInt("points2", best2);
+            editor.putInt("points3", bestThree);
+            editor.putInt("points2", bestTwo);
             editor.apply();
         }
 
-        if( memberScore > best1){
-            int temp = best1;
-            best1 = memberScore;
-            best2 = temp;
+        if (memberScore > bestOne) {
+            int temp = bestOne;
+            bestOne = memberScore;
+            bestTwo = temp;
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points2", best2);
-            editor.putInt("points1", best1);
+            editor.putInt("points2", bestTwo);
+            editor.putInt("points1", bestOne);
             editor.apply();
-        }
+        }*/
 
-        Scores.setText("#1" + best1 + "\n" +
+
+        rankingOfScoresText = "Hejsan svejsan" /*"1" + best1 + "\n" +
                 "#2" + best2 + "\n" +
-                "#3" + best3);
+                "#3" + bestThree*/;
 
-    }*/
 
-    /*@Override
-    public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
-    }*/
+        return rankingOfScoresText;
+
+    }
+
+
+
+
+    public String getRankingOfScoresText(){return rankingOfScoresText;}
+
+
 
 }
