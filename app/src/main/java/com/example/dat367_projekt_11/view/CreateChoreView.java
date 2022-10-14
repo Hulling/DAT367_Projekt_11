@@ -1,32 +1,24 @@
 package com.example.dat367_projekt_11.view;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.FacadeGetHousehold;
-import com.example.dat367_projekt_11.models.Household;
-import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
-import com.example.dat367_projekt_11.R;
 
 
 public class CreateChoreView extends Fragment {
@@ -92,6 +84,7 @@ public class CreateChoreView extends Fragment {
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             household.addChoreToList(chore);
+            facadeGetHousehold.addChore(household, chore);
         });
 
     }

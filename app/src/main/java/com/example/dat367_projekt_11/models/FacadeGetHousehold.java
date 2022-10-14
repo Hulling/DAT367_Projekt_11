@@ -18,4 +18,7 @@ public class FacadeGetHousehold {
         householdMutableLiveData = persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser());
         return householdMutableLiveData;
     }
+    public void addChore (Household household, Chore chore){
+        persistenceManagerFactory.getPersistenceManager().addChoreToHousehold(household, chore);
+    }
 }

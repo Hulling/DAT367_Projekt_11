@@ -3,10 +3,9 @@ package com.example.dat367_projekt_11.models;
 import android.content.Context;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -20,15 +19,14 @@ public class ConfigHandler {
     }
 
     public void writeCurrentUser(Household household) {
-        File file = new File(context.getFilesDir(), "textfile.txt");
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.flush();
-            fw.write(household.getUid());
-            fw.close();
-
-        } catch (IOException io) {
-            io.printStackTrace();
+        String householdUid = household.getUid();
+        byte[] byteArrray = householdUid.getBytes();
+        try (FileOutputStream fos = context.openFileOutput("textfile.txt", Context.MODE_PRIVATE)) {
+            fos.write(byteArrray);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
