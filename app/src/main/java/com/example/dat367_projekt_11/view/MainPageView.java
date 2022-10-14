@@ -14,8 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentMainpageBinding;
-import com.example.dat367_projekt_11.models.ConfigHandler;
-import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
+import com.example.dat367_projekt_11.models.FacadeGetHousehold;
 import com.example.dat367_projekt_11.viewModels.MainPageViewModel;
 
 public class MainPageView extends Fragment {
@@ -48,15 +47,11 @@ public class MainPageView extends Fragment {
     }
 
     private void populateData() {
-        ConfigHandler configHandler = new ConfigHandler(getContext());
-        PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
-        persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser()).observe(getViewLifecycleOwner(), household -> {
+        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             ChoreAdapter choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext());
             binding.setChoreAdapter(choreAdapter);
         });
-        //List<Chore> choreModelList = mainPageViewModel.getChoreModellist();
-
-
     }
 
     @Override

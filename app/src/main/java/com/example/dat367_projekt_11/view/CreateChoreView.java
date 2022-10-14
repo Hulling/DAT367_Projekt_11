@@ -20,6 +20,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
+import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.ConfigHandler;
+import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.Household;
+import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
 import com.example.dat367_projekt_11.R;
 
@@ -49,6 +54,7 @@ public class CreateChoreView extends Fragment {
         //binding.setLifecycleOwner(this);
         createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
         binding.setCreateChoreViewModel(createChoreViewModel);
+
         setDoneButtonAction(binding.getRoot());
         return binding.getRoot();
     }
@@ -61,31 +67,33 @@ public class CreateChoreView extends Fragment {
             public void onClick(View v) {
                 String nameField = createChoreViewModel.getName().getValue();
                 String descField = createChoreViewModel.getDescription().getValue();
-                int points = 10;switch(radioGroup.getCheckedRadioButtonId()){
+                int points = 10;
+                switch(radioGroup.getCheckedRadioButtonId()){
                     case R.id.radioButton: points = 10;break;
                     case R.id.radioButton2: points = 20;break;
                     case R.id.radioButton3: points = 30;break;
                 }
                 try {
-                System.out.println(createChoreViewModel.getName().getValue() +"\n" + createChoreViewModel.getDescription().getValue() + "\n"+ points);
-                    createChoreViewModel.onDoneClicked(nameField, descField, points);
+                    Chore chore = new Chore(nameField,descField,points);
+                    addChore(chore);
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
                 }catch(NullPointerException n){
                     Toast.makeText(getContext() ,"Please fill in all empty fields", Toast.LENGTH_LONG).show();
 
                 }
-
-
-
-
-
-
             }
         });
 
 
     }
 
+    private void addChore(Chore chore){
+        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            household.addChoreToList(chore);
+        });
+
+    }
 
     @Override
     public void onDestroyView() {
