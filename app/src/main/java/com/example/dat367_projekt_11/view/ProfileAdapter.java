@@ -19,6 +19,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The class ProfileAdapter is used to handle a recycleView that can be populated with cards.
+ * The Class is inspired from:
+ * https://www.digitalocean.com/community/tutorials/android-recyclerview-data-binding
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
+
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> implements CustomClickListener {
 
     private final HashMap<String, Profile> profileModelList;
@@ -67,6 +78,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         return profileModelList.size();
     }
 
+    /**
+     * The method sends with the intent the profile that has been clicked via serializable.
+     * @param profile Profile that has been clicked.
+     */
    @Override
     public void cardClicked(Profile profile) {
         Toast.makeText(context, "You clicked on " + profile.getName(),

@@ -19,6 +19,14 @@ import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+/**
+ * The class represent the sign in view for the user.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class LoginFragment extends Fragment {
 
     private AuthViewModel authViewModel;
@@ -35,7 +43,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        //binding.setLifecycleOwner(this);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setAuthViewModel(authViewModel);
         setLoginBtnOnAction(binding.getRoot());
@@ -57,7 +64,6 @@ public class LoginFragment extends Fragment {
             }
         });
     }
-
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
         authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedHousehold -> {

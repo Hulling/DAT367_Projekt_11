@@ -23,7 +23,8 @@ import java.util.HashMap;
  * to read and write to Firebase Realtime Database and use firebase authenticator to login and register
  * new user.
  *
- *The class is inspired from https://medium.com/firebase-tips-tricks/how-to-create-a-clean-firebase-authentication-using-mvvm-37f9b8eb7336
+ * The class is inspired from https://medium.com/firebase-tips-tricks/how-to-create-a-clean-firebase-authentication-using-mvvm-37f9b8eb7336
+ * The class uses information in https://firebase.google.com/docs/database/android/read-and-write
  *
  * @author  Kristin Hulling
  * @version 1.0

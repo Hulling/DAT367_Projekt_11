@@ -18,6 +18,14 @@ import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+/**
+ * The class represent the view for adding a new profile to the household.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class AddProfileFragment extends Fragment {
     private FragmentAddProfileBinding binding;
     private AuthViewModel authViewModel;

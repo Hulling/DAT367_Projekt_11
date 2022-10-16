@@ -17,6 +17,14 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentRegistrationBinding;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+/**
+ * The class represent the registration view for the user.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class RegistrationFragment extends Fragment {
 
     private FragmentRegistrationBinding binding;

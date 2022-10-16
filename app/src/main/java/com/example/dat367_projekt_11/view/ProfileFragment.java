@@ -19,6 +19,14 @@ import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
 import java.util.HashMap;
 
+/**
+ * The class represent the view of profiles when the user has been signed in.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class ProfileFragment extends Fragment{
     private FragmentProfileBinding binding;
     private AuthViewModel authViewModel;
@@ -34,14 +42,23 @@ public class ProfileFragment extends Fragment{
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setAuthViewModel(authViewModel);
-        Button addProfile = binding.getRoot().findViewById(R.id.addProfile);
-        addProfile.setOnClickListener(v ->
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_addProfileFragment));
-
+        setButtonOnAction(binding.getRoot());
         populateData();
         return binding.getRoot();
     }
 
+    private void setButtonOnAction(View view){
+        Button addProfile = view.findViewById(R.id.addProfile);
+        addProfile.setOnClickListener(v ->
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_addProfileFragment));
+    }
+
+    /**
+     * Method populates the recyclerView. If no profile has been added there will not be any node of
+     * profiles in database. Therefore the household.getHousehold will return null when there is no
+     * profiles that have been added. The solution here have been to add a empty hashmap when the
+     * value is null. This is not a nice solution.
+     */
     private void populateData() {
         FacadeCurrentHousehold facadeCurrentHousehold = new FacadeCurrentHousehold(getContext());
         facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {

@@ -12,6 +12,15 @@ import com.example.dat367_projekt_11.models.Profile;
 
 import java.util.HashMap;
 
+/**
+ * The class is a viewModel. It handles communication between fragments and the PersistenceManger
+ * without them talking direct to each other, via Mutable livedata.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class AuthViewModel extends AndroidViewModel {
     private final PersistenceManagerFactory persistenceManagerFactory;
     private MutableLiveData<Household> authenticatedHouseholdLiveData;
@@ -31,7 +40,7 @@ public class AuthViewModel extends AndroidViewModel {
 
     public MutableLiveData<Household> getAuthenticatedHousehold() {
         if (authenticatedHouseholdLiveData == null) {
-            authenticatedHouseholdLiveData = new MutableLiveData<Household>();
+            authenticatedHouseholdLiveData = new MutableLiveData<>();
         }
         return authenticatedHouseholdLiveData;
     }
@@ -39,19 +48,19 @@ public class AuthViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> getEmail() {
         if (email == null) {
-            email = new MutableLiveData<String>();
+            email = new MutableLiveData<>();
         }
         return email;
     }
     public MutableLiveData<String> getPassword() {
         if (password == null) {
-            password = new MutableLiveData<String>();
+            password = new MutableLiveData<>();
         }
         return password;
     }
     public MutableLiveData<String> getHouseholdName() {
         if (householdName == null) {
-            householdName = new MutableLiveData<String>();
+            householdName = new MutableLiveData<>();
         }
         return householdName;
     }
