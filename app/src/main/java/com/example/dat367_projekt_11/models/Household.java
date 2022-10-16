@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * This class represents the households of TidyApp
  */
-public class Household implements IsCompleteListener { //lyssnar på chores boolean{
+public class Household {
     private String householdName;
     private HashMap<String, Profile> profileList;
     private String password;
@@ -16,10 +16,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
     private String uid;
     private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
-  //  private ArrayList<AvailableChoresListener> listeners;
-    //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
-//kolla att sakerna är nollskilda, objekt required non null.
-    //design by contract
 
     /**
      *
@@ -58,9 +54,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
      * @param chore the chore to be added to household chores.
      */
     public void addChore(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-        chore.subscribe(this);
         householdChores.put(chore.getName(), chore);
-      // notifyListeners(); // --> notifiera
     }
 
     /**
@@ -70,9 +64,8 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
     private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
             if (chore.isComplete()){
-                chore.unsubscribe(this);
                 householdChores.remove(chore);
-               // notifyListeners(); //--> notifiera
+
 
         }
     }
@@ -163,28 +156,12 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.householdName = householdName;
     }
 
-    /**
-     * Updates list of household chores whenever a chore is completed
-     * @param chore the chore that has been completed
-     */
-    @Override
-    public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        this.removeChoreFromList(chore);
-    }
 
     public void setCurrentProfile(Profile profile){
         currentProfile = profile;
     }
 
-  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
-        listeners.add(listener);
-    }*/
+    public Profile getCurrentProfile(Profile profile){return currentProfile;}
 
-/*    private void notifyListeners() {
-        for (AvailableChoresListener listener : listeners) {  //broadcast
-            listener.update(householdChores);
-        }
-
-    }*/
 
 }

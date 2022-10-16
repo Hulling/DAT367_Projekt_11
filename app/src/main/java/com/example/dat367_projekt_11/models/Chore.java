@@ -16,7 +16,7 @@ public class Chore implements Serializable {
     private String description;
     private int points;
     private boolean isComplete;
-    private Collection<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
+
 
     /**
      *
@@ -30,7 +30,6 @@ public class Chore implements Serializable {
         this.description = description;
         this.points = points;
         this.isComplete = false;
-        this.listeners = new ArrayList<>();
     }
 
     /**
@@ -47,7 +46,6 @@ public class Chore implements Serializable {
 
     public void completeChore(){
         this.isComplete = true;
-        notifySubscribers();
     }
 
     /**
@@ -55,7 +53,6 @@ public class Chore implements Serializable {
      */
     public void unCompleteChore(){
         this.isComplete = false;
-        notifySubscribers();
 
     }
 
@@ -123,35 +120,18 @@ public class Chore implements Serializable {
      * @param listener the listener to subscribe as a listener.
      */
 
-    public void subscribe(IsCompleteListener listener){
-        if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
-            listeners.add(listener);
-        }
-    }
+
 
     /**
      * Unsubscribes the client as a listener.
      * @param listener the listener to unsunscribe as a listener.
      */
 
-    public void unsubscribe(IsCompleteListener listener){
-        listeners.remove(listener); //reset när timern går ut antar jag?
-    }
+
 
     /**
      * Notifies all subscribers
      */
-
-    private void notifySubscribers() {
-        for (IsCompleteListener listener : listeners) {
-                listener.update(this);
-        }
-    }
-
-
-
-
-
 
 
 
