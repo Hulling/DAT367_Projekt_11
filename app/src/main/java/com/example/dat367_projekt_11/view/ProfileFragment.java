@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentProfileBinding;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
 import java.util.HashMap;
@@ -48,8 +48,8 @@ public class ProfileFragment extends Fragment{
     }
 
     private void populateData() {
-        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+        FacadeCurrentHousehold facadeCurrentHousehold = new FacadeCurrentHousehold(getContext());
+        facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             if(household.getProfileList()==null){
                 ProfileAdapter profileAdapter = new ProfileAdapter(new HashMap<>(), getContext());
                 binding.setProfileAdapter(profileAdapter);

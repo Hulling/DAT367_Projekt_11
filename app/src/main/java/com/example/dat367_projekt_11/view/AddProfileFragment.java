@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentAddProfileBinding;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
@@ -46,8 +46,8 @@ public class AddProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Profile profile = new Profile(authViewModel.getProfileName().getValue());
-                FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-                facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+                FacadeCurrentHousehold facadeCurrentHousehold = new FacadeCurrentHousehold(getContext());
+                facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
                    authViewModel.addProfile(household, profile);
                 });
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_addProfileFragment_to_mainActivity);

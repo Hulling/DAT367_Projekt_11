@@ -16,7 +16,6 @@ import java.util.List;
 public class AuthViewModel extends AndroidViewModel {
     private final PersistenceManagerFactory persistenceManagerFactory;
     private MutableLiveData<Household> authenticatedHouseholdLiveData;
-    private MutableLiveData<Household> createdHouseholdLiveData;
     private MutableLiveData<List<Profile>> listOfProfiles;
     private MutableLiveData<Profile> chosenProfile;
 
@@ -40,12 +39,6 @@ public class AuthViewModel extends AndroidViewModel {
         return authenticatedHouseholdLiveData;
     }
 
-    public MutableLiveData<Household> getCreatedHousehold() {
-        if (createdHouseholdLiveData == null) {
-            createdHouseholdLiveData = new MutableLiveData<Household>();
-        }
-        return createdHouseholdLiveData;
-    }
 
     public MutableLiveData<String> getEmail() {
         if (email == null) {
@@ -95,7 +88,7 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     public void createHousehold(Household authenticatedHousehold) {
-        createdHouseholdLiveData = persistenceManagerFactory.getPersistenceManager().createHouseholdInFirestoreIfNotExists(authenticatedHousehold);
+        persistenceManagerFactory.getPersistenceManager().createHouseholdInDatabaseIfNotExists(authenticatedHousehold);
     }
 
     public void addProfile(Household household, Profile profile){

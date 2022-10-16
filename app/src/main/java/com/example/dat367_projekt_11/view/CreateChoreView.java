@@ -17,7 +17,7 @@ import androidx.navigation.Navigation;
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentCreateChorePageBinding;
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
 
 
@@ -81,9 +81,9 @@ public class CreateChoreView extends Fragment {
     }
 
     private void addChore(Chore chore){
-        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-            facadeGetHousehold.addChore(household, chore);
+        FacadeCurrentHousehold facadeCurrentHousehold = new FacadeCurrentHousehold(getContext());
+        facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            facadeCurrentHousehold.addChore(household, chore);
         });
 
     }
