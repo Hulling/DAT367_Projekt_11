@@ -14,7 +14,10 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentProfileBinding;
+import com.example.dat367_projekt_11.models.FacadeGetHousehold;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
+
+import java.util.HashMap;
 
 public class ProfileFragment extends Fragment{
     private FragmentProfileBinding binding;
@@ -29,7 +32,7 @@ public class ProfileFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+        //binding.setLifecycleOwner(this);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setAuthViewModel(authViewModel);
         addProfile = binding.getRoot().findViewById(R.id.addProfile);
@@ -45,18 +48,18 @@ public class ProfileFragment extends Fragment{
     }
 
     private void populateData() {
-      authViewModel.makeListOfProfiles(authViewModel.getAuthenticatedHousehold().getValue());
-       /* ProfileAdapter profileAdapter = new ProfileAdapter(authViewModel.getListOfProfiles().getValue(), getContext());
-            profileAdapter.getClickedProfile().observe(getViewLifecycleOwner(), clickedProfile -> {
-                authViewModel.chooseProfile(clickedProfile);
-            });
-        binding.setProfileAdapter(profileAdapter);*/
-        authViewModel.getListOfProfiles().observe(getViewLifecycleOwner(), listOfProfiles -> {
-            ProfileAdapter profileAdapter = new ProfileAdapter(listOfProfiles, getContext());
-           /* profileAdapter.getClickedProfile().observe(getViewLifecycleOwner(), clickedProfile -> {
-                authViewModel.chooseProfile(clickedProfile);
-            });*/
-            binding.setProfileAdapter(profileAdapter);
+        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            if(household.getProfileList()==null){
+                ProfileAdapter profileAdapter = new ProfileAdapter(new HashMap<>(), getContext());
+                binding.setProfileAdapter(profileAdapter);
+            }
+            else{
+                authViewModel.getListOfProfiles(household).observe(getViewLifecycleOwner(), listOfProfiles ->{
+                    ProfileAdapter profileAdapter = new ProfileAdapter(listOfProfiles, getContext());
+                    binding.setProfileAdapter(profileAdapter);
+                });
+            }
         });
     }
 

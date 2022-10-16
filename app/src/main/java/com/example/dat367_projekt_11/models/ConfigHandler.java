@@ -23,8 +23,6 @@ public class ConfigHandler {
         byte[] byteArrray = householdUid.getBytes();
         try (FileOutputStream fos = context.openFileOutput("textfile.txt", Context.MODE_PRIVATE)) {
             fos.write(byteArrray);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

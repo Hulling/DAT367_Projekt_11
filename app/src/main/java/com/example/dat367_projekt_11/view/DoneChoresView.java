@@ -15,8 +15,7 @@ import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class DoneChoresView extends Fragment {
     private FragmentDonechoresBinding binding;
@@ -41,13 +40,13 @@ public class DoneChoresView extends Fragment {
     }
 
     private void populateData(Profile profile) {
-        List<Chore> choreModelList = doneChoresViewModel.getChoreModellist();
+        HashMap<String, Chore> choreModelList = doneChoresViewModel.getChoreModellist();
         if(profile.getDoneChores()!=null){
             ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext());
             binding.setChoreAdapter(choreAdapter);
         }
         else{
-            ChoreAdapter choreAdapter = new ChoreAdapter(new ArrayList<>(), getContext());
+            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext());
             binding.setChoreAdapter(choreAdapter);
         }
     }

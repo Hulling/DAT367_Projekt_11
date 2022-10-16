@@ -15,7 +15,6 @@ import androidx.navigation.Navigation;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentLoginBinding;
-import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
@@ -36,7 +35,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+        //binding.setLifecycleOwner(this);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setAuthViewModel(authViewModel);
         setLoginBtnOnAction(binding.getRoot());
@@ -61,39 +60,23 @@ public class LoginFragment extends Fragment {
 
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
-        authViewModel.getToastMessage().observe(this, toastMessage ->{
-            Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
-        });
-        authViewModel.getAuthenticatedHousehold().observe(this, authenticatedHousehold -> {
+        authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedHousehold -> {
             configHandler = new ConfigHandler(getContext());
             configHandler.writeCurrentUser(authenticatedHousehold); // Write the logged in user to file
             createNewHousehold(authenticatedHousehold);
             goToProfileFragment();
-            /*if (authenticatedHousehold.isNew) {
-                createNewHousehold(authenticatedHousehold);
-            } else {
-                goToProfileFragment();
-            }*/
+        });
+        authViewModel.getToastMessage().observe(this, toastMessage ->{
+            Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
         });
     }
 
     private void createNewHousehold(Household authenticatedHousehold) {
-        authenticatedHousehold.addChoreToList(new Chore("hej", "hj", 10));
         authViewModel.createHousehold(authenticatedHousehold);
-        authViewModel.getCreatedHousehold().observe(this, household -> {
-            if (authenticatedHousehold.isCreated) {
-                toastMessage(household.getHouseholdName());
-            }
-            goToProfileFragment();
-        });
     }
 
     private void goToProfileFragment() {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_profileFragment);
-    }
-
-    private void toastMessage(String name) {
-        Toast.makeText(getContext(), "Hi " + name + "!\n" + "Your account was successfully created.", Toast.LENGTH_LONG).show();
     }
 }
 

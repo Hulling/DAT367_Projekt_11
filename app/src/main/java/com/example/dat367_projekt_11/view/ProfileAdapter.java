@@ -15,16 +15,18 @@ import com.example.dat367_projekt_11.databinding.ProfileCardBinding;
 import com.example.dat367_projekt_11.models.CustomClickListener;
 import com.example.dat367_projekt_11.models.Profile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> implements CustomClickListener {
 
-    private List<Profile> profileModelList;
+    private HashMap<String, Profile> profileModelList;
     private Context context;
 
     //private MutableLiveData<Profile> clickedProfile = new MutableLiveData<>();
 
-    public ProfileAdapter(List<Profile> profileModelList, Context context) {
+    public ProfileAdapter(HashMap<String, Profile> profileModelList, Context context) {
         this.profileModelList = profileModelList;
         this.context = context;
     }
@@ -53,19 +55,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
         return new ProfileViewHolder(binding);
     }
-
+    //https://stackoverflow.com/questions/53969452/get-key-and-value-based-on-position-with-recyclerview-and-hashmap
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
-        Profile profileModel = profileModelList.get(position);
-        holder.profileCardBinding.setModel(profileModel);
-        holder.profileCardBinding.setItemClickListener(this);
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                context.startActivity(intent);
-            }
-        });*/
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            List<Profile> profileArrayList = new ArrayList<>(profileModelList.values());
+            Profile profileModel = profileArrayList.get(position);
+            holder.profileCardBinding.setProfile(profileModel);
+            holder.profileCardBinding.setItemClickListener(this);
+        }
     }
 
     @Override

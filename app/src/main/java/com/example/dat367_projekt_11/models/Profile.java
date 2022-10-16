@@ -2,14 +2,13 @@ package com.example.dat367_projekt_11.models;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 
 public class Profile implements IsCompleteListener, Serializable {
     private String name;
     private int currentPoints;
-    private List<Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
+    private HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
    // private ArrayList<DoneChoresListener> listeners;
     //private Chore chore;
 
@@ -17,7 +16,7 @@ public class Profile implements IsCompleteListener, Serializable {
     public Profile(String name) {
         this.currentPoints = 0;
         this.name = name;
-        this.doneChores = new ArrayList<>();
+        this.doneChores = new HashMap<>();
     }
     public Profile(){}
 
@@ -40,7 +39,7 @@ public class Profile implements IsCompleteListener, Serializable {
 
 
     public void addToDoneChores(Chore chore){
-        doneChores.add(chore);
+        doneChores.put(chore.getName(), chore);
         increaseCurrentPoints(chore);
         chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
     }
@@ -57,7 +56,7 @@ public class Profile implements IsCompleteListener, Serializable {
     private void decreseCurrentPoints(Chore chore){this.currentPoints -= chore.getPoints();}
 
 
-    public List<Chore> getDoneChores(){
+    public HashMap<String, Chore> getDoneChores(){
         return this.doneChores;
     }
 

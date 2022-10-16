@@ -22,8 +22,8 @@ public class Round{
             public void run() {
                 determineWinner();
                 notifySubscribers();//TODO display on popup
-                resetScores();
-                resetChoreList();
+                //resetScores();
+                //resetChoreList();
             }
         };
         Timer timer = new Timer("Timer");
@@ -50,17 +50,17 @@ public class Round{
 
     }
 
-    void resetScores(){     //again, unsure whether this should be here or in household
+    /*void resetScores(){     //again, unsure whether this should be here or in household
         for(Profile profile : household.getProfileList()){
             profile.resetScore();
         }
-    }
-    void resetChoreList(){  //same with this method
+    }*/
+    /*void resetChoreList(){  //same with this method
         for(Chore chore : household.getHouseholdChores()){
             //TODO find a way to delete all chores from a household
 
         }
-    }
+    }*/
 
     }
 

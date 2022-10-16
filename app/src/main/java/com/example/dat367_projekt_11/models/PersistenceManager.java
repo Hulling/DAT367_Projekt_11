@@ -13,14 +13,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class PersistenceManager implements FirebasePersistenceManager { //Svårt att testa denna klass, kolla upp mocking
 
@@ -57,18 +56,18 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         MutableLiveData<Household> authenticatedHouseholdMutableLiveData = new MutableLiveData<>();
         firebaseAuth.signInWithEmailAndPassword(inEmail, inPassword).addOnCompleteListener(authTask -> {
             if (authTask.isSuccessful()) {
-                boolean isNewUser = authTask.getResult().getAdditionalUserInfo().isNewUser();
+                //boolean isNewUser = authTask.getResult().getAdditionalUserInfo().isNewUser();
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
                     String uid = firebaseUser.getUid();
                     String name = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
-                    Household household = new Household(uid, name, email);
-                    household.isNew = isNewUser;
+                    Household household = new Household(uid, email, name);
+                    //household.isNew = isNewUser;
                     authenticatedHouseholdMutableLiveData.setValue(household);
                 }
             } else {
-                toastMessage.setValue("Login failure " + authTask.getException().getMessage());
+                toastMessage.setValue(authTask.getException().getMessage());
                 Log.d("LOG", authTask.getException().getMessage());
             }
         });
@@ -96,7 +95,7 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
                                     });
                         }
                         else {
-                            toastMessage.setValue("Registration failure " + task.getException().getMessage());
+                            toastMessage.setValue(task.getException().getMessage());
                         }
                     }
                 });
@@ -114,7 +113,7 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
                 if(dataSnapshot.exists()){
                     Log.d(TAG, "User already exist");
                 } else {
-                    myRef.child(authenticatedHousehold.getUid()).child("userinfo").setValue(authenticatedHousehold);
+                    myRef.child(authenticatedHousehold.getUid()).setValue(authenticatedHousehold);
                     newHouseholdMutableLiveData.setValue(authenticatedHousehold);
                 }
             }
@@ -128,55 +127,34 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
     }
 
     public void addNewProfileToDatabase(Household household, Profile profile){
-        myRef.child(household.getUid()).child("profiles").child(profile.getName()).setValue(profile);
+        myRef.child(household.getUid()).child("profileList").child(profile.getName()).setValue(profile);
     }
-    public MutableLiveData<List<Profile>> getListFromFirestore(Household household){ // Skulle man kunna bara skicka en lista och inte livedata?
-        MutableLiveData<List<Profile>> newListOfProfiles = new MutableLiveData<>();
-        ChildEventListener childEventListener = new ChildEventListener() {
+    public MutableLiveData<HashMap<String,Profile>> getProfileList(Household household){
+        MutableLiveData<HashMap<String, Profile>> listOfProfiles = new MutableLiveData<>();
+        myRef.child(household.getUid()).child("profileList").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Profile profile = dataSnapshot.getValue(Profile.class);
-                if(dataSnapshot.exists()){
-                    Log.d(TAG, "profile already exist");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Profile profile = postSnapshot.getValue(Profile.class);
                     household.addProfile(profile);
                 }
-                else{
-                    //household.addProfile(profile);
-                }
-                newListOfProfiles.setValue(household.getProfileList());
-                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                listOfProfiles.setValue(household.getProfileList());
             }
-
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException());
             }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
-            }
-        };
-        myRef.child(household.getUid()).child("profiles").addChildEventListener(childEventListener);
-        return newListOfProfiles;
+        });
+        return listOfProfiles;
     }
+
     public void addChoreToHousehold(Household household, Chore chore){
-        myRef.child(household.getUid()).child("userinfo").child("householdChores").child("1").setValue(chore);
+        myRef.child(household.getUid()).child("householdChores").child(chore.getName()).setValue(chore);
     }
 
     public MutableLiveData<Household> getHousehold(String householdUid){
         MutableLiveData<Household> householdMutableLiveData = new MutableLiveData<>();
-       myRef.child(householdUid).child("userinfo").addValueEventListener(new ValueEventListener() {
+       myRef.child(householdUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Household household = snapshot.getValue(Household.class);
@@ -189,26 +167,5 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         });
         return householdMutableLiveData;
     }
-
-
-   /* public MutableLiveData<Profile> getChosenProfileData(Household household, Profile inProfile){
-        MutableLiveData<Profile> chosenProfile = new MutableLiveData<>();
-        myRef.child(household.getUid()).child("profiles").child(inProfile.getName()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot profileSnapPost: snapshot.getChildren()) {
-                    Profile profile = profileSnapPost.getValue(Profile.class);
-                    if(profile==inProfile){
-                        chosenProfile.setValue(profile);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "loadPost:onCancelled", error.toException());
-            }
-        });
-        return chosenProfile;
-    }*/
 
 }

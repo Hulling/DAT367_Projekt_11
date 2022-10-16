@@ -10,8 +10,7 @@ import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataModel {
     private Household household;
@@ -29,8 +28,8 @@ public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataMo
 
 
     @Override
-    public List<Chore> getChoreModellist() { //returnerna listan av donechores;
-       List<Chore> choreModelList = new ArrayList<>();
+    public HashMap<String, Chore> getChoreModellist() { //returnerna listan av donechores;
+       HashMap<String, Chore> choreModelList = new HashMap<>();
        Profile testProfile = new Profile("Hanna");
        Chore testChore = new Chore("malin", "Hej jag heter hanna och jag är världens cooolaste person", 300000);
        testProfile.addToDoneChores(testChore);
