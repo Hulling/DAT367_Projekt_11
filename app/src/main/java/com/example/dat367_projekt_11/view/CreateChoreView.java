@@ -84,9 +84,6 @@ public class CreateChoreView extends Fragment {
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             facadeGetHousehold.addChore(household, chore);
-            if(household.getHouseholdChores() != null){
-                household.addChoreToList(chore);
-            }
         });
 
     }
