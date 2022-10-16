@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ProfileFragment extends Fragment{
     private FragmentProfileBinding binding;
     private AuthViewModel authViewModel;
-    private Button addProfile;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +32,11 @@ public class ProfileFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        //binding.setLifecycleOwner(this);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setAuthViewModel(authViewModel);
-        addProfile = binding.getRoot().findViewById(R.id.addProfile);
-        addProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_addProfileFragment);
-            }
-        });
+        Button addProfile = binding.getRoot().findViewById(R.id.addProfile);
+        addProfile.setOnClickListener(v ->
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_addProfileFragment));
 
         populateData();
         return binding.getRoot();

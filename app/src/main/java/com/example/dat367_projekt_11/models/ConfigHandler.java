@@ -26,7 +26,7 @@ public class ConfigHandler {
     private final Context context;
 
     /**
-     * Class constructor that inits the context.
+     * Class constructor that initialize the context.
      */
     public ConfigHandler(Context context) {
         this.context = context;

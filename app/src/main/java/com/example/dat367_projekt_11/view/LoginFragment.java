@@ -62,7 +62,7 @@ public class LoginFragment extends Fragment {
         authViewModel.login(email, password);
         authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedHousehold -> {
             configHandler = new ConfigHandler(getContext());
-            configHandler.writeCurrentUser(authenticatedHousehold); // Write the logged in user to file
+            configHandler.writeCurrentUser(authenticatedHousehold);
             createNewHousehold(authenticatedHousehold);
             goToProfileFragment();
         });

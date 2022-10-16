@@ -21,21 +21,13 @@ import java.util.List;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> implements CustomClickListener {
 
-    private HashMap<String, Profile> profileModelList;
-    private Context context;
-
-    //private MutableLiveData<Profile> clickedProfile = new MutableLiveData<>();
+    private final HashMap<String, Profile> profileModelList;
+    private final Context context;
 
     public ProfileAdapter(HashMap<String, Profile> profileModelList, Context context) {
         this.profileModelList = profileModelList;
         this.context = context;
     }
-    /*public MutableLiveData<Profile> getClickedProfile(){
-        if(clickedProfile == null){
-            clickedProfile = new MutableLiveData<>();
-        }
-        return clickedProfile;
-    }*/
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder {
         public ProfileCardBinding profileCardBinding;
@@ -55,7 +47,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
         return new ProfileViewHolder(binding);
     }
-    //https://stackoverflow.com/questions/53969452/get-key-and-value-based-on-position-with-recyclerview-and-hashmap
+    /**
+     * OnBindViewHolder can only get position of a arraylist, not a hashmap. Hashmap must therefore
+     * be converted to an arraylist. The conversion is retrieved from:
+     * https://stackoverflow.com/questions/53969452/get-key-and-value-based-on-position-with-recyclerview-and-hashmap
+     */
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -73,14 +69,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
    @Override
     public void cardClicked(Profile profile) {
-        //clickedProfile.setValue(profile);
-        Toast.makeText(context, "Du klickade på " + profile.getName(),
+        Toast.makeText(context, "You clicked on " + profile.getName(),
                 Toast.LENGTH_LONG).show();
        Intent i = new Intent(context.getApplicationContext(),MainActivity.class);
        i.putExtra("PROFILE",profile);
        context.startActivity(i);
-       //Intent intent = new Intent(context.getApplicationContext(), MainActivity.class);
-       //context.startActivity(intent);
 
     }
 }
