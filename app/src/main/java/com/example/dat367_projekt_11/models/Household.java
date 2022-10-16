@@ -33,11 +33,6 @@ public class Household {
     }
     public Household() {}
 
-   /* public FirebaseAuth getmAuth(){
-        return  mAuth;
-    }
-    //returnera kopia? orginal kan mixtas med.*/
-
     @Exclude
     public boolean isNew, isCreated;
 
@@ -65,12 +60,51 @@ public class Household {
     private void removeChoreFromList(Chore chore){
             if (chore.isComplete()){
                 householdChores.remove(chore);
-
-
         }
     }
 
-    //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
+    /**
+     * Relocates chore from hashmap of available chores to hashmap of done chores.
+     * @param chore the chore to be relocated from available chores to done chores.
+     */
+
+
+    public void markChoreAsDone(Chore chore){
+       // boolean found = householdChores.remove(chore);
+        boolean found = householdChores.containsKey(chore);
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }
+        else{
+            //householdChores.remove(chore);
+            this.removeChoreFromList(chore);
+            this.getCurrentProfile().addToDoneChores(chore);
+            //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
+        }
+
+    }
+    /**
+     * Relocates chore from hashmap of done chores to hashmap of available chores.
+     * @param chore the chore to be relocated from done chores to available chores.
+     */
+
+
+    public void markChoreAsAvailable(Chore chore){
+       // boolean found = getCurrentProfile().getDoneChores().remove(chore);
+        boolean found = getCurrentProfile().getDoneChores().containsKey(chore);
+       // this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }else{
+            getCurrentProfile().getDoneChores().remove(chore);
+            this.addChore(chore);
+            //this.householdChores.add(chore);
+        }
+
+    }
+
+
+
 
     /**
      * Gets the household chores
@@ -161,7 +195,7 @@ public class Household {
         currentProfile = profile;
     }
 
-    public Profile getCurrentProfile(Profile profile){return currentProfile;}
+    public Profile getCurrentProfile(){return currentProfile;}
 
 
 }
