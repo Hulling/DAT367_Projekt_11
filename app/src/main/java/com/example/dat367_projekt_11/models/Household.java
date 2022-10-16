@@ -79,12 +79,12 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
     //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
 
-    public HashMap<String, Chore> getHouseholdChores() { //jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
     /**
      * Gets the household chores
      * @return the household chores
      */
-    public List<Chore> getHouseholdChores() { //jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
+
+    public HashMap<String, Chore> getHouseholdChores() {//jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
         return householdChores;
     }
 
@@ -130,19 +130,12 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
     }
 
     //public void setProfileList(List<Profile> profileList){this.profileList = profileList;}
-    /**
-     * Sets the list of profiles.
-     * @param profileList the list of profiles to be set.
-     */
-//TODO behöver vi verkligen denna?
-    public void setProfileList(List<Profile> profileList){this.profileList = profileList;}
 
-    public HashMap<String, Profile> getProfileList() {
     /**
      * Gets the profiles
      * @return the profiles
      */
-    public List<Profile> getProfileList() {
+    public HashMap<String, Profile> getProfileList() {
         return profileList;
     }
 
@@ -181,14 +174,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
 
     public void setCurrentProfile(Profile profile){
         currentProfile = profile;
-    }
-
-    private Profile getCurrentProfile(){
-        return currentProfile;
-    }
-
-    public void addChoreToList(Chore chore){
-        householdChores.add(chore);
     }
 
   /*  private void subscribe(AvailableChoresListener listener) { //broadcast

@@ -61,8 +61,8 @@ public class Profile implements IsCompleteListener, Serializable {
      */
     public void addToDoneChores(Chore chore){
         doneChores.put(chore.getName(), chore);
-        increaseCurrentPoints(chore);
-        doneChores.add(chore);
+        increaseCurrentPoints(chore.getPoints());
+        doneChores.put(chore.getName(), chore);
         increaseCurrentPoints(chore.getPoints());
         chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
     }
@@ -92,15 +92,14 @@ public class Profile implements IsCompleteListener, Serializable {
     private void decreaseCurrentPoints(int chorePoints){this.currentPoints -= chorePoints;}
 
 
-    public HashMap<String, Chore> getDoneChores(){
+
     /**
      * Gets list of the completed chores
      * @return the completed chores
      */
-    public List<Chore> getDoneChores(){
-        return this.doneChores;
+    public HashMap<String, Chore> getDoneChores(){
+        return doneChores;
     }
-
 
     /**
      * Updates list of chores whenever a new chore has been completed (BORDE DELAS IN I TVÅ OLIKA? TODO)
