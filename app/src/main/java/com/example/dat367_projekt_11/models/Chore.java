@@ -1,45 +1,14 @@
 package com.example.dat367_projekt_11.models;
-/**
- * KLASSER OCH INTERFACES
- Describe what an object of this type represents. Use “this” to refer to an object of the current class
- Give all the information that a developer using your class would
- need to know
-        Writing client code that calls your class
-        Writing a subclass of your class
-        Reusing your class in another program
- Tags that can be used in class/interface documentation comments
-        @author name – author of the file
- For more than one author: use several @author tags, one per line, in chronological
- order, with class creator at top
-        @version versionNumber
-
- */
-
-/**
- * METODER:
- * First sentence should be a summary sentence, a complete description of the entity on its own
- *      Description should begin with verb, present tense, third person
- * @param name description – for each parameter.
- *                      Do not need to give types and arguments: Javadoc will get these from
- *                      the source code. List parameters in same order as in source code
- *
- * @return description – for return value
- *                      Omit if return type is void.
- *
- * @throws exceptionType description – for each exception that can be thrown
- *                      Hint: start description with “if”
- *
- *SHOULD document all public and protected members
- * MAY document private members
- */
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Observer;
 
 /**
- *
+ *This class represents the chore object.
+ * @author Malin Kihlström
+ * @author Hanna Harnesk
+ * @author Kristin Hulling
+ * @author Pauline Björk
  */
 
 public class Chore implements Serializable {
@@ -64,47 +33,95 @@ public class Chore implements Serializable {
         this.listeners = new ArrayList<>();
     }
 
+    /**
+     *Empty constructor for database reasons
+     */
+
     public Chore(){
 
     }
+
+    /**
+     *Sets chore to complete and notifies the listeners
+     */
 
     public void completeChore(){
         this.isComplete = true;
         notifySubscribers();
     }
+
+    /**
+     *TODO kommentera
+     */
     public void unCompleteChore(){
         this.isComplete = false;
         notifySubscribers();
 
     }
 
-
+    /**
+     *Gets the name
+     * @return the set name
+     */
 
     public String getName() {
         return this.name;
     }
 
+    /**
+     *Gets the description
+     * @return the set description
+     */
     public String getDescription(){
         return this.description;
     }
+
+    /**
+     * Gets the points
+     * @return the set points
+     */
     public int getPoints(){
         return this.points;
     }
+
+    /**
+     * Answers if it is completed
+     * @return if the chore is complete
+     */
     public boolean isComplete(){
         return this.isComplete;
     }
 
+    /**
+     * Sets the name.
+     * @param name the name to set.
+     */
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * Sets the description.
+     * @param description the description to be set.
+     */
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Sets the points.
+     * @param points the points to be set.
+     */
+
     public void setPoints(int points) {
         this.points = points;
     }
+
+    /**
+     * Subscribes the client as a listener.
+     * @param listener the listener to subscribe as a listener.
+     */
 
     public void subscribe(IsCompleteListener listener){
         if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
@@ -112,11 +129,20 @@ public class Chore implements Serializable {
         }
     }
 
+    /**
+     * Unsubscribes the client as a listener.
+     * @param listener the listener to unsunscribe as a listener.
+     */
+
     public void unsubscribe(IsCompleteListener listener){
         listeners.remove(listener); //reset när timern går ut antar jag?
     }
 
-    private void notifySubscribers() {  //notifiera lyssnare
+    /**
+     * Notifies all subscribers
+     */
+
+    private void notifySubscribers() {
         for (IsCompleteListener listener : listeners) {
                 listener.update(this);
         }
