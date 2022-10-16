@@ -21,17 +21,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class PersistenceManager implements FirebasePersistenceManager { //Svårt att testa denna klass, kolla upp mocking
+/**
+ * The PersistenceManager class is the only class that communicate with Firebase. It implement a way
+ * to read and write to Firebase Realtime Database and use firebase authenticator to login and register
+ * new user.
+ *
+ *The class is inspired from https://medium.com/firebase-tips-tricks/how-to-create-a-clean-firebase-authentication-using-mvvm-37f9b8eb7336
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
 
-    //https://medium.com/firebase-tips-tricks/how-to-create-a-clean-firebase-authentication-using-mvvm-37f9b8eb7336
+public class PersistenceManager implements FirebasePersistenceManager {
 
-    private static final PersistenceManager instance = new PersistenceManager(); // Singelton patterns
-
+    private static final PersistenceManager instance = new PersistenceManager();
     private final FirebaseAuth firebaseAuth;
     private MutableLiveData<String> toastMessage;
 
     private final DatabaseReference myRef;
 
+    /**
+     * Returns a mutableLivedata object of with a message that the toast should set.
+     */
     public MutableLiveData<String> getToastMessage (){
         if (toastMessage == null) {
             toastMessage = new MutableLiveData<>();

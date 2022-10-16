@@ -26,7 +26,7 @@ public class Profile implements IsCompleteListener, Serializable {
     }
 
     /**
-     * Empty constructor for database reasons
+     * Empty constructor. (for the ability to read from firebase Realtime database)
      */
     public Profile(){}
 

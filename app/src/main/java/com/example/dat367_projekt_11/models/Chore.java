@@ -34,7 +34,7 @@ public class Chore implements Serializable {
     }
 
     /**
-     *Empty constructor for database reasons
+     * Empty constructor. (for the ability to read from firebase Realtime database)
      */
 
     public Chore(){

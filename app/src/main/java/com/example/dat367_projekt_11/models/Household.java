@@ -35,6 +35,10 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.profileList = new HashMap<>();
         this.currentProfile = new Profile();
     }
+
+    /**
+     * Empty constructor. (for the ability to read from firebase Realtime database)
+     */
     public Household() {}
 
    /* public FirebaseAuth getmAuth(){
