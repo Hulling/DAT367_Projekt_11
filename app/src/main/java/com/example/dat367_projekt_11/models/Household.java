@@ -58,9 +58,7 @@ public class Household {
      */
 
     private void removeChoreFromList(Chore chore){
-            if (chore.isComplete()){
-                householdChores.remove(chore);
-        }
+        householdChores.remove(chore.getName()); //detta måste vara risky AF, key bör vara annat än namnet?? typ hash?
     }
 
     /**
@@ -71,7 +69,7 @@ public class Household {
 
     public void markChoreAsDone(Chore chore){
        // boolean found = householdChores.remove(chore);
-        boolean found = householdChores.containsKey(chore);
+        boolean found = householdChores.containsKey(chore.getName());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }
@@ -91,7 +89,7 @@ public class Household {
 
     public void markChoreAsAvailable(Chore chore){
        // boolean found = getCurrentProfile().getDoneChores().remove(chore);
-        boolean found = getCurrentProfile().getDoneChores().containsKey(chore);
+        boolean found = getCurrentProfile().getDoneChores().containsKey(chore.getName());
        // this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);

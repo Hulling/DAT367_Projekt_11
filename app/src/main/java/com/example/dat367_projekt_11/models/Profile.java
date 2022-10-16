@@ -62,7 +62,7 @@ public class Profile implements Serializable {
      * @param chore the chore to be removed from the list of done chores
      */
     public void removeFromDoneChores(Chore chore){
-        doneChores.remove(chore);
+        doneChores.remove(chore.getName());
         decreaseCurrentPoints(chore.getPoints()); //ta bort poäng från profilen
 
     }

@@ -16,7 +16,7 @@ public class Chore implements Serializable {
     private String name;
     private String description;
     private int points;
-    private boolean isComplete;
+   // private boolean isComplete;
 
 
     /**
@@ -30,7 +30,7 @@ public class Chore implements Serializable {
         this.name = name;
         this.description = description;
         this.points = points;
-        this.isComplete = false;
+      //  this.isComplete = false;
     }
 
     /**
@@ -45,17 +45,17 @@ public class Chore implements Serializable {
      *Sets chore to complete and notifies the listeners
      */
 
-    public void completeChore(){
+    /*public void completeChore(){
         this.isComplete = true;
-    }
+    }*/
 
     /**
      *TODO kommentera
      */
-    public void unCompleteChore(){
+/*    public void unCompleteChore(){
         this.isComplete = false;
 
-    }
+    }*/
 
     /**
      *Gets the name
@@ -86,9 +86,9 @@ public class Chore implements Serializable {
      * Answers if it is completed
      * @return if the chore is complete
      */
-    public boolean isComplete(){
+ /*   public boolean isComplete(){
         return this.isComplete;
-    }
+    }*/
 
     /**
      * Sets the name.
@@ -122,12 +122,12 @@ public class Chore implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chore chore = (Chore) o;
-        return points == chore.points && isComplete == chore.isComplete && name.equals(chore.name) && description.equals(chore.description);
+        return points == chore.points && name.equals(chore.name) && description.equals(chore.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, points, isComplete);
+        return Objects.hash(name, description, points);
     }
 
 

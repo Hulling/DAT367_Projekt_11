@@ -27,9 +27,7 @@ public class ChoreViewModel extends ViewModel implements AvailableChoresListener
 
     }
 
-    public void onClick(){
-        chore.completeChore();
-    }
+
 
 
     //tar in arraylist med information för varje chore

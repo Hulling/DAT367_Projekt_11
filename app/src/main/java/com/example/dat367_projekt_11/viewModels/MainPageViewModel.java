@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.FacadeGetHousehold;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
@@ -13,41 +14,24 @@ import java.util.HashMap;
 
 public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
     private final MutableLiveData<String> mText;
-    private Household household;
+    private Household household; //hanna behöver få tag på household
     private PersistenceManagerFactory persistenceManagerFactory;
 
     public MainPageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue(""/*chorelist */);
         this.persistenceManagerFactory= new PersistenceManagerFactory();
+        this.household = new Household(); //hanna, detta fungerar ej.
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 
-
-
-
     @Override
-    public HashMap<String, Chore> getChoreModellist() {
-        HashMap<String, Chore> choreModelList = new HashMap<>();
-        /*choreModelList.add(new Chore("malin", "avaliable chore", 300000));
-        choreModelList.add(new Chore("malin", "available chore", 300000));
-        choreModelList.add(new Chore("malin", "available chore", 300000));*/
-
-        //choreModelList = household.getHouseholdChores();
-        return choreModelList;
+    public void moveChore(Chore chore) {
+        household.markChoreAsDone(chore);
     }
-
-/*
-    @Override
-    public void onCheckboxClicked(Chore chore) {
-        if (!chore.isComplete()) {
-            chore.completeChore();
-
-        }
-    }*/
 
 
 }

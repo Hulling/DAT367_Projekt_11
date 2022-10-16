@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.FacadeGetHousehold;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
@@ -40,16 +41,18 @@ public class DoneChoresView extends Fragment {
     }
 
     private void populateData(Profile profile) {
-        HashMap<String, Chore> choreModelList = doneChoresViewModel.getChoreModellist();
+      //  HashMap<String, Chore> choreModelList = doneChoresViewModel.getChoreModellist();
         if(profile.getDoneChores()!=null){
-            ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext());
+            ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext(), doneChoresViewModel);
             binding.setChoreAdapter(choreAdapter);
         }
         else{
-            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext());
+            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel);
             binding.setChoreAdapter(choreAdapter);
         }
     }
+
+
     private Profile getProfile(){
         Profile profile = (Profile) getActivity().getIntent().getSerializableExtra("PROFILE");
         return  profile;
