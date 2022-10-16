@@ -2,6 +2,7 @@ package com.example.dat367_projekt_11.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  *This class represents the chore object.
@@ -115,23 +116,23 @@ public class Chore implements Serializable {
         this.points = points;
     }
 
-    /**
-     * Subscribes the client as a listener.
-     * @param listener the listener to subscribe as a listener.
-     */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chore chore = (Chore) o;
+        return points == chore.points && isComplete == chore.isComplete && name.equals(chore.name) && description.equals(chore.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, points, isComplete);
+    }
 
 
 
-    /**
-     * Unsubscribes the client as a listener.
-     * @param listener the listener to unsunscribe as a listener.
-     */
 
-
-
-    /**
-     * Notifies all subscribers
-     */
 
 
 

@@ -53,7 +53,7 @@ public class Household {
      * Adds chores to household chores.
      * @param chore the chore to be added to household chores.
      */
-    public void addChore(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
+    public void addChore(Chore chore){
         householdChores.put(chore.getName(), chore);
     }
 
@@ -62,7 +62,7 @@ public class Household {
      * @param chore the chore to be removed from household chores.
      */
 
-    private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
+    private void removeChoreFromList(Chore chore){
             if (chore.isComplete()){
                 householdChores.remove(chore);
 
