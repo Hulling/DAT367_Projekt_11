@@ -15,14 +15,15 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class ConfighandlerUnitTest {
-    Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     @Test
     public void useAppContext() {
         // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.dat367_projekt_11", appContext.getPackageName());
     }
     @Test
     public void configHandlerReadWrite() {
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Household household = new Household("uid", "email", "name");
         ConfigHandler configHandler = new ConfigHandler(appContext);
         configHandler.writeCurrentUser(household);
