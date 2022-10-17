@@ -1,7 +1,6 @@
 package com.example.dat367_projekt_11.models;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  *This class represents the chore object.
@@ -15,8 +14,7 @@ public class Chore implements Serializable {
     private String name;
     private String description;
     private int points;
-    private boolean isComplete;
-    private Collection<IsCompleteListener> listeners = new ArrayList<>(); //listan med subscribers
+
 
     /**
      *
@@ -29,8 +27,6 @@ public class Chore implements Serializable {
         this.name = name;
         this.description = description;
         this.points = points;
-        this.isComplete = false;
-        this.listeners = new ArrayList<>();
     }
 
     /**
@@ -41,23 +37,6 @@ public class Chore implements Serializable {
 
     }
 
-    /**
-     *Sets chore to complete and notifies the listeners
-     */
-
-    public void completeChore(){
-        this.isComplete = true;
-        notifySubscribers();
-    }
-
-    /**
-     *TODO kommentera
-     */
-    public void unCompleteChore(){
-        this.isComplete = false;
-        notifySubscribers();
-
-    }
 
     /**
      *Gets the name
@@ -84,13 +63,6 @@ public class Chore implements Serializable {
         return this.points;
     }
 
-    /**
-     * Answers if it is completed
-     * @return if the chore is complete
-     */
-    public boolean isComplete(){
-        return this.isComplete;
-    }
 
     /**
      * Sets the name.
@@ -118,42 +90,19 @@ public class Chore implements Serializable {
         this.points = points;
     }
 
-    /**
-     * Subscribes the client as a listener.
-     * @param listener the listener to subscribe as a listener.
-     */
 
-    public void subscribe(IsCompleteListener listener){
-        if(!listeners.contains(listener)){//lägg till lyssnare om den ej finns redan
-            listeners.add(listener);
-        }
+/*    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chore chore = (Chore) o;
+        return points == chore.points && name.equals(chore.name) && description.equals(chore.description);
     }
 
-    /**
-     * Unsubscribes the client as a listener.
-     * @param listener the listener to unsunscribe as a listener.
-     */
-
-    public void unsubscribe(IsCompleteListener listener){
-        listeners.remove(listener); //reset när timern går ut antar jag?
-    }
-
-    /**
-     * Notifies all subscribers
-     */
-
-    private void notifySubscribers() {
-        for (IsCompleteListener listener : listeners) {
-                listener.update(this);
-        }
-    }
-
-
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, points);
+    }*/
 
 
 }

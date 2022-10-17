@@ -7,19 +7,14 @@ import java.util.HashMap;
 /**
  * This class represents the households of TidyApp
  */
-public class Household implements IsCompleteListener { //lyssnar på chores boolean{
+public class Household {
     private String householdName;
     private HashMap<String, Profile> profileList;
     private String password;
     private String email;
-    private Profile currentProfile;
 
     private String uid;
     private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
-  //  private ArrayList<AvailableChoresListener> listeners;
-    //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
-//kolla att sakerna är nollskilda, objekt required non null.
-    //design by contract
 
     /**
      *
@@ -33,18 +28,12 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.householdName = householdName;
         this.householdChores = new HashMap<>();
         this.profileList = new HashMap<>();
-        this.currentProfile = new Profile();
     }
 
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
     public Household() {}
-
-   /* public FirebaseAuth getmAuth(){
-        return  mAuth;
-    }
-    //returnera kopia? orginal kan mixtas med.*/
 
     @Exclude
     public boolean isNew, isCreated;
@@ -61,10 +50,8 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
      * Adds chores to household chores.
      * @param chore the chore to be added to household chores.
      */
-    public void addChore(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-        chore.subscribe(this);
+    public void addChore(Chore chore){
         householdChores.put(chore.getName(), chore);
-      // notifyListeners(); // --> notifiera
     }
 
     /**
@@ -72,16 +59,53 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
      * @param chore the chore to be removed from household chores.
      */
 
-    private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
-            if (chore.isComplete()){
-                chore.unsubscribe(this);
-                householdChores.remove(chore);
-               // notifyListeners(); //--> notifiera
-
-        }
+    private void removeChoreFromList(Chore chore){
+        householdChores.remove(chore.getName()); //detta måste vara risky AF, key bör vara annat än namnet?? typ hash?
     }
 
-    //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
+    /**
+     * Relocates chore from hashmap of available chores to hashmap of done chores.
+     * @param chore the chore to be relocated from available chores to done chores.
+     */
+
+
+    public void markChoreAsDone(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       // boolean found = householdChores.remove(chore);
+        boolean found = householdChores.containsKey(chore.getName());
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }
+        else{
+            //householdChores.remove(chore);
+            this.removeChoreFromList(chore);
+            getCurrentProfile.getProfile().addToDoneChores(chore);
+            //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
+        }
+
+    }
+    /**
+     * Relocates chore from hashmap of done chores to hashmap of available chores.
+     * @param chore the chore to be relocated from done chores to available chores.
+     */
+
+
+    public void markChoreAsAvailable(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       // boolean found = getCurrentProfile().getDoneChores().remove(chore);
+        boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
+       //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }else{
+            getCurrentProfile.getProfile().getDoneChores().remove(chore.getName());
+            this.addChore(chore);
+        }
+
+    }
+
+
+
 
     /**
      * Gets the household chores
@@ -156,7 +180,7 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
      * @param profile the profile to be deleted from the list
      */
     public void deleteProfile(Profile profile){
-        profileList.remove(profile);
+        profileList.remove(profile.getName());
     }
 
     /**
@@ -167,28 +191,6 @@ public class Household implements IsCompleteListener { //lyssnar på chores bool
         this.householdName = householdName;
     }
 
-    /**
-     * Updates list of household chores whenever a chore is completed
-     * @param chore the chore that has been completed
-     */
-    @Override
-    public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        this.removeChoreFromList(chore);
-    }
 
-    public void setCurrentProfile(Profile profile){
-        currentProfile = profile;
-    }
-
-  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
-        listeners.add(listener);
-    }*/
-
-/*    private void notifyListeners() {
-        for (AvailableChoresListener listener : listeners) {  //broadcast
-            listener.update(householdChores);
-        }
-
-    }*/
 
 }

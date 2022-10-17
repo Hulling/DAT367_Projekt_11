@@ -84,6 +84,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
      */
    @Override
     public void cardClicked(Profile profile) {
+       GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       getCurrentProfile.setProfile(profile);
+        //clickedProfile.setValue(profile);
         Toast.makeText(context, "You clicked on " + profile.getName(),
                 Toast.LENGTH_LONG).show();
        Intent i = new Intent(context.getApplicationContext(),MainActivity.class);

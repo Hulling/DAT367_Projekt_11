@@ -45,8 +45,6 @@ public class CreateChoreViewModel extends ViewModel {
 
     }
 
-
-
     private void addChore(Chore chore) {
         ConfigHandler configHandler = new ConfigHandler(createChoreView.getContext());
         PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
