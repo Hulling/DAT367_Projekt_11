@@ -54,6 +54,10 @@ public class RegistrationFragment extends Fragment {
             String householdName = authViewModel.getHouseholdName().getValue();
             if (email.length() > 0 && password.length() > 0) {
                 register(email, password, householdName);
+                authViewModel.getRegisterHousehold().observe(getViewLifecycleOwner(), registerHousehold -> {
+                    authViewModel.createHousehold(registerHousehold);
+                });
+                goToLoginFragment();
             } else {
                 Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
             }
@@ -62,7 +66,6 @@ public class RegistrationFragment extends Fragment {
 
     private void register(String email, String password, String householdName) {
         authViewModel.register(email, password, householdName);
-        goToLoginFragment();
     }
 
     private void goToLoginFragment() {

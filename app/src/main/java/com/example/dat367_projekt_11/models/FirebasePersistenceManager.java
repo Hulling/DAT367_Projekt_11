@@ -105,18 +105,28 @@ public class FirebasePersistenceManager implements PersistenceManager {
      * name sets to what the user has written in the textfield. If the task fails
      * the mutable livedata  toastmessage will be set to a message about what caused the fail.
      *
-     * @param email The email the user writes in the textfield.
-     * @param password The password the user writes in the textfield.
-     * @param householdName The householdName the user writes in the textfield.
+     * @param inEmail The email the user writes in the textfield.
+     * @param inPassword The password the user writes in the textfield.
+     * @param inHouseholdName The householdName the user writes in the textfield.
      */
 
-    public void register(String email, String password, String householdName) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+    public MutableLiveData<Household> register(String inEmail, String inPassword, String inHouseholdName) {
+        MutableLiveData<Household> registerHouseholdMutableLiveData = new MutableLiveData<>();
+        firebaseAuth.createUserWithEmailAndPassword(inEmail, inPassword)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                        if (firebaseUser != null) {
+                            String uid = firebaseUser.getUid();
+                            String name = firebaseUser.getDisplayName();
+                            String email = firebaseUser.getEmail();
+                            Household household = new Household(uid, email, name);
+                            createHousehold(household);
+
+                            registerHouseholdMutableLiveData.setValue(household);
+                        }
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(householdName).build();
+                                .setDisplayName(inHouseholdName).build();
 
                         firebaseUser.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task1 -> {
@@ -129,6 +139,11 @@ public class FirebasePersistenceManager implements PersistenceManager {
                         toastMessage.setValue(task.getException().getMessage());
                     }
                 });
+        return registerHouseholdMutableLiveData;
+    }
+
+    public void createHousehold(Household household){
+        myRef.child(household.getUid()).setValue(household);
     }
 
     /**

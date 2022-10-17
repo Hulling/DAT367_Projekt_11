@@ -24,6 +24,7 @@ import java.util.HashMap;
 public class AuthViewModel extends AndroidViewModel {
     private final PersistenceManagerFactory persistenceManagerFactory;
     private MutableLiveData<Household> authenticatedHouseholdLiveData;
+    private MutableLiveData<Household> registerHouseholdLiveData;
 
     private MutableLiveData<String> email = new MutableLiveData<>();
     private MutableLiveData<String> password = new MutableLiveData<>();
@@ -43,6 +44,13 @@ public class AuthViewModel extends AndroidViewModel {
             authenticatedHouseholdLiveData = new MutableLiveData<>();
         }
         return authenticatedHouseholdLiveData;
+    }
+
+    public MutableLiveData<Household> getRegisterHousehold() {
+        if (registerHouseholdLiveData == null) {
+            registerHouseholdLiveData = new MutableLiveData<>();
+        }
+        return registerHouseholdLiveData;
     }
 
 
@@ -76,7 +84,7 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     public void register(String email, String password, String householdName){
-        persistenceManagerFactory.getPersistenceManager().register(email, password, householdName);
+        registerHouseholdLiveData = persistenceManagerFactory.getPersistenceManager().register(email, password, householdName);
     }
 
     public void createHousehold(Household authenticatedHousehold) {

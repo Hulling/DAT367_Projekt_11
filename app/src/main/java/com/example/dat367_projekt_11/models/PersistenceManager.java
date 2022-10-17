@@ -28,7 +28,7 @@ public interface PersistenceManager {
      * @param password The password that will be registered
      * @param householdName the household name that will be registered.
      */
-    void register(String email, String password, String householdName);
+    MutableLiveData<Household> register(String email, String password, String householdName);
 
     /**
      * This method is used for creating household in the database
