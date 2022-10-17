@@ -6,6 +6,7 @@ import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.models.Profile;
 
+
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -48,7 +49,6 @@ public class HouseholdUnitTest {
             household.setHouseholdName("testhousehold");
             assertEquals("testhousehold", household.getHouseholdName());
         }
-
 
 
         @Test
@@ -116,7 +116,7 @@ public class HouseholdUnitTest {
         }
 
         @Test
-        public void addProfileListtest(){
+        public void addProfileListTest(){
             household.addProfile(profile);
             profileListTest.put(profile.getName(), profile);
             assertEquals(profileListTest,household.getProfileList());
