@@ -2,7 +2,7 @@ package com.example.dat367_projekt_11.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class MainActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener {
-    private TextView textView;
-
-
+public class MainActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,3 +59,4 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
         }
     }
 }
+
