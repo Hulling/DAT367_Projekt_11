@@ -17,7 +17,6 @@ import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
 import java.util.HashMap;
 
-
 public class DoneChoresView extends Fragment {
     private FragmentDonechoresBinding binding;
     private DoneChoresViewModel doneChoresViewModel;
