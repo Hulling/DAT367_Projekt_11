@@ -10,6 +10,14 @@ import com.example.dat367_projekt_11.view.CreateChoreView;
 
 import java.util.Objects;
 
+/**
+ * The class is a viewModel. It handles communication between the createChoreView fragment and the
+ * PersistenceManager via MutableLiveData.
+ *
+ * @author Malin Kihsltröm
+ * @version 1.0
+ * @since   2022-10-14
+ */
 public class CreateChoreViewModel extends ViewModel {
 
     private MutableLiveData<String> name = new MutableLiveData<>();

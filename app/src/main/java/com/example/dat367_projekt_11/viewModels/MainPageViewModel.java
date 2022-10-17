@@ -12,22 +12,11 @@ import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
 import java.util.HashMap;
 
 public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
-    private final MutableLiveData<String> mText;
-    private Household household;
     private PersistenceManagerFactory persistenceManagerFactory;
 
     public MainPageViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue(""/*chorelist */);
         this.persistenceManagerFactory= new PersistenceManagerFactory();
     }
-
-    public LiveData<String> getText() {
-        return mText;
-    }
-
-
-
 
     @Override
     public HashMap<String, Chore> getChoreModellist() {
@@ -40,16 +29,6 @@ public class MainPageViewModel extends ViewModel implements ChoreAdapterDataMode
         return choreModelList;
     }
 
-/*
-    @Override
-    public void onCheckboxClicked(Chore chore) {
-
-        if (!chore.isComplete()) {
-            chore.completeChore();
-
-        }
-
-    }*/
 
 
 }

@@ -14,9 +14,7 @@ import com.example.dat367_projekt_11.databinding.FragmentPopUpBinding;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link PopUp#newInstance} factory method to
- * create an instance of this fragment.
+ * @author Malin Kihlström
  */
 public class PopUp extends Fragment {
     private TextView textView;

@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import com.example.dat367_projekt_11.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link RUSurePopUp#newInstance} factory method to
- * create an instance of this fragment.
+ * @author Malin Kihlström
  */
 public class RUSurePopUp extends Fragment {
 

@@ -20,6 +20,10 @@ import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
 
+/**
+ * @author Malin Kihlström
+ * This class represents the view of the page where the user creates a new chore.
+ */
 
 public class CreateChoreView extends Fragment {
     private CreateChoreViewModel createChoreViewModel;

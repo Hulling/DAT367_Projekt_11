@@ -20,6 +20,9 @@ import com.example.dat367_projekt_11.viewModels.MainPageViewModel;
 
 import java.util.HashMap;
 
+/**
+ * @author Malin Kihlström
+ */
 public class MainPageView extends Fragment {
     private Button createButton;
     private FragmentMainpageBinding binding;
