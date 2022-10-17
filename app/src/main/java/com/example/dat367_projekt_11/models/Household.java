@@ -1,7 +1,5 @@
 package com.example.dat367_projekt_11.models;
 
-import com.google.firebase.database.Exclude;
-
 import java.util.HashMap;
 
 /**
@@ -33,10 +31,8 @@ public class Household {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
-    public Household() {}
-
-    @Exclude
-    public boolean isNew, isCreated;
+    public Household() {
+    }
 
     /**
      * Sets the password

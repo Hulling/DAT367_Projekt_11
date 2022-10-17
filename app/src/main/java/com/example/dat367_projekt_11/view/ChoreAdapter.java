@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.ChoreCardBinding;
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.Household;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
 
     @Override
     public void CheckBoxClicked(Chore chore) {
-        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(context);
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(context);
         facadeGetHousehold.addChoreToDoneChores(household, chore);
         choreAdapterDataModel.moveChore(chore, household);
         Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();

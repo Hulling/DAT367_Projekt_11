@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
@@ -53,7 +53,7 @@ public class DoneChoresView extends Fragment {
 
     private void populateData() {
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
-        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             if(getCurrentProfile.getProfile().getDoneChores()!=null){
                 ChoreAdapter choreAdapter = new ChoreAdapter(getCurrentProfile.getProfile().getDoneChores(), getContext(),doneChoresViewModel, household);

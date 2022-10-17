@@ -15,7 +15,7 @@ import androidx.navigation.Navigation;
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentMainpageBinding;
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.FacadeGetHousehold;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.viewModels.MainPageViewModel;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class MainPageView extends Fragment {
     }
 
     private void populateData() {
-        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             ChoreAdapter choreAdapter;
             if(household.getHouseholdChores()!=null){
