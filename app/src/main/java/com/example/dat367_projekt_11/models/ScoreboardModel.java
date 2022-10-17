@@ -39,37 +39,42 @@ public class ScoreboardModel {
         /*getSharedPreferences("PREF", +0);*/
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 3/*memberScore*/) : 3;
+        int memberScore = preferences != null ? preferences.getInt("memberScore", 5/*memberScore*/) : 5;
         int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
         int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+        String bestOneName = "Hanna";
+        String bestTwoName = "Malin";
+        String bestThreeName = "Kristin";
+
 
 
         if (memberScore > bestThree) {
             bestThree = memberScore;
-            SharedPreferences.Editor editor = Objects.requireNonNull(preferences).edit();
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points3", bestThree);
-            editor.apply();
+            editor.apply();*/
+
         }
 
         if (memberScore > bestTwo) {
             int temp = bestTwo;
             bestTwo = memberScore;
             bestThree = temp;
-            SharedPreferences.Editor editor = preferences.edit();
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points3", bestThree);
             editor.putInt("points2", bestTwo);
-            editor.apply();
+            editor.apply();*/
         }
 
         if (memberScore > bestOne) {
             int temp = bestOne;
             bestOne = memberScore;
             bestTwo = temp;
-            SharedPreferences.Editor editor = preferences.edit();
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points2", bestTwo);
             editor.putInt("points1", bestOne);
-            editor.apply();
+            editor.apply();*/
         }
 
 
