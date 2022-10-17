@@ -12,7 +12,6 @@ public class Household {
     private HashMap<String, Profile> profileList;
     private String password;
     private String email;
-    private Profile currentProfile;
 
     private String uid;
     private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
@@ -29,7 +28,6 @@ public class Household {
         this.householdName = householdName;
         this.householdChores = new HashMap<>();
         this.profileList = new HashMap<>();
-        this.currentProfile = new Profile();
     }
     public Household() {}
 
@@ -68,6 +66,7 @@ public class Household {
 
 
     public void markChoreAsDone(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
        // boolean found = householdChores.remove(chore);
         boolean found = householdChores.containsKey(chore.getName());
         if(!found){
@@ -76,7 +75,7 @@ public class Household {
         else{
             //householdChores.remove(chore);
             this.removeChoreFromList(chore);
-            this.getCurrentProfile().addToDoneChores(chore);
+            getCurrentProfile.getProfile().addToDoneChores(chore);
             //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
         }
 
@@ -88,13 +87,14 @@ public class Household {
 
 
     public void markChoreAsAvailable(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
        // boolean found = getCurrentProfile().getDoneChores().remove(chore);
-        boolean found = getCurrentProfile().getDoneChores().containsKey(chore.getName());
+        boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
        //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }else{
-            getCurrentProfile().getDoneChores().remove(chore.getName());
+            getCurrentProfile.getProfile().getDoneChores().remove(chore.getName());
             this.addChore(chore);
         }
 
@@ -187,12 +187,6 @@ public class Household {
         this.householdName = householdName;
     }
 
-
-    public void setCurrentProfile(Profile profile){
-        currentProfile = profile;
-    }
-
-    public Profile getCurrentProfile(){return currentProfile;}
 
 
 }

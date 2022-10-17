@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeGetHousehold;
-import com.example.dat367_projekt_11.models.Profile;
+import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
 import java.util.HashMap;
@@ -52,26 +52,19 @@ public class DoneChoresView extends Fragment {
     }*/
 
     private void populateData() {
-        /*
-        //hittar inte household, behöver få tag i current user i household.
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-   /*     facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-            if(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores()!=null){
-                ChoreAdapter choreAdapter = new ChoreAdapter(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores(), getContext(),doneChoresViewModel, facadeGetHousehold.getHousehold());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            if(getCurrentProfile.getProfile().getDoneChores()!=null){
+                ChoreAdapter choreAdapter = new ChoreAdapter(getCurrentProfile.getProfile().getDoneChores(), getContext(),doneChoresViewModel, household);
                 binding.setChoreAdapter(choreAdapter);
             }
             else{
-                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, facadeGetHousehold.getHousehold());
+                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, household);
                 binding.setChoreAdapter(choreAdapter);
             }
-     //   }); */
+        });
 
-    }
-
-
-    private Profile getProfile(){
-        Profile profile = (Profile) getActivity().getIntent().getSerializableExtra("PROFILE");
-        return  profile;
     }
 
     @Override

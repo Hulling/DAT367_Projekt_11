@@ -69,4 +69,5 @@ public class MainPageView extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

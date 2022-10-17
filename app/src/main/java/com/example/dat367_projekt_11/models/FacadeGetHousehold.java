@@ -21,5 +21,9 @@ public class FacadeGetHousehold {
     public void addChore (Household household, Chore chore){
         persistenceManagerFactory.getPersistenceManager().addChoreToHousehold(household, chore);
     }
+    public void addChoreToDoneChores(Household household, Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+        persistenceManagerFactory.getPersistenceManager().addDoneChoreToProfile(household, getCurrentProfile.getProfile(), chore);
+    }
 
 }

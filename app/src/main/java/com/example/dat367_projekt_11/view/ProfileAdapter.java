@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.ProfileCardBinding;
 import com.example.dat367_projekt_11.models.CustomClickListener;
+import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.models.Profile;
 
 import java.util.ArrayList;
@@ -73,6 +74,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
    @Override
     public void cardClicked(Profile profile) {
+       GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       getCurrentProfile.setProfile(profile);
         //clickedProfile.setValue(profile);
         Toast.makeText(context, "Du klickade på " + profile.getName(),
                 Toast.LENGTH_LONG).show();
