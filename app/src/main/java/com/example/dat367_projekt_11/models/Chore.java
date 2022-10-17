@@ -1,6 +1,6 @@
 package com.example.dat367_projekt_11.models;
+
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *This class represents the chore object.

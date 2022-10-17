@@ -27,7 +27,9 @@ public class Profile implements Serializable {
     /**
      * Empty constructor for database reasons
      */
-    public Profile(){}
+    public Profile(){
+        this("init");
+    }
 
 
 
