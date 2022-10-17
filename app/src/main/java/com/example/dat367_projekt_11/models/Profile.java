@@ -7,12 +7,11 @@ import java.util.HashMap;
 /**
  * This class represents the profiles of Tidy App
  */
-public class Profile implements IsCompleteListener, Serializable {
+public class Profile implements Serializable {
     private String name;
     private int currentPoints;
     private HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
-   // private ArrayList<DoneChoresListener> listeners;
-    //private Chore chore;
+
 
     /**
      *
@@ -28,16 +27,11 @@ public class Profile implements IsCompleteListener, Serializable {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
-    public Profile(){}
-
-   /* public Profile(int currentPoints, ArrayList<Chore> doneChores) {
-        this.currentPoints = currentPoints;
-        this.doneChores = doneChores;
-    }*/
+    public Profile(){
+        this("init");
+    }
 
 
-
- //   public Profile() {}
 
     /**
      * Gets the name
@@ -62,9 +56,7 @@ public class Profile implements IsCompleteListener, Serializable {
     public void addToDoneChores(Chore chore){
         doneChores.put(chore.getName(), chore);
         increaseCurrentPoints(chore.getPoints());
-        doneChores.put(chore.getName(), chore);
-        increaseCurrentPoints(chore.getPoints());
-        chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
+
     }
 
     /**
@@ -72,7 +64,7 @@ public class Profile implements IsCompleteListener, Serializable {
      * @param chore the chore to be removed from the list of done chores
      */
     public void removeFromDoneChores(Chore chore){
-        doneChores.remove(chore);
+        doneChores.remove(chore.getName());
         decreaseCurrentPoints(chore.getPoints()); //ta bort poäng från profilen
 
     }
@@ -105,24 +97,7 @@ public class Profile implements IsCompleteListener, Serializable {
      * Updates list of chores whenever a new chore has been completed (BORDE DELAS IN I TVÅ OLIKA? TODO)
      * @param chore the chore that has been completed
      */
-    @Override
-    public void update(Chore chore) {
-        if (chore.isComplete()) { // om true -> syssla klar
-            addToDoneChores(chore); // lägg till syssla i lista av gjrda sysslor, -> subscribe
-        }else if (!chore.isComplete()){ //om false
-            removeFromDoneChores(chore); //ta bort syssla från lista
-        }
-       // notifyListeners();
-    }
 
-/*    private void notifyListeners() {
-        for(DoneChoresListener listener : listeners){
-            listener.update(doneChores);
-        }
-    }*/
-/*    public void subscribe(DoneChoresListener listener) {
-        listeners.add(listener);
-    }*/
 
     /**
      * Sets the name

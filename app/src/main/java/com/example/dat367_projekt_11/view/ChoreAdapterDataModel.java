@@ -1,10 +1,9 @@
 package com.example.dat367_projekt_11.view;
 
 import com.example.dat367_projekt_11.models.Chore;
-
-import java.util.HashMap;
+import com.example.dat367_projekt_11.models.Household;
 
 public interface ChoreAdapterDataModel {
-    public HashMap<String, Chore> getChoreModellist();
+    void moveChore(Chore chore, Household household);
   //skall metod för att göra uppdateringar vid onclick vara här?
 }

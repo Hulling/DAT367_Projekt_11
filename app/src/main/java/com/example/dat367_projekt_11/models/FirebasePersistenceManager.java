@@ -244,4 +244,12 @@ public class FirebasePersistenceManager implements PersistenceManager {
         myRef.child(household.getUid()).child("householdChores").child(chore.getName()).setValue(chore);
     }
 
+    public void addDoneChoreToProfile(Household household, Profile profile, Chore chore){
+        myRef.child(household.getUid()).child("householdChores").child(chore.getName()).removeValue();
+        myRef.child(household.getUid()).child("profileList").child(profile.getName()).child("doneChores").child(chore.getName()).setValue(chore);
+    }
+    public void addPointsToProfile(Household household, Profile profile, Integer points){
+        myRef.child(household.getUid()).child("profileList").child(profile.getName()).child("currentPoints").setValue(points);
+    }
+
 }

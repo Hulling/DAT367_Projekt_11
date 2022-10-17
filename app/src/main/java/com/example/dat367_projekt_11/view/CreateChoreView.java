@@ -85,7 +85,6 @@ public class CreateChoreView extends Fragment {
         facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             facadeCurrentHousehold.addChore(household, chore);
         });
-
     }
 
     @Override

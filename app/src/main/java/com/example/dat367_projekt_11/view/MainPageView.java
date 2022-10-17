@@ -26,6 +26,7 @@ public class MainPageView extends Fragment {
     private MainPageViewModel mainPageViewModel;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,16 +51,16 @@ public class MainPageView extends Fragment {
     }
 
     private void populateData() {
-        FacadeCurrentHousehold facadeCurrentHousehold = new FacadeCurrentHousehold(getContext());
-        facadeCurrentHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            ChoreAdapter choreAdapter;
             if(household.getHouseholdChores()!=null){
-                ChoreAdapter choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext());
-                binding.setChoreAdapter(choreAdapter);
+                choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext(), mainPageViewModel, household);
             }
             else{
-                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext());
-                binding.setChoreAdapter(choreAdapter);
+                choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), mainPageViewModel, household);
             }
+            binding.setChoreAdapter(choreAdapter);
         });
     }
 
@@ -68,4 +69,5 @@ public class MainPageView extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

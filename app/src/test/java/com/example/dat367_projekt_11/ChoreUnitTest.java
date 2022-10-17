@@ -1,32 +1,45 @@
 package com.example.dat367_projekt_11;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 import com.example.dat367_projekt_11.models.Chore;
+import org.junit.Test;
+
+
+
 
 public class ChoreUnitTest {
-    /*
-    private final Chore chore;
+    private final Chore chore = new Chore("Chore","this is a chore", 40);
 
-    public ChoreUnitTest(Chore chore) {
-        this.chore = new Chore("Chore","This is a chore", 30, listeners);
-    }
-
-    @Test
-    public void completeChoreTest(){assertEquals(true, chore.isComplete());}
 
     @Test
     public void getNameTest(){assertEquals("Chore",chore.getName());}
 
     @Test
-    public void getDescriptionTest(){assertEquals("This is a chore", chore.getDescription());}
+    public void getDescriptionTest(){assertEquals("this is a chore", chore.getDescription());}
 
     @Test
     public void getPointsTest(){assertEquals(30, chore.getPoints());}
 
     @Test
-    public void isCompleteTest(){assertFalse(chore.isComplete());}
+    public void setNameTest(){
+        chore.setName("test");
+        assertEquals("test",chore.getName());
+    } //OBS publik setter
 
-     */
+    @Test
+    public void setDescriptionTest(){
+        chore.setDescription("Vacuum");
+        assertEquals("Vacuum", chore.getDescription());
+    }
+
+    @Test
+    public void setPointsTest(){
+        chore.setPoints(50);
+        assertEquals(50,chore.getPoints());
+    }
+
+
+
+
+
 
 }
