@@ -90,13 +90,12 @@ public class Household {
     public void markChoreAsAvailable(Chore chore){
        // boolean found = getCurrentProfile().getDoneChores().remove(chore);
         boolean found = getCurrentProfile().getDoneChores().containsKey(chore.getName());
-       // this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
+       //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }else{
             getCurrentProfile().getDoneChores().remove(chore.getName());
             this.addChore(chore);
-            //this.householdChores.add(chore);
         }
 
     }
@@ -177,7 +176,7 @@ public class Household {
      * @param profile the profile to be deleted from the list
      */
     public void deleteProfile(Profile profile){
-        profileList.remove(profile);
+        profileList.remove(profile.getName());
     }
 
     /**

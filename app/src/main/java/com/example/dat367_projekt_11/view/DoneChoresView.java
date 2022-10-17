@@ -52,9 +52,10 @@ public class DoneChoresView extends Fragment {
     }*/
 
     private void populateData() {
+        /*
         //hittar inte household, behöver få tag i current user i household.
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-   /*     facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {*/
+   /*     facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             if(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores()!=null){
                 ChoreAdapter choreAdapter = new ChoreAdapter(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores(), getContext(),doneChoresViewModel, facadeGetHousehold.getHousehold());
                 binding.setChoreAdapter(choreAdapter);
@@ -63,7 +64,8 @@ public class DoneChoresView extends Fragment {
                 ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, facadeGetHousehold.getHousehold());
                 binding.setChoreAdapter(choreAdapter);
             }
-     //   });
+     //   }); */
+
     }
 
 
