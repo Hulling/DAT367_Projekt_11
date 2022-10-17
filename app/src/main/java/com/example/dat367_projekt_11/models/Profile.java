@@ -2,8 +2,7 @@ package com.example.dat367_projekt_11.models;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * This class represents the profiles of Tidy App
@@ -11,7 +10,7 @@ import java.util.List;
 public class Profile implements IsCompleteListener, Serializable {
     private String name;
     private int currentPoints;
-    private List<Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
+    private HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
    // private ArrayList<DoneChoresListener> listeners;
     //private Chore chore;
 
@@ -23,11 +22,11 @@ public class Profile implements IsCompleteListener, Serializable {
     public Profile(String name) {
         this.currentPoints = 0;
         this.name = name;
-        this.doneChores = new ArrayList<>();
+        this.doneChores = new HashMap<>();
     }
 
     /**
-     * Empty constructor for database reasons
+     * Empty constructor. (for the ability to read from firebase Realtime database)
      */
     public Profile(){}
 
@@ -61,7 +60,9 @@ public class Profile implements IsCompleteListener, Serializable {
      * @param chore the chore to be added from the list of done chores
      */
     public void addToDoneChores(Chore chore){
-        doneChores.add(chore);
+        doneChores.put(chore.getName(), chore);
+        increaseCurrentPoints(chore.getPoints());
+        doneChores.put(chore.getName(), chore);
         increaseCurrentPoints(chore.getPoints());
         chore.subscribe(this); //börja subscriba på sysslan första gången den tillkommer till listan
     }
@@ -90,14 +91,15 @@ public class Profile implements IsCompleteListener, Serializable {
      */
     private void decreaseCurrentPoints(int chorePoints){this.currentPoints -= chorePoints;}
 
+
+
     /**
      * Gets list of the completed chores
      * @return the completed chores
      */
-    public List<Chore> getDoneChores(){
-        return this.doneChores;
+    public HashMap<String, Chore> getDoneChores(){
+        return doneChores;
     }
-
 
     /**
      * Updates list of chores whenever a new chore has been completed (BORDE DELAS IN I TVÅ OLIKA? TODO)

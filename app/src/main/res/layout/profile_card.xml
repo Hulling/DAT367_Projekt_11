@@ -4,11 +4,8 @@
     <data>
 
         <variable
-            name="model"
+            name="Profile"
             type="com.example.dat367_projekt_11.models.Profile" />
-        <variable
-            name="householdmodel"
-            type="com.example.dat367_projekt_11.models.Household" />
 
         <variable
             name="itemClickListener"
@@ -18,7 +15,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:onClick="@{() -> itemClickListener.cardClicked(model)}"
+        android:onClick="@{() -> itemClickListener.cardClicked(Profile)}"
         android:layout_height="105dp">
 
 
@@ -31,7 +28,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:maxLines="1"
-            android:text="@={model.name}"
+            android:text="@={Profile.name}"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

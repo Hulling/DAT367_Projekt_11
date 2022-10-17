@@ -4,9 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
+
+import java.util.Objects;
 
 
-public class ScoreboardModel extends AppCompatActivity {
+public class ScoreboardModel {
 
 
     /*private static final Profile currentPoints = new Profile();
@@ -17,72 +23,68 @@ public class ScoreboardModel extends AppCompatActivity {
         return null;
     }
 
-    /*private ScoreboardViewModel mViewModel;
-
-/*
-    Profile currentPoints=new Profile();
-    int memberScore = currentPoints.getCurrentPoints();
+    /*så här såg det ut innan:
+    int bestOne = preferences.getInt("points1", 0);
+    int bestTwo = preferences.getInt("points2", 0);*/
 
 
-    private MutableLiveData<ScoreboardViewModel> scoreboardViewModelMutableLiveData;
-
-    public MutableLiveData<ScoreboardViewModel> getScoreboardViewModel() {
-
-        if (scoreboardViewModelMutableLiveData == null) {
-            scoreboardViewModelMutableLiveData = new MutableLiveData<>();
-        }
-        return scoreboardViewModelMutableLiveData;
-    }*/
-
-    private String rankingOfScoresText;
+    /*private String rankingOfScoresText = "hejdå";*/
 
 
     @SuppressLint("SetTextI18n")
     public String rankProfiles() {
 
-        /*mViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);*/
 
 
         /*getSharedPreferences("PREF", +0);*/
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 0/*memberScore*/) : 0;
-        /*int bestOne = preferences.getInt("points1", 0);
-        int bestTwo = preferences.getInt("points2", 0);*/
-        int bestThree = preferences != null ? preferences.getInt("points3", 0) : 0;
+        int memberScore = preferences != null ? preferences.getInt("memberScore", 3/*memberScore*/) : 3;
+        int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
+        int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
+        int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+        String memberName = "Pauline";
+        String bestOneName = "Hanna";
+        String bestTwoName = "Malin";
+        String bestThreeName = "Kristin";
+
+
 
 
         if (memberScore > bestThree) {
             bestThree = memberScore;
-            SharedPreferences.Editor editor = preferences.edit();
+            bestThreeName = memberName;
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points3", bestThree);
-            editor.apply();
+            editor.apply();*/
+
         }
 
-        /*if (memberScore > bestTwo) {
+        if (memberScore > bestTwo) {
             int temp = bestTwo;
             bestTwo = memberScore;
             bestThree = temp;
-            SharedPreferences.Editor editor = preferences.edit();
+
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points3", bestThree);
             editor.putInt("points2", bestTwo);
-            editor.apply();
+            editor.apply();*/
         }
 
         if (memberScore > bestOne) {
             int temp = bestOne;
             bestOne = memberScore;
             bestTwo = temp;
-            SharedPreferences.Editor editor = preferences.edit();
+            /*SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("points2", bestTwo);
             editor.putInt("points1", bestOne);
-            editor.apply();
-        }*/
+            editor.apply();*/
+        }
 
 
-        rankingOfScoresText = "Hejsan svejsan" /*"1" + best1 + "\n" +
-                "#2" + best2 + "\n" +
-                "#3" + bestThree*/;
+        String rankingOfScoresText = "#1" + " " + bestOneName + " " + bestOne + "p" + "\n" + "\n" +
+                                     "#2" + " " + bestTwoName + " " + bestTwo + "p" + "\n" + "\n" +
+                                     "#3" + " " + bestThreeName + " " + bestThree + "p";
 
 
         return rankingOfScoresText;
@@ -90,10 +92,7 @@ public class ScoreboardModel extends AppCompatActivity {
     }
 
 
-
-
-    public String getRankingOfScoresText(){return rankingOfScoresText;}
-
+    public String getRankingOfScoresText(){return rankProfiles();}
 
 
 }

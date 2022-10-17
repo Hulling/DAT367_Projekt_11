@@ -3,35 +3,54 @@ package com.example.dat367_projekt_11.models;
 import android.content.Context;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-// From https://developer.android.com/training/data-storage/app-specific
+
+/**
+ * The ConfigHandler class is a class that writes and read from a text files. It is used for writing
+ * the current signed in user locally.
+ *
+ *The class methods is taken from https://developer.android.com/training/data-storage/app-specific
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class ConfigHandler {
 
-    private Context context;
+    private final Context context;
 
+    /**
+     * Class constructor that initialize the context.
+     */
     public ConfigHandler(Context context) {
         this.context = context;
     }
 
+    /**
+     * The method writes a user id to a textfile
+     *
+     * @param household An household that will be written in text file.
+     */
     public void writeCurrentUser(Household household) {
-        File file = new File(context.getFilesDir(), "textfile.txt");
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.flush();
-            fw.write(household.getUid());
-            fw.close();
-
-        } catch (IOException io) {
-            io.printStackTrace();
+        String householdUid = household.getUid();
+        byte[] byteArrray = householdUid.getBytes();
+        try (FileOutputStream fos = context.openFileOutput("textfile.txt", Context.MODE_PRIVATE)) {
+            fos.write(byteArrray);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * The method reads a user id from a text file
+     * @return User id
+     */
     public String getCurrentUser() {
         FileInputStream fis = null;
         try {
@@ -50,10 +69,9 @@ public class ConfigHandler {
             }
         } catch (IOException e) {
             // Error occurred when opening raw file for reading.
-        } finally {
-            String contents = stringBuilder.toString();
-            return contents;
         }
+        return stringBuilder.toString();
     }
 }
+
 
