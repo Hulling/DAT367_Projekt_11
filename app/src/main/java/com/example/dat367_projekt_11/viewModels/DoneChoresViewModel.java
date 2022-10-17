@@ -36,7 +36,7 @@ public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataMo
     }
 
     @Override
-    public void moveChore(Chore chore) {
+    public void moveChore(Chore chore,Household household) {
         household.markChoreAsAvailable(chore);
     }
 }

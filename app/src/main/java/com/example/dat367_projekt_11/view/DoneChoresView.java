@@ -41,7 +41,7 @@ public class DoneChoresView extends Fragment {
     }
 
     private void populateData(Profile profile) {
-      //  HashMap<String, Chore> choreModelList = doneChoresViewModel.getChoreModellist();
+
         if(profile.getDoneChores()!=null){
             ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext(), doneChoresViewModel);
             binding.setChoreAdapter(choreAdapter);
@@ -50,6 +50,17 @@ public class DoneChoresView extends Fragment {
             ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel);
             binding.setChoreAdapter(choreAdapter);
         }
+   /*     FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            if(household.getCurrentProfile().getDoneChores()!=null){
+                ChoreAdapter choreAdapter = new ChoreAdapter(household.getCurrentProfile().getDoneChores(), getContext(),doneChoresViewModel, household);
+                binding.setChoreAdapter(choreAdapter);
+            }
+            else{
+                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, household);
+                binding.setChoreAdapter(choreAdapter);
+            }
+        });*/
     }
 
 

@@ -24,6 +24,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     private Map<String, Chore> choreModelList; //lista för kort
     private Context context;
     private ChoreAdapterDataModel choreAdapterDataModel;
+    private Household household;
 
   //  private HashMap<String, Chore> completedChoreModellist;
     private CheckBox checkBox;
@@ -33,6 +34,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         this.choreModelList = choreModelList;
         this.context = context;
         this.choreAdapterDataModel = choreAdapterDataModel;
+        this.household = household;
         //skll adaptern ta in hushållet istället för listan av sysslor som hushållet har?
     }
 
@@ -40,7 +42,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     //vill ha referens till household.
     @Override
     public void CheckBoxClicked(Chore chore) {
-        choreAdapterDataModel.moveChore(chore);
+        choreAdapterDataModel.moveChore(chore, household);
         Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();
 
 
