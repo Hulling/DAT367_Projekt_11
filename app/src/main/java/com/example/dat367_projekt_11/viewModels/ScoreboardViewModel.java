@@ -31,7 +31,7 @@ public class ScoreboardViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
 
 
-    String rankingOfScoresTwoText;
+    private String rankingOfScoresTwoText;
 
     private static final ScoreboardModel rankingOfScoresText = new ScoreboardModel();
     private static final String rankingOfScores = rankingOfScoresText.getRankingOfScoresText();
