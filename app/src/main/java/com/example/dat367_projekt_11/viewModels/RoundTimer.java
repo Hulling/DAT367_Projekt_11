@@ -1,5 +1,6 @@
 package com.example.dat367_projekt_11.viewModels;
 
+
 import java.util.TimerTask;
 
 /**
@@ -7,12 +8,18 @@ import java.util.TimerTask;
  * intervals for every new round.
  */
 
-public class Timer extends TimerTask {
-
+public class RoundTimer extends TimerTask {
 
     @Override
     public void run() {
+        System.out.println("hej");
 
     }
+    private void startTimer(){
 
+
+    }
+    private void resetTimer(){
+
+    }
 }
