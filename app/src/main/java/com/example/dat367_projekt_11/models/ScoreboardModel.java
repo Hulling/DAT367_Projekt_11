@@ -12,6 +12,14 @@ import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 import java.util.Objects;
 
 
+
+/**
+ * The purpose of this class is to find the three profiles
+ * with the highest scores in the household and rank them from 1 to 3.
+ *
+ * @author Pauline Björk
+ */
+
 public class ScoreboardModel {
 
 
@@ -28,60 +36,48 @@ public class ScoreboardModel {
     int bestTwo = preferences.getInt("points2", 0);*/
 
 
-    /*private String rankingOfScoresText = "hejdå";*/
-
 
     @SuppressLint("SetTextI18n")
     public String rankProfiles() {
 
 
-
-        /*getSharedPreferences("PREF", +0);*/
-
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 3/*memberScore*/) : 3;
+        int memberScore = preferences != null ? preferences.getInt("memberScore", 10/*memberScore*/) : 10;
         int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
         int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+
         String memberName = "Pauline";
         String bestOneName = "Hanna";
         String bestTwoName = "Malin";
         String bestThreeName = "Kristin";
 
 
-
-
+        /** Looks if the current members points is a larger int than the current third place */
         if (memberScore > bestThree) {
             bestThree = memberScore;
             bestThreeName = memberName;
-            /*SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points3", bestThree);
-            editor.apply();*/
-
         }
 
+        /** Looks if the current members points is a larger int than the current second place */
         if (memberScore > bestTwo) {
             int temp = bestTwo;
             bestTwo = memberScore;
+            bestThreeName = bestTwoName;
+            bestTwoName = memberName;
             bestThree = temp;
-
-            /*SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points3", bestThree);
-            editor.putInt("points2", bestTwo);
-            editor.apply();*/
         }
 
+        /** Looks if the current members points is a larger int than the current first place */
         if (memberScore > bestOne) {
             int temp = bestOne;
             bestOne = memberScore;
+            bestTwoName = bestOneName;
+            bestOneName = memberName;
             bestTwo = temp;
-            /*SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("points2", bestTwo);
-            editor.putInt("points1", bestOne);
-            editor.apply();*/
         }
 
-
+        /** Makes string that will be shown in the scoreboard fragment */
         String rankingOfScoresText = "#1" + " " + bestOneName + " " + bestOne + "p" + "\n" + "\n" +
                                      "#2" + " " + bestTwoName + " " + bestTwo + "p" + "\n" + "\n" +
                                      "#3" + " " + bestThreeName + " " + bestThree + "p";
