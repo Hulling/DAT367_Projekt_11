@@ -13,6 +13,7 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.ChoreCardBinding;
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
+import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.models.Household;
 
 import java.util.ArrayList;
@@ -39,10 +40,11 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     @Override
     public void CheckBoxClicked(Chore chore) {
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(context);
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         facadeGetHousehold.addChoreToDoneChores(household, chore);
         choreAdapterDataModel.moveChore(chore, household);
+        facadeGetHousehold.addPointsToProfile(household, getCurrentProfile.getProfile().getCurrentPoints());
         Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();
-
     }
 
 

@@ -48,5 +48,10 @@ public class FacadeCurrentHousehold {
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         persistenceManagerFactory.getPersistenceManager().addDoneChoreToProfile(household, getCurrentProfile.getProfile(), chore);
     }
+    public void addPointsToProfile(Household household, Integer points){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+        persistenceManagerFactory.getPersistenceManager().addPointsToProfile(household, getCurrentProfile.getProfile(), points);
+    }
+
 
 }

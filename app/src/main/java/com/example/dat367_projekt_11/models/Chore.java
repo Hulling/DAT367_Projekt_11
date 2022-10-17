@@ -34,6 +34,7 @@ public class Chore implements Serializable {
      */
 
     public Chore(){
+        this("init", "init", 0);
     }
 
 

@@ -32,6 +32,7 @@ public class Household {
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
     public Household() {
+        this("init", "init", "init");
     }
 
     /**
