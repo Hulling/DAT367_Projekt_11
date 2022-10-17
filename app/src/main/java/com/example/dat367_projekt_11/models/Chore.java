@@ -1,7 +1,5 @@
 package com.example.dat367_projekt_11.models;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -29,7 +27,6 @@ public class Chore implements Serializable {
         this.name = name;
         this.description = description;
         this.points = points;
-      //  this.isComplete = false;
     }
 
     /**
@@ -94,7 +91,7 @@ public class Chore implements Serializable {
     }
 
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -105,13 +102,7 @@ public class Chore implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(name, description, points);
-    }
-
-
-
-
-
-
+    }*/
 
 
 }
