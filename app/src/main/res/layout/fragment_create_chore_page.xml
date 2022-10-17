@@ -28,7 +28,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            />
 
         <EditText
             android:id="@+id/editDescription"
@@ -79,6 +80,8 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="10 points"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:checked="true"
                 android:background="@color/white"
@@ -89,6 +92,8 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="20 points"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:background="@color/white"/>
 
@@ -96,6 +101,8 @@
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="30 points"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:background="@color/white"
                 />

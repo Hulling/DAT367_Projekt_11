@@ -43,10 +43,12 @@ public class MainPageViewModel extends ViewModel implements ChoreAdapterDataMode
 /*
     @Override
     public void onCheckboxClicked(Chore chore) {
+
         if (!chore.isComplete()) {
             chore.completeChore();
 
         }
+
     }*/
 
 
