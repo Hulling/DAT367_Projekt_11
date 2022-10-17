@@ -51,28 +51,25 @@ public class LoginFragment extends Fragment {
 
     private void setLoginBtnOnAction(View view) {
         Button loginButton = view.findViewById(R.id.login);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = authViewModel.getEmail().getValue();
-                String password = authViewModel.getPassword().getValue();
-                if (email.length() > 0 && password.length() > 0) {
-                    signIn(email, password);
-                } else {
-                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
-                }
+        loginButton.setOnClickListener(view1 -> {
+            String email = authViewModel.getEmail().getValue();
+            String password = authViewModel.getPassword().getValue();
+            if (email !=null && password !=null) {
+                signIn(email, password);
+            } else {
+                Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
             }
         });
     }
     private void signIn(String email, String password) {
         authViewModel.login(email, password);
         authViewModel.getAuthenticatedHousehold().observe(getViewLifecycleOwner(), authenticatedHousehold -> {
+            createNewHousehold(authenticatedHousehold);
             configHandler = new ConfigHandler(getContext());
             configHandler.writeCurrentUser(authenticatedHousehold);
-            createNewHousehold(authenticatedHousehold);
             goToProfileFragment();
         });
-        authViewModel.getToastMessage().observe(this, toastMessage ->{
+        authViewModel.getToastMessage().observe(getViewLifecycleOwner(), toastMessage ->{
             Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
         });
     }

@@ -139,7 +139,7 @@ public class FirebasePersistenceManager implements PersistenceManager {
     public void createHouseholdInDatabaseIfNotExists(Household authenticatedHousehold) {
         myRef.child(authenticatedHousehold.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     Log.d(TAG, "User already exist");
                 } else {
