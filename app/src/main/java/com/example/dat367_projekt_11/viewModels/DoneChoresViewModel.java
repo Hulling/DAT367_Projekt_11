@@ -16,7 +16,6 @@ import com.example.dat367_projekt_11.view.DoneChoresView;
 import java.util.HashMap;
 
 public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataModel {
-    private Household household;
     private final MutableLiveData<String> mText;
 
 
@@ -24,16 +23,16 @@ public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataMo
     public DoneChoresViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("@string/done_ChoreTitle");
-        this.household = new Household();
+
     }
 
     public LiveData<String> getText() {
         return mText;
     }
-
+/*
     public void setCurrentProfile(Profile profile){
         household.setCurrentProfile(profile);
-    }
+    }*/
 
     @Override
     public void moveChore(Chore chore,Household household) {

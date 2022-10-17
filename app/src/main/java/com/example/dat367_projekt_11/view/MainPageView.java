@@ -55,10 +55,10 @@ public class MainPageView extends Fragment {
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
             ChoreAdapter choreAdapter;
             if(household.getHouseholdChores()!=null){
-                choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext(), mainPageViewModel);
+                choreAdapter = new ChoreAdapter(household.getHouseholdChores(), getContext(), mainPageViewModel, household);
             }
             else{
-                choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), mainPageViewModel);
+                choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), mainPageViewModel, household);
             }
             binding.setChoreAdapter(choreAdapter);
         });

@@ -32,35 +32,38 @@ public class DoneChoresView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDonechoresBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+       // binding.setLifecycleOwner(this);
         doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
         binding.setDoneChoresViewModel(doneChoresViewModel);
-        doneChoresViewModel.setCurrentProfile(getProfile());
-        populateData(getProfile());
+       // doneChoresViewModel.setCurrentProfile(getProfile());
+       // populateData(getProfile());
+        populateData();
         return binding.getRoot();
     }
 
-    private void populateData(Profile profile) {
+/*    private void populateData(Profile profile) {
+        if (profile.getDoneChores()!= null) {
+            ChoreAdapter choreAdapter = new ChoreAdapter(getProfile().getDoneChores(), getContext(), doneChoresViewModel, household);
+            binding.setChoreAdapter(choreAdapter);
+        } else {
+            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel, household);
+            binding.setChoreAdapter(choreAdapter);
+        }
+    }*/
 
-        if(profile.getDoneChores()!=null){
-            ChoreAdapter choreAdapter = new ChoreAdapter(profile.getDoneChores(), getContext(), doneChoresViewModel);
-            binding.setChoreAdapter(choreAdapter);
-        }
-        else{
-            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel);
-            binding.setChoreAdapter(choreAdapter);
-        }
-   /*     FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
-        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-            if(household.getCurrentProfile().getDoneChores()!=null){
-                ChoreAdapter choreAdapter = new ChoreAdapter(household.getCurrentProfile().getDoneChores(), getContext(),doneChoresViewModel, household);
+    private void populateData() {
+        //hittar inte household, behöver få tag i current user i household.
+        FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(getContext());
+   /*     facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {*/
+            if(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores()!=null){
+                ChoreAdapter choreAdapter = new ChoreAdapter(facadeGetHousehold.getHousehold().getCurrentProfile().getDoneChores(), getContext(),doneChoresViewModel, facadeGetHousehold.getHousehold());
                 binding.setChoreAdapter(choreAdapter);
             }
             else{
-                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, household);
+                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, facadeGetHousehold.getHousehold());
                 binding.setChoreAdapter(choreAdapter);
             }
-        });*/
+     //   });
     }
 
 

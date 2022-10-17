@@ -21,7 +21,5 @@ public class FacadeGetHousehold {
     public void addChore (Household household, Chore chore){
         persistenceManagerFactory.getPersistenceManager().addChoreToHousehold(household, chore);
     }
-    public void addChoretoDoneChores(Household household, Chore chore){
 
-    }
 }

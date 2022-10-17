@@ -94,7 +94,7 @@ public class Household {
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }else{
-            getCurrentProfile().getDoneChores().remove(chore);
+            getCurrentProfile().getDoneChores().remove(chore.getName());
             this.addChore(chore);
             //this.householdChores.add(chore);
         }

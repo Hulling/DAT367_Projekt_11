@@ -25,21 +25,17 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     private Context context;
     private ChoreAdapterDataModel choreAdapterDataModel;
     private Household household;
-
-  //  private HashMap<String, Chore> completedChoreModellist;
-    private CheckBox checkBox;
+   // private CheckBox checkBox;
 
 
-    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, ChoreAdapterDataModel choreAdapterDataModel) {
+    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, ChoreAdapterDataModel choreAdapterDataModel, Household household) {
         this.choreModelList = choreModelList;
         this.context = context;
         this.choreAdapterDataModel = choreAdapterDataModel;
         this.household = household;
-        //skll adaptern ta in hushållet istället för listan av sysslor som hushållet har?
     }
 
 
-    //vill ha referens till household.
     @Override
     public void CheckBoxClicked(Chore chore) {
         choreAdapterDataModel.moveChore(chore, household);

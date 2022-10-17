@@ -172,10 +172,5 @@ public class PersistenceManager implements FirebasePersistenceManager { //Svårt
         myRef.child(household.getUid()).child("profileList").child(household.getCurrentProfile().getName()).child("doneChores").setValue(chore);
     }
 
-/*    public void manageChore(Household household, Chore chore){*/
-/*        household.markChoreAsAvailable(chore);*/
-/*    }*/
-
-
 
 }

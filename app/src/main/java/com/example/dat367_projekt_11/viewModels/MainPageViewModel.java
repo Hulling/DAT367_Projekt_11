@@ -14,14 +14,13 @@ import java.util.HashMap;
 
 public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
     private final MutableLiveData<String> mText;
-  //  private Household household; //hanna behöver få tag på household
     private PersistenceManagerFactory persistenceManagerFactory;
 
     public MainPageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue(""/*chorelist */);
         this.persistenceManagerFactory= new PersistenceManagerFactory();
-      //  this.household = new Household(); //hanna, detta fungerar ej.
+
     }
 
     public LiveData<String> getText() {
