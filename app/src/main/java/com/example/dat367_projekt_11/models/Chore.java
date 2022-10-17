@@ -16,7 +16,6 @@ public class Chore implements Serializable {
     private String name;
     private String description;
     private int points;
-   // private boolean isComplete;
 
 
     /**
@@ -41,21 +40,6 @@ public class Chore implements Serializable {
 
     }
 
-    /**
-     *Sets chore to complete and notifies the listeners
-     */
-
-    /*public void completeChore(){
-        this.isComplete = true;
-    }*/
-
-    /**
-     *TODO kommentera
-     */
-/*    public void unCompleteChore(){
-        this.isComplete = false;
-
-    }*/
 
     /**
      *Gets the name
@@ -82,13 +66,6 @@ public class Chore implements Serializable {
         return this.points;
     }
 
-    /**
-     * Answers if it is completed
-     * @return if the chore is complete
-     */
- /*   public boolean isComplete(){
-        return this.isComplete;
-    }*/
 
     /**
      * Sets the name.

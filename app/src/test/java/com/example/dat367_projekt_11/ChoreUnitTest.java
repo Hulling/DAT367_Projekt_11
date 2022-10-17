@@ -5,28 +5,43 @@ import static org.junit.Assert.*;
 import com.example.dat367_projekt_11.models.Chore;
 
 public class ChoreUnitTest {
-    /*
-    private final Chore chore;
 
-    public ChoreUnitTest(Chore chore) {
-        this.chore = new Chore("Chore","This is a chore", 30, listeners);
+    private final Chore chore = new Chore("Chore","this is a chore",30);
+
+  /*  public ChoreUnitTest(Chore chore) {
+        this.chore = chore;
     }
-
-    @Test
-    public void completeChoreTest(){assertEquals(true, chore.isComplete());}
-
+*/
     @Test
     public void getNameTest(){assertEquals("Chore",chore.getName());}
 
     @Test
-    public void getDescriptionTest(){assertEquals("This is a chore", chore.getDescription());}
+    public void getDescriptionTest(){assertEquals("this is a chore", chore.getDescription());}
 
     @Test
     public void getPointsTest(){assertEquals(30, chore.getPoints());}
 
     @Test
-    public void isCompleteTest(){assertFalse(chore.isComplete());}
+    public void setNameTest(){
+        chore.setName("test");
+        assertEquals("test",chore.getName());
+    }
 
-     */
+    @Test
+    public void setdescriptionTest(){
+        chore.setDescription("Vacuum");
+        assertEquals("Vacuum", chore.getDescription());
+    }
+
+    @Test
+    public void setPointsTest(){
+        chore.setPoints(40);
+        assertEquals(40,chore.getPoints());
+    }
+
+
+
+
+
 
 }
