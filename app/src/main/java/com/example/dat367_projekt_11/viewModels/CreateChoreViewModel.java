@@ -10,6 +10,12 @@ import com.example.dat367_projekt_11.view.CreateChoreView;
 
 import java.util.Objects;
 
+/**
+ * This class respresents the ViewModel for the page where the user creates a chore.
+ * @author Malin Kihlström
+ *
+ */
+
 public class CreateChoreViewModel extends ViewModel {
 
     private MutableLiveData<String> name = new MutableLiveData<>();
