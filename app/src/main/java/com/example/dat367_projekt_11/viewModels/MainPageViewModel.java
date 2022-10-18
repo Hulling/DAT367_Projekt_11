@@ -10,20 +10,11 @@ import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
 
 public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
-    private final MutableLiveData<String> mText;
-    private PersistenceManagerFactory persistenceManagerFactory;
     private Household household;
 
     public MainPageViewModel() {
-        mText = new MutableLiveData<>();
-        //mText.setValue(""/*chorelist */);
-        this.persistenceManagerFactory= new PersistenceManagerFactory();
         this.household = new Household();
 
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
     @Override
