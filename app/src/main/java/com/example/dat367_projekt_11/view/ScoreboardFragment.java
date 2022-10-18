@@ -16,29 +16,40 @@ import android.widget.TextView;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentScoreboardBinding;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
+
+/**
+ * The purpose of this class is to call on the update of the ranking
+ * when the scoreboard icon is pressed on the screen.
+ *
+ * @author Pauline Björk
+ */
+
 public class ScoreboardFragment extends Fragment{
+
 
 
     private ScoreboardViewModel fViewModel;
 
     private FragmentScoreboardBinding binding;
 
-    /*private String testText = "printa fan";*/
-
-    /*private static final ScoreboardViewModel rankingOfScoresTwoText = new ScoreboardViewModel();
-    private static final String rankingOfScoresTwo = rankingOfScoresTwoText.getRankingOfScoresTwoText();*/
-
     public static ScoreboardFragment newInstance() {
         return new ScoreboardFragment();
     }
+
 
     @SuppressLint("LongLogTag")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {;
+
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+
+        });
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);
@@ -55,9 +66,8 @@ public class ScoreboardFragment extends Fragment{
         super.onCreate(savedInstanceState);
     }
 
-/*private final ScoreboardModel rankProfiles = new ScoreboardModel();
-    private numberOne = bestOne.getBestOne;*/
 
+    /** Sets the String from ScoreboardModel in the TextView so is appears on the screen */
     public void setRankingText(String s){
 
         TextView scoresText = binding.getRoot().findViewById(R.id.Scores);
