@@ -11,8 +11,8 @@ import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
 
 public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
     private final MutableLiveData<String> mText;
-    private PersistenceManagerFactory persistenceManagerFactory;
-    private Household household;
+    private final PersistenceManagerFactory persistenceManagerFactory;
+    private final Household household;
 
     public MainPageViewModel() {
         mText = new MutableLiveData<>();

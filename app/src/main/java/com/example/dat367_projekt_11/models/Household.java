@@ -7,12 +7,12 @@ import java.util.HashMap;
  */
 public class Household {
     private String householdName;
-    private HashMap<String, Profile> profileList;
+    private final HashMap<String, Profile> profileList;
     private String password;
     private String email;
 
-    private String uid;
-    private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
+    private final String uid;
+    private final HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
 
     /**
      *

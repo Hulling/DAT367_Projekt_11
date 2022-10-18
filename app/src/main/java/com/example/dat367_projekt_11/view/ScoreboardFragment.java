@@ -38,7 +38,7 @@ public class ScoreboardFragment extends Fragment{
     @SuppressLint("LongLogTag")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {;
+                             @Nullable Bundle savedInstanceState) {
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);

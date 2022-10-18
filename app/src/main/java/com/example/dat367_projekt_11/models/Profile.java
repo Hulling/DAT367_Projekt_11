@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Profile implements Serializable {
     private String name;
     private int currentPoints;
-    private HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
+    private final HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
 
 
     /**
