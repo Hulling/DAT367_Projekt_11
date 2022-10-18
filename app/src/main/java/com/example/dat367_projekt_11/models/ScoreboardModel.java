@@ -3,14 +3,6 @@ package com.example.dat367_projekt_11.models;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
-
-import java.util.Objects;
-
 
 
 /**

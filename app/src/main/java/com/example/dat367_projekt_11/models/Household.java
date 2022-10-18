@@ -1,139 +1,193 @@
 package com.example.dat367_projekt_11.models;
 
-import android.database.Observable;
+import java.util.HashMap;
 
-import androidx.databinding.ObservableArrayList;
-
-import com.google.firebase.database.Exclude;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class Household implements IsCompleteListener { //lyssnar på chores boolean{
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
+/**
+ * This class represents the households of TidyApp
+ */
+public class Household {
     private String householdName;
-    private List<Profile> profileList;
+    private HashMap<String, Profile> profileList;
     private String password;
     private String email;
 
-
-    public String getUid() {
-        return uid;
-    }
-
     private String uid;
-    private ArrayList<Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
-  //  private ArrayList<AvailableChoresListener> listeners;
-    //måste vi inte skapa listan av householdchores och listeners någonstans för att kunna lägga till i?
-//kolla att sakerna är nollskilda, objekt required non null.
-    //design by contract
+    private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
 
-
+    /**
+     *
+     * @param uid
+     * @param email
+     * @param householdName
+     */
     public Household(String uid, String email, String householdName) {
         this.uid = uid;
         this.email = email;
         this.householdName = householdName;
-        this.mAuth = FirebaseAuth.getInstance();
-        this.currentUser = mAuth.getCurrentUser();
-        this.householdChores = new ArrayList<Chore>();
-
-        this.profileList = new ArrayList<>();
+        this.householdChores = new HashMap<>();
+        this.profileList = new HashMap<>();
     }
-    public Household() {}
 
-   /* public FirebaseAuth getmAuth(){
-        return  mAuth;
+    /**
+     * Empty constructor. (for the ability to read from firebase Realtime database)
+     */
+    public Household() {
+        this("init", "init", "init");
     }
-    //returnera kopia? orginal kan mixtas med.*/
 
-    @Exclude
-    public boolean isNew, isCreated;
-
-    @Exclude
-    public boolean isAuthenticated;
-
+    /**
+     * Sets the password
+     * @param password the password to be set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void addChoreToList(Chore chore){ //när en chore görs available meddelas alla som im. chorelist status listener
-        chore.subscribe(this);
-        householdChores.add(chore);
-      // notifyListeners(); // --> notifiera
+    /**
+     * Adds chores to household chores.
+     * @param chore the chore to be added to household chores.
+     */
+    public void addChore(Chore chore){
+        householdChores.put(chore.getName(), chore);
     }
 
+    /**
+     * Removes chore from household chores.
+     * @param chore the chore to be removed from household chores.
+     */
 
-    private void removeChoreFromList(Chore chore){ //när en chore tas bort meddelas eller görs uavailable alla som implementerar choreliststatuslistener
-            if (chore.isComplete()){
-                chore.unsubscribe(this);
-                householdChores.remove(chore);
-               // notifyListeners(); //--> notifiera
+    private void removeChoreFromList(Chore chore){
+        householdChores.remove(chore.getName()); //detta måste vara risky AF, key bör vara annat än namnet?? typ hash?
+    }
 
+    /**
+     * Relocates chore from hashmap of available chores to hashmap of done chores.
+     * @param chore the chore to be relocated from available chores to done chores.
+     */
+
+
+    public void markChoreAsDone(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       // boolean found = householdChores.remove(chore);
+        boolean found = householdChores.containsKey(chore.getName());
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
         }
+        else{
+            //householdChores.remove(chore);
+            this.removeChoreFromList(chore);
+            getCurrentProfile.getProfile().addToDoneChores(chore);
+            //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
+        }
+
+    }
+    /**
+     * Relocates chore from hashmap of done chores to hashmap of available chores.
+     * @param chore the chore to be relocated from done chores to available chores.
+     */
+
+
+    public void markChoreAsAvailable(Chore chore){
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+       // boolean found = getCurrentProfile().getDoneChores().remove(chore);
+        boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
+       //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
+        if(!found){
+            throw new IllegalArgumentException("Chore not found" + chore);
+        }else{
+            getCurrentProfile.getProfile().getDoneChores().remove(chore.getName());
+            this.addChore(chore);
+        }
+
     }
 
-    //defensiv inkopiering, defensiv utkopiering -> kan göra så man får en wrapper som gör unmodifiable. blir körningsfel om så händer. läs collectionsklassen.
 
-    public ArrayList<Chore> getHouseholdChores() { //jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
+
+
+    /**
+     * Gets the household chores
+     * @return the household chores
+     */
+
+    public HashMap<String, Chore> getHouseholdChores() {//jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
         return householdChores;
     }
+
+    /**
+     * Gets the password
+     * @return the password
+     */
 
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets the email
+     * @param email the email to be set.
+     */
+
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     * Gets the email
+     * @return the email
+     */
 
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets the household name
+     * @return the household name
+     */
     public String getHouseholdName() {
         return householdName;
     }
+    /**
+     * @return TODO besvik vad den gör
+     */
+    public String getUid() {
+        return uid;
+    }
 
-    public List<Profile> getProfileList() {
+    //public void setProfileList(List<Profile> profileList){this.profileList = profileList;}
+
+    /**
+     * Gets the profiles
+     * @return the profiles
+     */
+    public HashMap<String, Profile> getProfileList() {
         return profileList;
     }
 
+    /**
+     * Adds profile to list of profiles
+     * @param profile the profile to be added to the list
+     */
     public void addProfile(Profile profile){
-        profileList.add(profile);
+        profileList.put(profile.getName(), profile);
     }
 
+    /**
+     * Deletes profile from list of profiles
+     * @param profile the profile to be deleted from the list
+     */
     public void deleteProfile(Profile profile){
-        profileList.remove(profile);
+        profileList.remove(profile.getName());
     }
 
+    /**
+     * Sets household name
+     * @param householdName the household name to be set
+     */
     public void setHouseholdName(String householdName) {
         this.householdName = householdName;
     }
-    @Override
-    public void update(Chore chore) {  //updateras householdchores -> available chores -> lyssnar på chores boolean
-        this.removeChoreFromList(chore);
-    }
 
 
-  /*  private void subscribe(AvailableChoresListener listener) { //broadcast
-        listeners.add(listener);
-    }*/
-
-    public void setCurrentProfile(Profile profile) {
-
-    }
-
-
-/*    private void notifyListeners() {
-        for (AvailableChoresListener listener : listeners) {  //broadcast
-            listener.update(householdChores);
-        }
-
-    }*/
 
 }

@@ -7,7 +7,15 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.dat367_projekt_11.R;
 
-public class LoginActivity extends AppCompatActivity {
+/**
+ * AuthActivity is displaying all fragments that is related with auth.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
+public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

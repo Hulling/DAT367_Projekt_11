@@ -4,21 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.example.dat367_projekt_11.databinding.FragmentDonechoresBinding;
-
-
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
+import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
-import java.util.List;
+
+import java.util.HashMap;
 
 public class DoneChoresView extends Fragment {
     private FragmentDonechoresBinding binding;
@@ -34,18 +32,38 @@ public class DoneChoresView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDonechoresBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
+       // binding.setLifecycleOwner(this);
         doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
         binding.setDoneChoresViewModel(doneChoresViewModel);
+       // doneChoresViewModel.setCurrentProfile(getProfile());
+       // populateData(getProfile());
         populateData();
         return binding.getRoot();
     }
 
-    private void populateData() {
-        List<Chore> choreModelList = doneChoresViewModel.getChoreModellist();
+/*    private void populateData(Profile profile) {
+        if (profile.getDoneChores()!= null) {
+            ChoreAdapter choreAdapter = new ChoreAdapter(getProfile().getDoneChores(), getContext(), doneChoresViewModel, household);
+            binding.setChoreAdapter(choreAdapter);
+        } else {
+            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel, household);
+            binding.setChoreAdapter(choreAdapter);
+        }
+    }*/
 
-        ChoreAdapter choreAdapter = new ChoreAdapter(choreModelList, getContext());
-        binding.setChoreAdapter(choreAdapter);
+    private void populateData() {
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+            if(getCurrentProfile.getProfile().getDoneChores()!=null){
+                ChoreAdapter choreAdapter = new ChoreAdapter(getCurrentProfile.getProfile().getDoneChores(), getContext(),doneChoresViewModel, household);
+                binding.setChoreAdapter(choreAdapter);
+            }
+            else{
+                ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<String, Chore>(), getContext(), doneChoresViewModel, household);
+                binding.setChoreAdapter(choreAdapter);
+            }
+        });
 
     }
 

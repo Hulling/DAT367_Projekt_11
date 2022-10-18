@@ -17,6 +17,14 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentRegistrationBinding;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+/**
+ * The class represent the registration view for the user.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
+
 public class RegistrationFragment extends Fragment {
 
     private FragmentRegistrationBinding binding;
@@ -31,7 +39,6 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
-        binding.setLifecycleOwner(this);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setViewModel(authViewModel);
         setRegistrationBtnOnAction(binding.getRoot());
@@ -41,24 +48,24 @@ public class RegistrationFragment extends Fragment {
     private void setRegistrationBtnOnAction(View view) {
         Button loginButton = view.findViewById(R.id.registerBtn);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = authViewModel.getEmail().getValue();
-                String password = authViewModel.getPassword().getValue();
-                String householdName = authViewModel.getHouseholdName().getValue();
-                if (email.length() > 0 && password.length() > 0) {
-                    register(email, password, householdName);
-                } else {
-                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
-                }
+        loginButton.setOnClickListener(view1 -> {
+            String email = authViewModel.getEmail().getValue();
+            String password = authViewModel.getPassword().getValue();
+            String householdName = authViewModel.getHouseholdName().getValue();
+            if (email.length() > 0 && password.length() > 0) {
+                register(email, password, householdName);
+                authViewModel.getRegisterHousehold().observe(getViewLifecycleOwner(), registerHousehold -> {
+                    authViewModel.createHousehold(registerHousehold);
+                });
+                goToLoginFragment();
+            } else {
+                Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void register(String email, String password, String householdName) {
         authViewModel.register(email, password, householdName);
-        goToLoginFragment();
     }
 
     private void goToLoginFragment() {

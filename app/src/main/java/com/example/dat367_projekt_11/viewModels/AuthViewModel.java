@@ -10,14 +10,21 @@ import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
 import com.example.dat367_projekt_11.models.Profile;
 
-import java.util.List;
+import java.util.HashMap;
+
+/**
+ * The class is a viewModel. It handles communication between fragments and the PersistenceManger
+ * without them talking direct to each other, via Mutable livedata.
+ *
+ * @author  Kristin Hulling
+ * @version 1.0
+ * @since   2022-10-16
+ */
 
 public class AuthViewModel extends AndroidViewModel {
-    private PersistenceManagerFactory persistenceManagerFactory;
+    private final PersistenceManagerFactory persistenceManagerFactory;
     private MutableLiveData<Household> authenticatedHouseholdLiveData;
-    private MutableLiveData<Household> createdHouseholdLiveData;
-    private MutableLiveData<List<Profile>> listOfProfiles;
-    private MutableLiveData<Profile> chosenProfile;
+    private MutableLiveData<Household> registerHouseholdLiveData;
 
     private MutableLiveData<String> email = new MutableLiveData<>();
     private MutableLiveData<String> password = new MutableLiveData<>();
@@ -34,49 +41,36 @@ public class AuthViewModel extends AndroidViewModel {
 
     public MutableLiveData<Household> getAuthenticatedHousehold() {
         if (authenticatedHouseholdLiveData == null) {
-            authenticatedHouseholdLiveData = new MutableLiveData<Household>();
+            authenticatedHouseholdLiveData = new MutableLiveData<>();
         }
         return authenticatedHouseholdLiveData;
     }
 
-    public MutableLiveData<Household> getCreatedHousehold() {
-        if (createdHouseholdLiveData == null) {
-            createdHouseholdLiveData = new MutableLiveData<Household>();
+    public MutableLiveData<Household> getRegisterHousehold() {
+        if (registerHouseholdLiveData == null) {
+            registerHouseholdLiveData = new MutableLiveData<>();
         }
-        return createdHouseholdLiveData;
+        return registerHouseholdLiveData;
     }
+
 
     public MutableLiveData<String> getEmail() {
         if (email == null) {
-            email = new MutableLiveData<String>();
+            email = new MutableLiveData<>();
         }
         return email;
     }
     public MutableLiveData<String> getPassword() {
         if (password == null) {
-            password = new MutableLiveData<String>();
+            password = new MutableLiveData<>();
         }
         return password;
     }
     public MutableLiveData<String> getHouseholdName() {
         if (householdName == null) {
-            householdName = new MutableLiveData<String>();
+            householdName = new MutableLiveData<>();
         }
         return householdName;
-    }
-
-    public MutableLiveData<List<Profile>> getListOfProfiles() {
-        if (listOfProfiles == null) {
-            listOfProfiles = new MutableLiveData<>();
-        }
-        return listOfProfiles;
-    }
-
-    public MutableLiveData<Profile> getChosenProfile(){
-        if (chosenProfile == null) {
-            chosenProfile = new MutableLiveData<>();
-        }
-        return chosenProfile;
     }
 
     public AuthViewModel(@NonNull Application application) {
@@ -90,21 +84,22 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     public void register(String email, String password, String householdName){
-        persistenceManagerFactory.getPersistenceManager().register(email, password, householdName);
+        registerHouseholdLiveData = persistenceManagerFactory.getPersistenceManager().register(email, password, householdName);
     }
 
     public void createHousehold(Household authenticatedHousehold) {
-        createdHouseholdLiveData = persistenceManagerFactory.getPersistenceManager().createHouseholdInFirestoreIfNotExists(authenticatedHousehold);
+        persistenceManagerFactory.getPersistenceManager().createHouseholdInDatabaseIfNotExists(authenticatedHousehold);
     }
 
     public void addProfile(Household household, Profile profile){
-        listOfProfiles = persistenceManagerFactory.getPersistenceManager().addNewProfileToDatabase(household, profile);
+        persistenceManagerFactory.getPersistenceManager().addNewProfileToDatabase(household, profile);
     }
-    public void makeListOfProfiles(Household household){
-        listOfProfiles = persistenceManagerFactory.getPersistenceManager().getListFromFirestore(household);
+    public MutableLiveData<HashMap<String,Profile>> getListOfProfiles(Household household){
+        return persistenceManagerFactory.getPersistenceManager().getProfileList(household);
     }
-    public void chooseProfile(Household household, Profile profile){
-        chosenProfile = persistenceManagerFactory.getPersistenceManager().getChosenProfile(household, profile);
+
+    public MutableLiveData<String> getToastMessage(){
+        return persistenceManagerFactory.getPersistenceManager().getToastMessage();
     }
 
 
