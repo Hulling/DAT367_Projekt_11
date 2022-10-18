@@ -99,6 +99,8 @@ public class HouseholdUnitTest {
             assertEquals(doneChoresCopy,currentProfile.getDoneChores());
         }*/
 
+
+
        @Test
         public void markChoreAsAvailableTest(){
             household.addProfile(profile);
