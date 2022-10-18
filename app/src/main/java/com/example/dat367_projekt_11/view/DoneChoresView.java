@@ -18,6 +18,11 @@ import com.example.dat367_projekt_11.viewModels.DoneChoresViewModel;
 
 import java.util.HashMap;
 
+/**
+ *This class represents the ??.
+ * @author Hanna Harnesk
+ */
+
 public class DoneChoresView extends Fragment {
     private FragmentDonechoresBinding binding;
     private DoneChoresViewModel doneChoresViewModel;
@@ -32,24 +37,13 @@ public class DoneChoresView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDonechoresBinding.inflate(inflater, container, false);
-       // binding.setLifecycleOwner(this);
         doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
         binding.setDoneChoresViewModel(doneChoresViewModel);
-       // doneChoresViewModel.setCurrentProfile(getProfile());
-       // populateData(getProfile());
         populateData();
         return binding.getRoot();
     }
 
-/*    private void populateData(Profile profile) {
-        if (profile.getDoneChores()!= null) {
-            ChoreAdapter choreAdapter = new ChoreAdapter(getProfile().getDoneChores(), getContext(), doneChoresViewModel, household);
-            binding.setChoreAdapter(choreAdapter);
-        } else {
-            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel, household);
-            binding.setChoreAdapter(choreAdapter);
-        }
-    }*/
+
 
     private void populateData() {
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();

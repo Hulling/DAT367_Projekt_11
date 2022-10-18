@@ -7,6 +7,10 @@ import com.example.dat367_projekt_11.models.Profile;
 import org.junit.Test;
 
 import java.util.HashMap;
+/**
+ *This class represents unit-test for the methods in class Profile.
+ * @author Hanna Harnesk
+ */
 
 
 public class ProfileUnitTest {
