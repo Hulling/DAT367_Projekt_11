@@ -6,16 +6,17 @@ import java.util.HashMap;
 
 /**
  * This class represents the profiles of Tidy App
+ * @author Hanna
+ * @author Malin
  */
 public class Profile implements Serializable {
     private String name;
     private int currentPoints;
-    private final HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
+    private HashMap<String, Chore> doneChores;
 
 
     /**
-     *
-     * @param name the name of the profile
+     * @param name
      */
 
     public Profile(String name) {
@@ -27,9 +28,11 @@ public class Profile implements Serializable {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
+
     public Profile(){
         this("init");
     }
+
 
 
 
@@ -65,7 +68,7 @@ public class Profile implements Serializable {
      */
     public void removeFromDoneChores(Chore chore){
         doneChores.remove(chore.getName());
-        decreaseCurrentPoints(chore.getPoints()); //ta bort poäng från profilen
+        decreaseCurrentPoints(chore.getPoints());
 
     }
 
@@ -106,15 +109,6 @@ public class Profile implements Serializable {
     public void setName(String name){
         this.name = name;
     }
-    /*
-    DENNA KANSKE VI BEHÖVER TA BORT SENARE FÖR JAG ÄR LITE TIPSY NÄR JAG SKRIVER DETTA HEHE
-     */
 
-    /**
-     * Sets current score to 0
-     */
-    void resetScore(){
-        this.currentPoints=0;
-    }
 
 }

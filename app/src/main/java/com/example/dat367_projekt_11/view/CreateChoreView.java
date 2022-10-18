@@ -31,19 +31,11 @@ public class CreateChoreView extends Fragment {
     }
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentCreateChorePageBinding.inflate(inflater, container, false);
-        //binding.setLifecycleOwner(this);
         createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
         binding.setCreateChoreViewModel(createChoreViewModel);
 

@@ -12,6 +12,10 @@ import com.example.dat367_projekt_11.models.Profile;
 import org.junit.Test;
 
 import java.util.HashMap;
+/**
+ *This class represents unit-test for the methods in class Household.
+ * @author Hanna Harnesk
+ */
 
 public class HouseholdUnitTest {
         private final Chore chore = new Chore("diska", "diskar disk", 10);
@@ -21,6 +25,15 @@ public class HouseholdUnitTest {
         private final HashMap<String, Chore> doneChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Profile> profileListTest = new HashMap<String, Profile>();
         private GetCurrentProfile currentProfile = GetCurrentProfile.getInstance();
+        Household householdInit;
+
+
+        @Test
+        public void householdConstructorTest(){
+            householdInit = new Household();
+            assertEquals("init",householdInit.getHouseholdName());
+
+    }
 
         @Test
         public void getUidTest(){

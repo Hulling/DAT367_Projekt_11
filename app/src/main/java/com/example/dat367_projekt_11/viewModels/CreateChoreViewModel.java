@@ -10,6 +10,12 @@ import com.example.dat367_projekt_11.view.CreateChoreView;
 
 import java.util.Objects;
 
+/**
+ * This class respresents the ViewModel for the page where the user creates a chore.
+ * @author Malin Kihlström
+ *
+ */
+
 public class CreateChoreViewModel extends ViewModel {
 
     private MutableLiveData<String> name = new MutableLiveData<>();
@@ -37,21 +43,6 @@ public class CreateChoreViewModel extends ViewModel {
         }
         return description;
     }
-
-    public void onDoneClicked(String name, String desc, int points) {
-            Chore chore = new Chore(name, desc, points);
-            addChore(chore);
-
-
-    }
-
-    private void addChore(Chore chore) {
-        ConfigHandler configHandler = new ConfigHandler(createChoreView.getContext());
-        PersistenceManagerFactory persistenceManagerFactory = new PersistenceManagerFactory();
-        persistenceManagerFactory.getPersistenceManager().getHousehold(configHandler.getCurrentUser()).observe(createChoreView.getViewLifecycleOwner(), household -> {
-            household.addChore(chore);
-        });
-        }
 
 
 }
