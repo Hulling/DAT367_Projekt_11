@@ -16,6 +16,9 @@ import java.util.HashMap;
  * The class is a viewModel. It handles communication between fragments and the PersistenceManger
  * without them talking direct to each other, via Mutable livedata.
  *
+ * The Livedatabinding is inspired from:
+ * https://www.digitalocean.com/community/tutorials/android-mvvm-livedata-data-binding
+ *
  * @author  Kristin Hulling
  * @version 1.0
  * @since   2022-10-16
