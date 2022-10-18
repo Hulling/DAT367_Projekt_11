@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentScoreboardBinding;
+import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
 
@@ -28,6 +29,7 @@ import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
  */
 
 public class ScoreboardFragment extends Fragment{
+
 
 
     private ScoreboardViewModel fViewModel;
@@ -43,6 +45,11 @@ public class ScoreboardFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {;
+
+        FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
+        facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
+
+        });
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);
