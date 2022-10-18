@@ -3,6 +3,7 @@ package com.example.dat367_projekt_11;
 import static org.junit.Assert.assertEquals;
 
 import com.example.dat367_projekt_11.models.Chore;
+import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.models.Profile;
 
@@ -18,6 +19,9 @@ public class HouseholdUnitTest {
         private final HashMap<String, Chore> householdChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Chore> doneChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Profile> profileListTest = new HashMap<String, Profile>();
+        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
+
+
 
         @Test
         public void getUidTest(){
@@ -65,18 +69,7 @@ public class HouseholdUnitTest {
             assertEquals(doneChoresCopy,profile.getDoneChores());
         }
 
-        @Test
-        public void getCurrentProfileTest(){
-            household.setCurrentProfile(profile);
-            assertEquals(household.getCurrentProfile(), profile);
-        }
 
-        @Test
-        public void addProfileToHouseholdTest(){
-            household.addProfile(profile);
-            household.setCurrentProfile(profile);
-            assertEquals(profile, household.getCurrentProfile());
-        }
 
         @Test
         public void removeChoreFromListTest(){
@@ -84,19 +77,20 @@ public class HouseholdUnitTest {
             profile.removeFromDoneChores(chore);
             assertEquals(doneChoresCopy,profile.getDoneChores());
         }
-
+/*
         @Test
         public void markChoreAsDoneTest(){
-            household.setCurrentProfile(profile);
+         //   household.setCurrentProfile(profile);
             household.addProfile(profile);
             household.addChore(chore);
             household.markChoreAsDone(chore);
             assertEquals(householdChoresCopy,household.getHouseholdChores());
-        }
+        }*/
 
-        @Test
+    /*    @Test
         public void markChoreAsDoneDoneListTest(){
-            household.setCurrentProfile(profile);
+
+            //household.setCurrentProfile(profile);
             household.addProfile(profile);
             household.addChore(chore);
             household.markChoreAsDone(chore);
@@ -106,14 +100,14 @@ public class HouseholdUnitTest {
 
         @Test
         public void markChoreAsAvailableTest(){
-            household.setCurrentProfile(profile);
+           // household.setCurrentProfile(profile);
             household.addProfile(profile);
             household.addChore(chore);
             household.markChoreAsDone(chore);
             householdChoresCopy.put(chore.getName(), chore);
             household.markChoreAsAvailable(chore);
             assertEquals(householdChoresCopy,household.getHouseholdChores());
-        }
+        }*/
 
         @Test
         public void addProfileListTest(){

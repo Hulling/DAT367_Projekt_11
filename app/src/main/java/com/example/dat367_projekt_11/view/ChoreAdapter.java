@@ -41,7 +41,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         FacadeGetHousehold facadeGetHousehold = new FacadeGetHousehold(context);
         facadeGetHousehold.addChoreToDoneChores(household, chore);
         choreAdapterDataModel.moveChore(chore, household);
-        Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"checkbox clicked",Toast.LENGTH_SHORT).show();
 
     }
 

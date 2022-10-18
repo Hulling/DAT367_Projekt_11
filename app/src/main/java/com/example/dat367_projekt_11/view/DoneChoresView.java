@@ -35,21 +35,11 @@ public class DoneChoresView extends Fragment {
        // binding.setLifecycleOwner(this);
         doneChoresViewModel = new ViewModelProvider(this).get(DoneChoresViewModel.class);
         binding.setDoneChoresViewModel(doneChoresViewModel);
-       // doneChoresViewModel.setCurrentProfile(getProfile());
-       // populateData(getProfile());
         populateData();
         return binding.getRoot();
     }
 
-/*    private void populateData(Profile profile) {
-        if (profile.getDoneChores()!= null) {
-            ChoreAdapter choreAdapter = new ChoreAdapter(getProfile().getDoneChores(), getContext(), doneChoresViewModel, household);
-            binding.setChoreAdapter(choreAdapter);
-        } else {
-            ChoreAdapter choreAdapter = new ChoreAdapter(new HashMap<>(), getContext(), doneChoresViewModel, household);
-            binding.setChoreAdapter(choreAdapter);
-        }
-    }*/
+
 
     private void populateData() {
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();

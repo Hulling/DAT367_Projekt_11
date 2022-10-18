@@ -67,16 +67,13 @@ public class Household {
 
     public void markChoreAsDone(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
-       // boolean found = householdChores.remove(chore);
         boolean found = householdChores.containsKey(chore.getName());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }
         else{
-            //householdChores.remove(chore);
             this.removeChoreFromList(chore);
             getCurrentProfile.getProfile().addToDoneChores(chore);
-            //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
         }
 
     }
@@ -88,9 +85,7 @@ public class Household {
 
     public void markChoreAsAvailable(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
-       // boolean found = getCurrentProfile().getDoneChores().remove(chore);
         boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
-       //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }else{
