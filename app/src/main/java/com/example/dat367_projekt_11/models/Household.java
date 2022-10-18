@@ -4,7 +4,10 @@ import java.util.HashMap;
 
 /**
  * This class represents the households of TidyApp
+ * @author Hanna Harnesk
+ * @author Malin Kihlström
  */
+
 public class Household {
     private String householdName;
     private HashMap<String, Profile> profileList;
@@ -16,9 +19,9 @@ public class Household {
 
     /**
      *
-     * @param uid
-     * @param email
-     * @param householdName
+     * @param uid household id
+     * @param email household email address
+     * @param householdName name of the household
      */
     public Household(String uid, String email, String householdName) {
         this.uid = uid;
