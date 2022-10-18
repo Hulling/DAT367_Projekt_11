@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Profile implements Serializable {
     private String name;
     private int currentPoints;
-    private HashMap<String, Chore> doneChores;//delmängd av alla householdChores bara chores med complete = true,
+    private HashMap<String, Chore> doneChores;
 
 
     /**
@@ -65,7 +65,7 @@ public class Profile implements Serializable {
      */
     public void removeFromDoneChores(Chore chore){
         doneChores.remove(chore.getName());
-        decreaseCurrentPoints(chore.getPoints()); //ta bort poäng från profilen
+        decreaseCurrentPoints(chore.getPoints());
 
     }
 
@@ -106,15 +106,6 @@ public class Profile implements Serializable {
     public void setName(String name){
         this.name = name;
     }
-    /*
-    DENNA KANSKE VI BEHÖVER TA BORT SENARE FÖR JAG ÄR LITE TIPSY NÄR JAG SKRIVER DETTA HEHE
-     */
 
-    /**
-     * Sets current score to 0
-     */
-    void resetScore(){
-        this.currentPoints=0;
-    }
 
 }

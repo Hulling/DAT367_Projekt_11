@@ -50,6 +50,7 @@ public class ProfileUnitTest {
 
     }
 
+
     @Test
     public void increaseCurrentPointsTest(){
         profile.addToDoneChores(chore);

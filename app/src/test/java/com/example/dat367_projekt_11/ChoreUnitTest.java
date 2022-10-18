@@ -7,8 +7,17 @@ import org.junit.Test;
 
 
 public class ChoreUnitTest {
-    //private final Chore chore = new Chore("Chore","this is a chore", 40);
     Chore chore;
+    Chore choreInit;
+
+
+    @Test
+    public void constructorChoreTest(){
+        choreInit = new Chore();
+        assertEquals(choreInit.getName(), "init");
+
+    }
+
 
     @Before
     public void init(){

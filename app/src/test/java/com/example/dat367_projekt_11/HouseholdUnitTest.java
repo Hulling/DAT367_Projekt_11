@@ -21,6 +21,15 @@ public class HouseholdUnitTest {
         private final HashMap<String, Chore> doneChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Profile> profileListTest = new HashMap<String, Profile>();
         private GetCurrentProfile currentProfile = GetCurrentProfile.getInstance();
+        Household householdInit;
+
+
+        @Test
+        public void householdConstructorTest(){
+            householdInit = new Household();
+            assertEquals("init",householdInit.getHouseholdName());
+
+    }
 
         @Test
         public void getUidTest(){
