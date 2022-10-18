@@ -8,7 +8,7 @@ import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
 
 /**
- *This class represents the ViewModel for DoneChoresViewo.
+ *This class represents the ViewModel for DoneChoresView.
  * @author Hanna Harnesk
  */
 

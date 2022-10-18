@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 /**
  * This class represents the profiles of Tidy App
+ * @author Hanna
+ * @author Malin
  */
 public class Profile implements Serializable {
     private String name;
@@ -14,8 +16,7 @@ public class Profile implements Serializable {
 
 
     /**
-     *
-     * @param name the name of the profile
+     * @param name
      */
 
     public Profile(String name) {
@@ -27,9 +28,11 @@ public class Profile implements Serializable {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
+
     public Profile(){
         this("init");
     }
+
 
 
 

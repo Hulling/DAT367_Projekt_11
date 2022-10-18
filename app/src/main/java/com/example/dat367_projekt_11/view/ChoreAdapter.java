@@ -21,6 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *This class represents the ChoreAdapter ..continue.
+ * @author Hanna Harnesk
+ */
+
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
     private Map<String, Chore> choreModelList;
     private Context context;
@@ -43,7 +48,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         facadeGetHousehold.addChoreToDoneChores(household, chore);
         choreAdapterDataModel.moveChore(chore, household);
         facadeGetHousehold.addPointsToProfile(household, getCurrentProfile.getProfile().getCurrentPoints());
-        Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"checkbox clicked",Toast.LENGTH_SHORT).show();
     }
 
 
