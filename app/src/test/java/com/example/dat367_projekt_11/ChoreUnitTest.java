@@ -4,8 +4,6 @@ import com.example.dat367_projekt_11.models.Chore;
 import org.junit.Test;
 
 
-
-
 public class ChoreUnitTest {
     private final Chore chore = new Chore("Chore","this is a chore", 40);
 
@@ -17,7 +15,7 @@ public class ChoreUnitTest {
     public void getDescriptionTest(){assertEquals("this is a chore", chore.getDescription());}
 
     @Test
-    public void getPointsTest(){assertEquals(30, chore.getPoints());}
+    public void getPointsTest(){assertEquals(40, chore.getPoints());}
 
     @Test
     public void setNameTest(){

@@ -22,11 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
-    private Map<String, Chore> choreModelList; //lista för kort
+    private Map<String, Chore> choreModelList;
     private Context context;
     private ChoreAdapterDataModel choreAdapterDataModel;
     private Household household;
-   // private CheckBox checkBox;
 
 
     public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, ChoreAdapterDataModel choreAdapterDataModel, Household household) {
