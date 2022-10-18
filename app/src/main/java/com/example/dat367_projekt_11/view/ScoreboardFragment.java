@@ -18,7 +18,10 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentScoreboardBinding;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
+import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
+
+import java.util.HashMap;
 
 
 /**
@@ -48,14 +51,16 @@ public class ScoreboardFragment extends Fragment{
 
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-
+            household.getProfileList();
         });
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);
 
+        fViewModel.getListOfProfiles();
         fViewModel.onLeaderboardClicked();
         setRankingText(fViewModel.getRankingOfScoresTwoText());
+
 
         return binding.getRoot();
     }

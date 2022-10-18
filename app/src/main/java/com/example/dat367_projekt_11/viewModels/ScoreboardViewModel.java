@@ -3,6 +3,7 @@ package com.example.dat367_projekt_11.viewModels;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.MainActivity;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.ScoreboardFragment;
+
+import java.util.HashMap;
 
 
 /**
@@ -35,6 +38,10 @@ public class ScoreboardViewModel extends AndroidViewModel {
 
     private static final ScoreboardModel rankingOfScoresText = new ScoreboardModel();
     private static final String rankingOfScores = rankingOfScoresText.getRankingOfScoresText();
+
+    public void getListOfProfiles(){
+
+    }
 
     public void onLeaderboardClicked(){
 
