@@ -21,7 +21,7 @@ public class CreateChoreViewModel extends ViewModel {
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> description = new MutableLiveData<>();
     private MutableLiveData<Chore> userMutableLiveData;
-    private CreateChoreView createChoreView = new CreateChoreView();
+    private final CreateChoreView createChoreView = new CreateChoreView();
 
     public MutableLiveData<Chore> getChore() {
 

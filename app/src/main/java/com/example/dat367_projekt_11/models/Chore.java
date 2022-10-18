@@ -6,8 +6,6 @@ import java.io.Serializable;
  *This class represents the chore object.
  * @author Malin Kihlström
  * @author Hanna Harnesk
- * @author Kristin Hulling
- * @author Pauline Björk
  */
 
 public class Chore implements Serializable {
