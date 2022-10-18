@@ -1,13 +1,19 @@
 package com.example.dat367_projekt_11;
 import static org.junit.Assert.assertEquals;
 import com.example.dat367_projekt_11.models.Chore;
+
+import org.junit.Before;
 import org.junit.Test;
 
 
-
-
 public class ChoreUnitTest {
-    private final Chore chore = new Chore("Chore","this is a chore", 40);
+    //private final Chore chore = new Chore("Chore","this is a chore", 40);
+    Chore chore;
+
+    @Before
+    public void init(){
+         chore = new Chore("Chore","this is a chore", 40);
+    }
 
 
     @Test
@@ -17,13 +23,13 @@ public class ChoreUnitTest {
     public void getDescriptionTest(){assertEquals("this is a chore", chore.getDescription());}
 
     @Test
-    public void getPointsTest(){assertEquals(30, chore.getPoints());}
+    public void getPointsTest(){assertEquals(40, chore.getPoints());}
 
     @Test
     public void setNameTest(){
         chore.setName("test");
         assertEquals("test",chore.getName());
-    } //OBS publik setter
+    }
 
     @Test
     public void setDescriptionTest(){

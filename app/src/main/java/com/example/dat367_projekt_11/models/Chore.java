@@ -91,18 +91,4 @@ public class Chore implements Serializable {
     }
 
 
-/*    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Chore chore = (Chore) o;
-        return points == chore.points && name.equals(chore.name) && description.equals(chore.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, points);
-    }*/
-
-
 }
