@@ -31,13 +31,6 @@ public class CreateChoreView extends Fragment {
     }
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 
     @Nullable
     @Override

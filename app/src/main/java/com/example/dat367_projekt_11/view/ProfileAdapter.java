@@ -2,6 +2,7 @@ package com.example.dat367_projekt_11.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -86,6 +87,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     public void cardClicked(Profile profile) {
        GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
        getCurrentProfile.setProfile(profile);
+       Log.d("LOG", "Current profile is set to " + profile.getName());
         Toast.makeText(context, "You clicked on " + profile.getName(),
                 Toast.LENGTH_LONG).show();
        Intent i = new Intent(context.getApplicationContext(),MainActivity.class);
