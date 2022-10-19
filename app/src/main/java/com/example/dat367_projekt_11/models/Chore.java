@@ -13,14 +13,12 @@ public class Chore implements Serializable {
     private String description;
     private int points;
 
-
     /**
      *
      * @param name the name of the chore from user input
      * @param description the description of the chore from user input
      * @param points the value of the chore when done
      */
-
     public Chore(String name, String description, int points){
         this.name = name;
         this.description = description;
@@ -30,7 +28,6 @@ public class Chore implements Serializable {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
-
     public Chore(){
         this("init", "init", 0);
     }
@@ -40,7 +37,6 @@ public class Chore implements Serializable {
      *Gets the name
      * @return the set name
      */
-
     public String getName() {
         return this.name;
     }
@@ -74,7 +70,6 @@ public class Chore implements Serializable {
      * Sets the description.
      * @param description the description to be set.
      */
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -83,7 +78,6 @@ public class Chore implements Serializable {
      * Sets the points.
      * @param points the points to be set.
      */
-
     public void setPoints(int points) {
         this.points = points;
     }

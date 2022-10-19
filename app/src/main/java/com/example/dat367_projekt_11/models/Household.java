@@ -58,7 +58,6 @@ public class Household {
      * Removes chore from household chores.
      * @param chore the chore to be removed from household chores.
      */
-
     private void removeChoreFromList(Chore chore){
         householdChores.remove(chore.getName());
     }
@@ -67,8 +66,6 @@ public class Household {
      * Relocates chore from hashmap of available chores to hashmap of done chores.
      * @param chore the chore to be relocated from available chores to done chores.
      */
-
-
     public void markChoreAsDone(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         boolean found = householdChores.containsKey(chore.getName());
@@ -81,12 +78,11 @@ public class Household {
         }
 
     }
+
     /**
      * Relocates chore from hashmap of done chores to hashmap of available chores.
      * @param chore the chore to be relocated from done chores to available chores.
      */
-
-
     public void markChoreAsAvailable(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
@@ -99,14 +95,10 @@ public class Household {
 
     }
 
-
-
-
     /**
      * Gets the household chores
      * @return the household chores
      */
-
     public HashMap<String, Chore> getHouseholdChores() {//jättemuterbar obs! collections. java utility collections.-> unmodifiable, ex of chores. kan ej modifiera listan
         return householdChores;
     }
@@ -115,7 +107,6 @@ public class Household {
      * Gets the password
      * @return the password
      */
-
     public String getPassword() {
         return password;
     }
@@ -124,7 +115,6 @@ public class Household {
      * Sets the email
      * @param email the email to be set.
      */
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -133,7 +123,6 @@ public class Household {
      * Gets the email
      * @return the email
      */
-
     public String getEmail() {
         return email;
     }
@@ -145,8 +134,10 @@ public class Household {
     public String getHouseholdName() {
         return householdName;
     }
+
     /**
-     * @return TODO besvik vad den gör
+     * Gets the households user id.
+     * @return Households user id.
      */
     public String getUid() {
         return uid;

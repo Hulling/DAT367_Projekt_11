@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData;
  * persistenceMangerFactory.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class FacadeCurrentHousehold {
@@ -44,10 +42,22 @@ public class FacadeCurrentHousehold {
     public void addChore (Household household, Chore chore){
         persistenceManagerFactory.getPersistenceManager().addChoreToHousehold(household, chore);
     }
+
+    /**
+     * Method adds a done chore to the profile in the database.
+     * @param household Household to find the profile in the database
+     * @param chore Chore to be added to profile.
+     */
     public void addChoreToDoneChores(Household household, Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         persistenceManagerFactory.getPersistenceManager().addDoneChoreToProfile(household, getCurrentProfile.getProfile(), chore);
     }
+
+    /**
+     * Method adds points to profile in the database.
+     * @param household Household to find the profile in the database.
+     * @param points Points to add to the profile.
+     */
     public void addPointsToProfile(Household household, Integer points){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         persistenceManagerFactory.getPersistenceManager().addPointsToProfile(household, getCurrentProfile.getProfile(), points);

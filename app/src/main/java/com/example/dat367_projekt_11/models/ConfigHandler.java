@@ -17,8 +17,6 @@ import java.nio.charset.StandardCharsets;
  *The class methods is taken from https://developer.android.com/training/data-storage/app-specific
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class ConfigHandler {

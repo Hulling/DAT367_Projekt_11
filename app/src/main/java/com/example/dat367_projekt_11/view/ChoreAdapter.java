@@ -31,10 +31,10 @@ import java.util.Map;
  */
 
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
-    private Map<String, Chore> choreModelList;
-    private Context context;
-    private MoveChore moveChore;
-    private Household household;
+    private final Map<String, Chore> choreModelList;
+    private final Context context;
+    private final MoveChore moveChore;
+    private final Household household;
 
 
     public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, MoveChore moveChore, Household household) {
@@ -43,7 +43,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         this.moveChore = moveChore;
         this.household = household;
     }
-
 
     @Override
     public void CheckBoxClicked(Chore chore) {
@@ -55,23 +54,16 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         Toast.makeText(context,"checkbox clicked",Toast.LENGTH_SHORT).show();
     }
 
-
     public static class ChoreViewHolder extends RecyclerView.ViewHolder {
         public ChoreCardBinding choreCardBinding;
 
         public ChoreViewHolder(ChoreCardBinding choreCardBinding) {
             super(choreCardBinding.getRoot());
             this.choreCardBinding = choreCardBinding;
-
-
         }
 
     }
 
-
-    //recyklerview kallar denna metod
-    //metoden kallas när det behövs skapas en ny viewholder, metoden skapar och initialiserar viewholdern och dess
-    //associerade view men fyller inte i dess innehåll (content) (den är inte ännu buden till specifik data)
     @NonNull
     @Override
     public ChoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -83,8 +75,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         return new ChoreViewHolder(binding);
     }
 
-    /*recyklerview kallar denna metod för att associera viewholder med data,*/
-
     @Override
     public void onBindViewHolder(@NonNull ChoreViewHolder holder, int position) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -94,8 +84,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
             holder.choreCardBinding.setCheckBoxClickListener(this);
         }
     }
-
-
 
     @Override
     public int getItemCount() {
