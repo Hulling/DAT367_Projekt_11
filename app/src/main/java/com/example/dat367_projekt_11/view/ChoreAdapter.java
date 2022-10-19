@@ -22,8 +22,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *This class represents the ChoreAdapter ..continue.
- * @author Hanna Harnesk
+ * The class ChoreAdapter is used to handle a recycleView that can be populated with cards.
+ * The Class is inspired from:
+ * https://www.digitalocean.com/community/tutorials/android-recyclerview-data-binding
+ *
+ * @author  Hanna Harnesk
+
  */
 
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{

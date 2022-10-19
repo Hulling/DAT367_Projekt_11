@@ -15,18 +15,10 @@ import android.content.SharedPreferences;
 public class ScoreboardModel {
 
 
-    /*private static final Profile currentPoints = new Profile();
-    private static int memberScore = currentPoints.getCurrentPoints();*/
-
 
     public SharedPreferences getSharedPreferences(String pref, int i) {
         return null;
     }
-
-    /*så här såg det ut innan:
-    int bestOne = preferences.getInt("points1", 0);
-    int bestTwo = preferences.getInt("points2", 0);*/
-
 
 
     @SuppressLint("SetTextI18n")
