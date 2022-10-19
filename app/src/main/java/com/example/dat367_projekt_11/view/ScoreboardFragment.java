@@ -1,7 +1,14 @@
 package com.example.dat367_projekt_11.view;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentScoreboardBinding;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
+import com.example.dat367_projekt_11.models.ScoreboardModel;
+import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
+
+import java.util.HashMap;
 
 
 /**
@@ -26,6 +37,8 @@ import com.example.dat367_projekt_11.viewModels.ScoreboardViewModel;
  */
 
 public class ScoreboardFragment extends Fragment{
+
+
 
     private ScoreboardViewModel fViewModel;
 
@@ -43,7 +56,7 @@ public class ScoreboardFragment extends Fragment{
 
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
-
+            household.getProfileList();
         });
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
