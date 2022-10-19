@@ -33,9 +33,6 @@ public class Profile implements Serializable {
         this("init");
     }
 
-
-
-
     /**
      * Gets the name
      * @return the name
