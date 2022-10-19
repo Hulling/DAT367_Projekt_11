@@ -9,8 +9,6 @@ import java.util.HashMap;
  * to change which database is used.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public interface PersistenceManager {
@@ -63,5 +61,21 @@ public interface PersistenceManager {
      * @param chore The chore that will be written in the database.
      */
     void addChoreToHousehold(Household household, Chore chore);
+
+    /**
+     * This method is used for add points to the profile in the database.
+     * @param household Household to find path to profile in database.
+     * @param profile The profile to add the points to.
+     * @param points The points to be added to the profile.
+     */
+    void addPointsToProfile(Household household, Profile profile, Integer points);
+
+    /**
+     * This method is used for add done chore to the profile in the database.
+     * @param household Household to find path to profile in database.
+     * @param profile The profile to add the chore to.
+     * @param chore The chore to be added to the profile.
+     */
+    void addDoneChoreToProfile(Household household, Profile profile, Chore chore);
 
 }

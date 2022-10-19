@@ -16,9 +16,9 @@ public class Profile implements Serializable {
 
 
     /**
-     * @param name
+     * Constructor for profile
+     * @param name Name of the profile
      */
-
     public Profile(String name) {
         this.currentPoints = 0;
         this.name = name;
@@ -28,7 +28,6 @@ public class Profile implements Serializable {
     /**
      * Empty constructor. (for the ability to read from firebase Realtime database)
      */
-
     public Profile(){
         this("init");
     }
@@ -56,7 +55,6 @@ public class Profile implements Serializable {
     public void addToDoneChores(Chore chore){
         doneChores.put(chore.getName(), chore);
         increaseCurrentPoints(chore.getPoints());
-
     }
 
     /**
@@ -83,8 +81,6 @@ public class Profile implements Serializable {
      */
     private void decreaseCurrentPoints(int chorePoints){this.currentPoints -= chorePoints;}
 
-
-
     /**
      * Gets list of the completed chores
      * @return the completed chores
@@ -92,12 +88,6 @@ public class Profile implements Serializable {
     public HashMap<String, Chore> getDoneChores(){
         return doneChores;
     }
-
-    /**
-     * Updates list of chores whenever a new chore has been completed (BORDE DELAS IN I TVÅ OLIKA? TODO)
-     * @param chore the chore that has been completed
-     */
-
 
     /**
      * Sets the name

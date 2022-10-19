@@ -27,8 +27,6 @@ import java.util.HashMap;
  * The class uses information in https://firebase.google.com/docs/database/android/read-and-write
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class FirebasePersistenceManager implements PersistenceManager {

@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData;
  * persistenceMangerFactory.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class FacadeCurrentHousehold {
