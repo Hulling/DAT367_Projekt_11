@@ -142,6 +142,11 @@ public class FirebasePersistenceManager implements PersistenceManager {
         return registerHouseholdMutableLiveData;
     }
 
+    /**
+     * Writes the signed in household to database if it not exists.
+     *
+     * @param household Household to add to database.
+     */
     public void createHousehold(Household household){
         myRef.child(household.getUid()).setValue(household);
     }
@@ -244,10 +249,25 @@ public class FirebasePersistenceManager implements PersistenceManager {
         myRef.child(household.getUid()).child("householdChores").child(chore.getName()).setValue(chore);
     }
 
+    /**
+     * Adds done chore to Profile in database.
+     *
+     * @param household Household to find the path to profile.
+     * @param profile Profile to add the done chore to
+     * @param chore chore to add to household.
+     */
     public void addDoneChoreToProfile(Household household, Profile profile, Chore chore){
         myRef.child(household.getUid()).child("householdChores").child(chore.getName()).removeValue();
         myRef.child(household.getUid()).child("profileList").child(profile.getName()).child("doneChores").child(chore.getName()).setValue(chore);
     }
+
+    /**
+     * Adds points to profile in database
+     *
+     * @param household Household to find the path to profile.
+     * @param profile Profile to add the points to
+     * @param points Points to add to household.
+     */
     public void addPointsToProfile(Household household, Profile profile, Integer points){
         myRef.child(household.getUid()).child("profileList").child(profile.getName()).child("currentPoints").setValue(points);
     }
