@@ -15,21 +15,14 @@ import android.content.SharedPreferences;
 public class ScoreboardModel {
 
 
-
-    public SharedPreferences getSharedPreferences(String pref, int i) {
-        return null;
-    }
-
-
+    /** Ranks profiles by comparing scores */
     @SuppressLint("SetTextI18n")
     public String rankProfiles() {
 
-
-        SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 10/*memberScore*/) : 10;
-        int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
-        int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
-        int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+        int memberScore = 10;
+        int bestOne = 8;
+        int bestTwo = 4;
+        int bestThree = 2;
 
         String memberName = "Pauline";
         String bestOneName = "Hanna";
@@ -37,13 +30,13 @@ public class ScoreboardModel {
         String bestThreeName = "Kristin";
 
 
-        /** Looks if the current members points is a larger int than the current third place */
+        /* Looks if the current members points is a larger int than the current third place */
         if (memberScore > bestThree) {
             bestThree = memberScore;
             bestThreeName = memberName;
         }
 
-        /** Looks if the current members points is a larger int than the current second place */
+        /* Looks if the current members points is a larger int than the current second place */
         if (memberScore > bestTwo) {
             int temp = bestTwo;
             bestTwo = memberScore;
@@ -52,7 +45,7 @@ public class ScoreboardModel {
             bestThree = temp;
         }
 
-        /** Looks if the current members points is a larger int than the current first place */
+        /* Looks if the current members points is a larger int than the current first place */
         if (memberScore > bestOne) {
             int temp = bestOne;
             bestOne = memberScore;
@@ -61,7 +54,7 @@ public class ScoreboardModel {
             bestTwo = temp;
         }
 
-        /** Makes string that will be shown in the scoreboard fragment */
+        /*Makes string that will be shown in the scoreboard fragment */
         String rankingOfScoresText = "#1" + " " + bestOneName + " " + bestOne + "p" + "\n" + "\n" +
                                      "#2" + " " + bestTwoName + " " + bestTwo + "p" + "\n" + "\n" +
                                      "#3" + " " + bestThreeName + " " + bestThree + "p";
@@ -71,7 +64,7 @@ public class ScoreboardModel {
 
     }
 
-
+    /** Is used to create object of ScoreboardModel in ScoreaboardViewModel */
     public String getRankingOfScoresText(){return rankProfiles();}
 
 
