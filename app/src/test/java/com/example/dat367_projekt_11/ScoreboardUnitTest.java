@@ -10,9 +10,6 @@ import com.example.dat367_projekt_11.models.ScoreboardModel;
 public class ScoreboardUnitTest {
 
     private final Profile profile = new Profile("Pelle");
-    private final Profile profile1 = new Profile("Maja");
-    private final Profile profile2 = new Profile("Kajsa");
-    private final Profile profile3 = new Profile("Bertil");
     private final Chore chore = new Chore("Dammsuga","dammsug",10);
     private final ScoreboardModel scoreboardModel = new ScoreboardModel();
 
@@ -26,34 +23,6 @@ public class ScoreboardUnitTest {
     public void rankProfilesTest(){
 
     }
-
-
-
-
-
-
-    /*@Test
-    public void getProfileName(){
-        profile.getName();
-        assertEquals("Pelle", "Pelle");
-    }*/
-
-   /* @Test
-    public double getProfileName(){
-        scoreboardModel.rankProfiles();
-        getProfileName();
-        assertEquals("Pelle", getProfileName());
-        return 0;
-    }
-
-    @Test
-    public double getProfileScore(){
-        scoreboardModel.rankProfiles();
-        getProfileScore();
-        assertEquals(10, getProfileScore());
-        return 0;
-    }*/
-
 
 
 
