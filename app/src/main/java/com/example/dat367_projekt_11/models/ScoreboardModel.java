@@ -14,11 +14,8 @@ import android.content.SharedPreferences;
 
 public class ScoreboardModel {
 
-    private static final Profile getCurrentScore = new Profile();
-    private static int profileScores = getCurrentScore.getCurrentPoints();
 
-    private static final Profile getName = new Profile();
-    private static String profileNames = getName.getName();
+
 
     /** Ranks profiles by comparing scores */
     @SuppressLint("SetTextI18n")
