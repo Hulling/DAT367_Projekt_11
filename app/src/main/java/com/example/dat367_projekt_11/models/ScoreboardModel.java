@@ -23,11 +23,6 @@ public class ScoreboardModel {
         return null;
     }
 
-    /*så här såg det ut innan:
-    int bestOne = preferences.getInt("points1", 0);
-    int bestTwo = preferences.getInt("points2", 0);*/
-
-
 
     @SuppressLint("SetTextI18n")
     public String rankProfiles() {
