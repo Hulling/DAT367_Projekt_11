@@ -4,7 +4,10 @@ import java.util.HashMap;
 
 /**
  * This class represents the households of TidyApp
+ * @author Hanna Harnesk
+ * @author Malin Kihlström
  */
+
 public class Household {
     private String householdName;
     private HashMap<String, Profile> profileList;
@@ -12,13 +15,13 @@ public class Household {
     private String email;
 
     private String uid;
-    private HashMap<String, Chore> householdChores;//ArrayList<Chore> householdChores; //ev. hashmap, bara chores med is.complete = false
+    private HashMap<String, Chore> householdChores;
 
     /**
      *
-     * @param uid
-     * @param email
-     * @param householdName
+     * @param uid household id
+     * @param email household email address
+     * @param householdName name of the household
      */
     public Household(String uid, String email, String householdName) {
         this.uid = uid;
@@ -57,7 +60,7 @@ public class Household {
      */
 
     private void removeChoreFromList(Chore chore){
-        householdChores.remove(chore.getName()); //detta måste vara risky AF, key bör vara annat än namnet?? typ hash?
+        householdChores.remove(chore.getName());
     }
 
     /**
@@ -68,16 +71,13 @@ public class Household {
 
     public void markChoreAsDone(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
-       // boolean found = householdChores.remove(chore);
         boolean found = householdChores.containsKey(chore.getName());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }
         else{
-            //householdChores.remove(chore);
             this.removeChoreFromList(chore);
             getCurrentProfile.getProfile().addToDoneChores(chore);
-            //  this.getCurrentProfile().increaseCurrentPoints(chore.getPoints());
         }
 
     }
@@ -89,9 +89,7 @@ public class Household {
 
     public void markChoreAsAvailable(Chore chore){
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
-       // boolean found = getCurrentProfile().getDoneChores().remove(chore);
         boolean found = getCurrentProfile.getProfile().getDoneChores().containsKey(chore.getName());
-       //this.getCurrentProfile().decreaseCurrentPoints(chore.getPoints());
         if(!found){
             throw new IllegalArgumentException("Chore not found" + chore);
         }else{
@@ -154,7 +152,6 @@ public class Household {
         return uid;
     }
 
-    //public void setProfileList(List<Profile> profileList){this.profileList = profileList;}
 
     /**
      * Gets the profiles

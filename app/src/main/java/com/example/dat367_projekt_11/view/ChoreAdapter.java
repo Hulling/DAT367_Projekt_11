@@ -21,18 +21,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *This class represents the ChoreAdapter ..continue.
+ * @author Hanna Harnesk
+ */
+
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
-    private Map<String, Chore> choreModelList; //lista för kort
+    private Map<String, Chore> choreModelList;
     private Context context;
-    private ChoreAdapterDataModel choreAdapterDataModel;
+    private MoveChore moveChore;
     private Household household;
-   // private CheckBox checkBox;
 
 
-    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, ChoreAdapterDataModel choreAdapterDataModel, Household household) {
+    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, MoveChore moveChore, Household household) {
         this.choreModelList = choreModelList;
         this.context = context;
-        this.choreAdapterDataModel = choreAdapterDataModel;
+        this.moveChore = moveChore;
         this.household = household;
     }
 
@@ -42,9 +46,9 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(context);
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         facadeGetHousehold.addChoreToDoneChores(household, chore);
-        choreAdapterDataModel.moveChore(chore, household);
+        moveChore.moveChore(chore, household);
         facadeGetHousehold.addPointsToProfile(household, getCurrentProfile.getProfile().getCurrentPoints());
-        Toast.makeText(context,"checkboc clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"checkbox clicked",Toast.LENGTH_SHORT).show();
     }
 
 

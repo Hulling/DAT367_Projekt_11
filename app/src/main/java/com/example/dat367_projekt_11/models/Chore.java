@@ -6,8 +6,6 @@ import java.io.Serializable;
  *This class represents the chore object.
  * @author Malin Kihlström
  * @author Hanna Harnesk
- * @author Kristin Hulling
- * @author Pauline Björk
  */
 
 public class Chore implements Serializable {
@@ -89,20 +87,6 @@ public class Chore implements Serializable {
     public void setPoints(int points) {
         this.points = points;
     }
-
-
-/*    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Chore chore = (Chore) o;
-        return points == chore.points && name.equals(chore.name) && description.equals(chore.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, points);
-    }*/
 
 
 }

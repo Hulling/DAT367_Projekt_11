@@ -16,14 +16,14 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentMainpageBinding;
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
-import com.example.dat367_projekt_11.viewModels.MainPageViewModel;
+import com.example.dat367_projekt_11.viewModels.MainPageViewModelMove;
 
 import java.util.HashMap;
 
 public class MainPageView extends Fragment {
-    private Button createButton;
+  //  private Button createButton; ?
     private FragmentMainpageBinding binding;
-    private MainPageViewModel mainPageViewModel;
+    private MainPageViewModelMove mainPageViewModel;
 
 
 
@@ -31,8 +31,8 @@ public class MainPageView extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMainpageBinding.inflate(inflater, container, false);
-        //binding.setLifecycleOwner(this);
-        mainPageViewModel = new ViewModelProvider(this).get(MainPageViewModel.class);
+
+        mainPageViewModel = new ViewModelProvider(this).get(MainPageViewModelMove.class);
         binding.setMainPageViewModel(mainPageViewModel);
         populateData();
         setCreateChoreButtonAction(binding.getRoot());

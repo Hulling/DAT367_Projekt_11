@@ -47,7 +47,7 @@ public class ScoreboardFragment extends Fragment{
     @SuppressLint("LongLogTag")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {;
+                             @Nullable Bundle savedInstanceState) {
 
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(getContext());
         facadeGetHousehold.getHousehold().observe(getViewLifecycleOwner(), household -> {
