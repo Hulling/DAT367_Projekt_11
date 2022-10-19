@@ -14,7 +14,7 @@ import android.content.SharedPreferences;
 public class ScoreboardModel {
 
     private static final Profile getCurrentScore = new Profile();
-    private static int profileScore = getCurrentScore.getCurrentPoints();
+    private static int profileScores = getCurrentScore.getCurrentPoints();
 
     private static final Profile getName = new Profile();
     private static String profileNames = getName.getName();
@@ -36,16 +36,21 @@ public class ScoreboardModel {
     public String rankProfiles() {
 
 
-        SharedPreferences preferences = getSharedPreferences("PREF", 0);
+        /*SharedPreferences preferences = getSharedPreferences("PREF", 0);
         profileScore = preferences != null ? preferences.getInt("memberScore", profileScore) : profileScore;
         int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
-        int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+        int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;*/
 
-        String profileName = profileNames;
-        String bestOneName = "";
-        String bestTwoName = "";
-        String bestThreeName = "";
+        int profileScore = 10;
+        int bestOne = 8;
+        int bestTwo = 4;
+        int bestThree = 2;
+
+        String profileName = "Pauline";
+        String bestOneName = "Hanna";
+        String bestTwoName = "Malin";
+        String bestThreeName = "Kristin";
 
 
         /** Looks if the current members points is a larger int than the current third place */
