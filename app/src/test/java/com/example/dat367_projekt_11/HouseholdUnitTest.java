@@ -1,6 +1,7 @@
 package com.example.dat367_projekt_11;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.example.dat367_projekt_11.models.Chore;
@@ -24,7 +25,6 @@ public class HouseholdUnitTest {
         private final HashMap<String, Chore> householdChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Chore> doneChoresCopy = new HashMap<String,Chore>();
         private final HashMap<String, Profile> profileListTest = new HashMap<String, Profile>();
-        private GetCurrentProfile currentProfile = GetCurrentProfile.getInstance();
         Household householdInit;
 
 
@@ -33,7 +33,7 @@ public class HouseholdUnitTest {
             householdInit = new Household();
             assertEquals("init",householdInit.getHouseholdName());
 
-    }
+        }
 
         @Test
         public void getUidTest(){
@@ -102,19 +102,9 @@ public class HouseholdUnitTest {
             assertEquals(householdChoresCopy,household.getHouseholdChores());
         }
 
-      /*  @Test
-        public void markChoreAsDoneDoneListTest(){
-            currentProfile.setProfile(profile);
-            household.addProfile(profile);
-            household.addChore(chore);
-            household.markChoreAsDone(chore);
-            doneChoresCopy.put(chore.getName(), chore);
-            assertEquals(doneChoresCopy,currentProfile.getDoneChores());
-        }*/
 
 
-
-       @Test
+        @Test
         public void markChoreAsAvailableTest(){
             household.addProfile(profile);
             household.addChore(chore);

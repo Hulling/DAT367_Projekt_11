@@ -1,13 +1,10 @@
 package com.example.dat367_projekt_11.viewModels;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Household;
-import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
-import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
+import com.example.dat367_projekt_11.view.MoveChore;
 /**
  *This class represents the ViewModel for MainPageView.
  * @author Hanna Harnesk
@@ -15,7 +12,7 @@ import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
  */
 
 
-public class MainPageViewModel extends ViewModel implements ChoreAdapterDataModel {
+public class MainPageViewModelMove extends ViewModel implements MoveChore {
 
 
     @Override

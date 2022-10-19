@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.ProfileCardBinding;
-import com.example.dat367_projekt_11.models.CustomClickListener;
 import com.example.dat367_projekt_11.models.GetCurrentProfile;
 import com.example.dat367_projekt_11.models.Profile;
 

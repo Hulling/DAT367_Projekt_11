@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Household;
-import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
+import com.example.dat367_projekt_11.view.MoveChore;
 
 /**
  *This class represents the ViewModel for DoneChoresView.
@@ -13,7 +13,7 @@ import com.example.dat367_projekt_11.view.ChoreAdapterDataModel;
  */
 
 
-public class DoneChoresViewModel extends ViewModel implements ChoreAdapterDataModel {
+public class DoneChoresViewModelMove extends ViewModel implements MoveChore {
 
 
     @Override

@@ -29,14 +29,14 @@ import java.util.Map;
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
     private Map<String, Chore> choreModelList;
     private Context context;
-    private ChoreAdapterDataModel choreAdapterDataModel;
+    private MoveChore moveChore;
     private Household household;
 
 
-    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, ChoreAdapterDataModel choreAdapterDataModel, Household household) {
+    public ChoreAdapter(HashMap<String, Chore> choreModelList, Context context, MoveChore moveChore, Household household) {
         this.choreModelList = choreModelList;
         this.context = context;
-        this.choreAdapterDataModel = choreAdapterDataModel;
+        this.moveChore = moveChore;
         this.household = household;
     }
 
@@ -46,7 +46,7 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
         FacadeCurrentHousehold facadeGetHousehold = new FacadeCurrentHousehold(context);
         GetCurrentProfile getCurrentProfile = GetCurrentProfile.getInstance();
         facadeGetHousehold.addChoreToDoneChores(household, chore);
-        choreAdapterDataModel.moveChore(chore, household);
+        moveChore.moveChore(chore, household);
         facadeGetHousehold.addPointsToProfile(household, getCurrentProfile.getProfile().getCurrentPoints());
         Toast.makeText(context,"checkbox clicked",Toast.LENGTH_SHORT).show();
     }
