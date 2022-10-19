@@ -18,6 +18,7 @@ import com.example.dat367_projekt_11.view.MainActivity;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.view.ScoreboardFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -34,14 +35,16 @@ public class ScoreboardViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
 
 
+
+
+
+
+
     private String rankingOfScoresTwoText;
 
     private static final ScoreboardModel rankingOfScoresText = new ScoreboardModel();
     private static final String rankingOfScores = rankingOfScoresText.getRankingOfScoresText();
 
-    public void getListOfProfiles(){
-
-    }
 
     public void onLeaderboardClicked(){
 

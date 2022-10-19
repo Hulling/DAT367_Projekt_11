@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 
-
 /**
  * The purpose of this class is to find the three profiles
  * with the highest scores in the household and rank them from 1 to 3.
@@ -13,6 +12,12 @@ import android.content.SharedPreferences;
  */
 
 public class ScoreboardModel {
+
+    private static final Profile getCurrentScore = new Profile();
+    private static int profileScore = getCurrentScore.getCurrentPoints();
+
+    private static final Profile getName = new Profile();
+    private static String profileNames = getName.getName();
 
 
 
@@ -32,38 +37,38 @@ public class ScoreboardModel {
 
 
         SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 10) : 10;
+        profileScore = preferences != null ? preferences.getInt("memberScore", profileScore) : profileScore;
         int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
         int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
 
-        String memberName = "Pauline";
-        String bestOneName = "Hanna";
-        String bestTwoName = "Malin";
-        String bestThreeName = "Kristin";
+        String profileName = profileNames;
+        String bestOneName = "";
+        String bestTwoName = "";
+        String bestThreeName = "";
 
 
         /** Looks if the current members points is a larger int than the current third place */
-        if (memberScore > bestThree) {
-            bestThree = memberScore;
-            bestThreeName = memberName;
+        if (profileScore > bestThree) {
+            bestThree = profileScore;
+            bestThreeName = profileName;
         }
 
         /** Looks if the current members points is a larger int than the current second place */
-        if (memberScore > bestTwo) {
+        if (profileScore > bestTwo) {
             int temp = bestTwo;
-            bestTwo = memberScore;
+            bestTwo = profileScore;
             bestThreeName = bestTwoName;
-            bestTwoName = memberName;
+            bestTwoName = profileName;
             bestThree = temp;
         }
 
         /** Looks if the current members points is a larger int than the current first place */
-        if (memberScore > bestOne) {
+        if (profileScore > bestOne) {
             int temp = bestOne;
-            bestOne = memberScore;
+            bestOne = profileScore;
             bestTwoName = bestOneName;
-            bestOneName = memberName;
+            bestOneName = profileName;
             bestTwo = temp;
         }
 

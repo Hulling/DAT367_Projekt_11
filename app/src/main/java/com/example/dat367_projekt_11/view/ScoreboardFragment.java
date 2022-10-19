@@ -57,7 +57,7 @@ public class ScoreboardFragment extends Fragment{
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         fViewModel = new ViewModelProvider(this ).get(ScoreboardViewModel.class);
 
-        fViewModel.getListOfProfiles();
+
         fViewModel.onLeaderboardClicked();
         setRankingText(fViewModel.getRankingOfScoresTwoText());
 
