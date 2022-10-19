@@ -15,22 +15,14 @@ import android.content.SharedPreferences;
 public class ScoreboardModel {
 
 
-
-    public SharedPreferences getSharedPreferences(String pref, int i) {
-        return null;
-    }
-
-
     /** Ranks profiles by comparing scores */
     @SuppressLint("SetTextI18n")
     public String rankProfiles() {
 
-
-        SharedPreferences preferences = getSharedPreferences("PREF", 0);
-        int memberScore = preferences != null ? preferences.getInt("memberScore", 10/*memberScore*/) : 10;
-        int bestOne = preferences != null ? preferences.getInt("points1", 8) : 8;
-        int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
-        int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;
+        int memberScore = 10;
+        int bestOne = 8;
+        int bestTwo = 4;
+        int bestThree = 2;
 
         String memberName = "Pauline";
         String bestOneName = "Hanna";
