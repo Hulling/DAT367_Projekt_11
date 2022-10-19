@@ -23,8 +23,6 @@ import java.util.HashMap;
  * The class represent the view of profiles when the user has been signed in.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class ProfileFragment extends Fragment{

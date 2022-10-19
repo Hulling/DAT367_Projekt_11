@@ -17,12 +17,12 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.FragmentRegistrationBinding;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+import java.util.Objects;
+
 /**
  * The class represent the registration view for the user.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class RegistrationFragment extends Fragment {
@@ -47,19 +47,21 @@ public class RegistrationFragment extends Fragment {
 
     private void setRegistrationBtnOnAction(View view) {
         Button loginButton = view.findViewById(R.id.registerBtn);
-
         loginButton.setOnClickListener(view1 -> {
             String email = authViewModel.getEmail().getValue();
             String password = authViewModel.getPassword().getValue();
             String householdName = authViewModel.getHouseholdName().getValue();
-            if (email.length() > 0 && password.length() > 0) {
+            try {
+                Objects.requireNonNull(email, "email must not be null");
+                Objects.requireNonNull(password, "Password must not be null");
+                Objects.requireNonNull(householdName, "HouseholdName must not be null");
                 register(email, password, householdName);
                 authViewModel.getRegisterHousehold().observe(getViewLifecycleOwner(), registerHousehold -> {
                     authViewModel.createHousehold(registerHousehold);
                 });
                 goToLoginFragment();
-            } else {
-                Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+            }catch(NullPointerException n){
+                Toast.makeText(getContext(), "Email Address, Password And Name Must Be Entered", Toast.LENGTH_SHORT).show();
             }
         });
     }

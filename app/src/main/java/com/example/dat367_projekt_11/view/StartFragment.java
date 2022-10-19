@@ -20,8 +20,6 @@ import com.example.dat367_projekt_11.R;
  * https://itnext.io/android-navigation-component-in-java-621d7f8561b used to navigate
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 public class StartFragment extends Fragment {
     @Override

@@ -28,7 +28,7 @@
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_donechores.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_donechoresmodel.xml" value="0.14074074074074075" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_login.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_login.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_mainpage.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_notifications.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Kristin/AndroidStudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_profile.xml" value="0.16145833333333334" />
@@ -51,7 +51,6 @@
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_create_chore_page.xml" value="0.13269927536231885" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_home.xml" value="0.13269927536231885" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_mainpage.xml" value="0.13269927536231885" />
-        <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_profile.xml" value="0.1322463768115942" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/layout/fragment_scoreboard.xml" value="0.23233695652173914" />
         <entry key="..\:/Users/Pauline/StudioProjects/DAT367_Projekt_11/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/background_color.xml" value="0.141" />
@@ -59,15 +58,18 @@
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.141" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/ic_launcher_background.xml" value="0.141" />
         <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/drawable/ic_profile_black_24dp.xml" value="0.1" />
-        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_create_chore_page.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_create_chore_page.xml" value="0.5" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_mainpage.xml" value="0.21" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_pop_up.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_r_u_sure_pop_up.xml" value="0.22" />
+        <entry key="..\:/Users/malin/Documents/Chalmers/Objektorienterat_Programmringsprojekt/Projektarbete_g11/app/src/main/res/layout/fragment_winner_pop_up.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/background_cards.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/background_cards2.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/background_color.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/ic_donechores_black_24dp.xml" value="0.215" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.12183383991894631" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12183383991894631" />
-        <entry key="app/src/main/res/layout/chore_card.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/chore_card.xml" value="0.39061167015219633" />
         <entry key="app/src/main/res/layout/fragment_add_profile.xml" value="0.12183383991894631" />
         <entry key="app/src/main/res/layout/fragment_chore.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_create_chore_page.xml" value="0.17481884057971014" />
@@ -87,7 +89,7 @@
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
-    <option name="id" value="Android" />
+    <option name="id" value="jpab" />
   </component>
   <component name="VisualizationToolProject">
     <option name="state">

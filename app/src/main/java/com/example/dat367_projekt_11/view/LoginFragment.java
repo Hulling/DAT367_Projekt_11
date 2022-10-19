@@ -19,12 +19,11 @@ import com.example.dat367_projekt_11.models.ConfigHandler;
 import com.example.dat367_projekt_11.models.Household;
 import com.example.dat367_projekt_11.viewModels.AuthViewModel;
 
+import java.util.Objects;
+
 /**
  * The class represent the sign in view for the user.
- *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class LoginFragment extends Fragment {
@@ -54,9 +53,11 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(view1 -> {
             String email = authViewModel.getEmail().getValue();
             String password = authViewModel.getPassword().getValue();
-            if (email !=null && password !=null) {
+            try {
+                Objects.requireNonNull(email, "email must not be null");
+                Objects.requireNonNull(password, "Password must not be null");
                 signIn(email, password);
-            } else {
+            }catch(NullPointerException n){
                 Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
             }
         });

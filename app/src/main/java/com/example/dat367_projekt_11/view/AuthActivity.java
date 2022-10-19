@@ -11,8 +11,6 @@ import com.example.dat367_projekt_11.R;
  * AuthActivity is displaying all fragments that is related with auth.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public class AuthActivity extends AppCompatActivity {

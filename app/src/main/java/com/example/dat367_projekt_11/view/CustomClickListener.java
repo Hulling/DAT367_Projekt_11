@@ -7,8 +7,6 @@ import com.example.dat367_projekt_11.models.Profile;
  * and access the clicked profile.
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
 
 public interface CustomClickListener {

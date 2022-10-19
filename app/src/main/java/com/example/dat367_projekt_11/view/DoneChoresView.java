@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 /**
  *This class represents the View of the profiles done chores.
+ * @author Hanna Harnesk
  */
 
 public class DoneChoresView extends Fragment {

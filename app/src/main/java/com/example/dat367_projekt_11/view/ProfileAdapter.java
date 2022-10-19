@@ -26,11 +26,7 @@ import java.util.List;
  * https://www.digitalocean.com/community/tutorials/android-recyclerview-data-binding
  *
  * @author  Kristin Hulling
- * @version 1.0
- * @since   2022-10-16
  */
-
-
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> implements CustomClickListener {
 
     private final HashMap<String, Profile> profileModelList;
@@ -59,6 +55,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
         return new ProfileViewHolder(binding);
     }
+
     /**
      * OnBindViewHolder can only get position of a arraylist, not a hashmap. Hashmap must therefore
      * be converted to an arraylist. The conversion is retrieved from:
@@ -92,6 +89,5 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
                 Toast.LENGTH_LONG).show();
        Intent i = new Intent(context.getApplicationContext(),MainActivity.class);
        context.startActivity(i);
-
     }
 }

@@ -11,9 +11,7 @@ import com.example.dat367_projekt_11.view.MoveChore;
  * @author Malin Kihlström
  */
 
-
 public class MainPageViewModelMove extends ViewModel implements MoveChore {
-
 
     @Override
     public void moveChore(Chore chore,Household household) {

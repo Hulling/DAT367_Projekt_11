@@ -12,9 +12,7 @@ import com.example.dat367_projekt_11.view.MoveChore;
  * @author Hanna Harnesk
  */
 
-
 public class DoneChoresViewModelMove extends ViewModel implements MoveChore {
-
 
     @Override
     public void moveChore(Chore chore,Household household) {

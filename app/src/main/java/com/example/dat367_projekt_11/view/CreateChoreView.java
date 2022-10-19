@@ -20,17 +20,14 @@ import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.FacadeCurrentHousehold;
 import com.example.dat367_projekt_11.viewModels.CreateChoreViewModel;
 
-
+/**
+ * The class represent the view when creating a new chore.
+ *
+ * @author  Malin Kihlström
+ */
 public class CreateChoreView extends Fragment {
     private CreateChoreViewModel createChoreViewModel;
     private FragmentCreateChorePageBinding binding;
-
-
-    public static CreateChoreView newInstance() {
-        return new CreateChoreView();
-    }
-
-
 
     @Nullable
     @Override
@@ -38,7 +35,6 @@ public class CreateChoreView extends Fragment {
         binding = FragmentCreateChorePageBinding.inflate(inflater, container, false);
         createChoreViewModel = new ViewModelProvider(this).get(CreateChoreViewModel.class);
         binding.setCreateChoreViewModel(createChoreViewModel);
-
         setDoneButtonAction(binding.getRoot());
         return binding.getRoot();
     }
@@ -64,12 +60,9 @@ public class CreateChoreView extends Fragment {
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_createChoreView_to_navigation_mainpage);
                 }catch(NullPointerException n){
                     Toast.makeText(getContext() ,"Please fill in all empty fields", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
-
-
     }
 
     private void addChore(Chore chore){

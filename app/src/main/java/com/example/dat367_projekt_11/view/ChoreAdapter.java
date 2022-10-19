@@ -27,7 +27,6 @@ import java.util.Map;
  * https://www.digitalocean.com/community/tutorials/android-recyclerview-data-binding
  *
  * @author  Hanna Harnesk
-
  */
 
 public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder> implements CheckboxClickListener{
@@ -61,7 +60,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
             super(choreCardBinding.getRoot());
             this.choreCardBinding = choreCardBinding;
         }
-
     }
 
     @NonNull
@@ -89,9 +87,6 @@ public class ChoreAdapter extends RecyclerView.Adapter<ChoreAdapter.ChoreViewHol
     public int getItemCount() {
         return choreModelList.size();
     }
-
-
-
 
 }
 

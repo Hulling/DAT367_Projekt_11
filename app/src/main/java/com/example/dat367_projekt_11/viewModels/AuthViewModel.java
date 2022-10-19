@@ -56,7 +56,6 @@ public class AuthViewModel extends AndroidViewModel {
         return registerHouseholdLiveData;
     }
 
-
     public MutableLiveData<String> getEmail() {
         if (email == null) {
             email = new MutableLiveData<>();
@@ -97,6 +96,7 @@ public class AuthViewModel extends AndroidViewModel {
     public void addProfile(Household household, Profile profile){
         persistenceManagerFactory.getPersistenceManager().addNewProfileToDatabase(household, profile);
     }
+
     public MutableLiveData<HashMap<String,Profile>> getListOfProfiles(Household household){
         return persistenceManagerFactory.getPersistenceManager().getProfileList(household);
     }

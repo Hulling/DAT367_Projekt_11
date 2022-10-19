@@ -12,6 +12,11 @@ import com.example.dat367_projekt_11.R;
 import com.example.dat367_projekt_11.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * MainActivity is displaying all fragments that is connected to the main application.
+ *
+ * @author Autogenereted of Android studios
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_mainpage, R.id.navigation_donechores, R.id.navigation_leaderboard, R.id.navigation_profile)
                 .build();

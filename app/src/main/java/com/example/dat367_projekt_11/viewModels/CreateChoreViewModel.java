@@ -4,9 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.dat367_projekt_11.models.Chore;
-import com.example.dat367_projekt_11.models.ConfigHandler;
-import com.example.dat367_projekt_11.models.PersistenceManagerFactory;
-import com.example.dat367_projekt_11.view.CreateChoreView;
 
 import java.util.Objects;
 
@@ -21,7 +18,6 @@ public class CreateChoreViewModel extends ViewModel {
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> description = new MutableLiveData<>();
     private MutableLiveData<Chore> userMutableLiveData;
-    private final CreateChoreView createChoreView = new CreateChoreView();
 
     public MutableLiveData<Chore> getChore() {
 
