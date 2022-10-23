@@ -20,8 +20,25 @@ public class ScoreboardUnitTest {
     }
 
     @Test
-    public void rankProfilesTest(){
+    public void getBestOne(){
+        scoreboardModel.rankProfiles(20);
+        assertEquals(20, scoreboardModel.bestOne);
+        assertEquals(8, scoreboardModel.bestTwo);
+        assertEquals(4, scoreboardModel.bestThree);
+    }
 
+    @Test
+    public void getBestTwo(){
+        scoreboardModel.rankProfiles(6);
+        assertEquals(6, scoreboardModel.bestTwo);
+        assertEquals(4, scoreboardModel.bestThree);
+    }
+
+
+    @Test
+    public void getBestThree(){
+        scoreboardModel.rankProfiles(3);
+        assertEquals(3, scoreboardModel.bestThree);
     }
 
 

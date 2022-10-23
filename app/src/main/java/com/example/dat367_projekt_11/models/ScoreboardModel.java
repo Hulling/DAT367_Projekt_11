@@ -21,7 +21,6 @@ public class ScoreboardModel {
 
 
 
-
     public SharedPreferences getSharedPreferences(String pref, int i) {
         return null;
     }
@@ -30,10 +29,14 @@ public class ScoreboardModel {
     int bestOne = preferences.getInt("points1", 0);
     int bestTwo = preferences.getInt("points2", 0);*/
 
+    public int bestOne;
+    public int bestTwo;
+    public int bestThree;
+
 
 
     @SuppressLint("SetTextI18n")
-    public String rankProfiles() {
+    public String rankProfiles(int ps) {
 
 
         /*SharedPreferences preferences = getSharedPreferences("PREF", 0);
@@ -42,10 +45,10 @@ public class ScoreboardModel {
         int bestTwo = preferences != null ? preferences.getInt("points2", 4) : 4;
         int bestThree = preferences != null ? preferences.getInt("points3", 2) : 2;*/
 
-        int profileScore = 10;
-        int bestOne = 8;
-        int bestTwo = 4;
-        int bestThree = 2;
+        int profileScore = ps;
+        bestOne = 8;
+        bestTwo = 4;
+        bestThree = 2;
 
         String profileName = "Pauline";
         String bestOneName = "Hanna";
@@ -88,7 +91,7 @@ public class ScoreboardModel {
     }
 
 
-    public String getRankingOfScoresText(){return rankProfiles();}
+    public String getRankingOfScoresText(){return rankProfiles(10);}
 
 
 }
