@@ -16,13 +16,17 @@ public class ScoreboardModel {
 
 
 
+    public int bestOne;
+    public int bestTwo;
+    public int bestThree;
+
 
     /** Ranks profiles by comparing scores */
     @SuppressLint("SetTextI18n")
-    public String rankProfiles() {
+    public String rankProfiles(int ps) {
 
 
-        int profileScore = 10;
+        int profileScore = ps;
         int bestOne = 8;
         int bestTwo = 4;
         int bestThree = 2;
@@ -68,7 +72,8 @@ public class ScoreboardModel {
     }
 
     /** Is used to create object of ScoreboardModel in ScoreaboardViewModel */
-    public String getRankingOfScoresText(){return rankProfiles();}
+    public String getRankingOfScoresText(){return rankProfiles(10);}
+
 
 
 }
