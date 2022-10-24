@@ -1,11 +1,13 @@
 
 package com.example.dat367_projekt_11;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 import com.example.dat367_projekt_11.models.Chore;
 import com.example.dat367_projekt_11.models.Profile;
 import com.example.dat367_projekt_11.models.ScoreboardModel;
+
+import org.junit.Test;
 
 public class ScoreboardUnitTest {
 
