@@ -23,7 +23,18 @@ public class ScoreboardUnitTest {
     public void getBestOne(){
         scoreboardModel.rankProfiles(20);
         assertEquals(20, scoreboardModel.bestOne);
+    }
+
+    @Test
+    public void getBestOne2(){
+        scoreboardModel.rankProfiles(20);
         assertEquals(8, scoreboardModel.bestTwo);
+        assertEquals(4, scoreboardModel.bestThree);
+    }
+
+    @Test
+    public void getBestOne3(){
+        scoreboardModel.rankProfiles(20);
         assertEquals(4, scoreboardModel.bestThree);
     }
 
@@ -31,6 +42,12 @@ public class ScoreboardUnitTest {
     public void getBestTwo(){
         scoreboardModel.rankProfiles(6);
         assertEquals(6, scoreboardModel.bestTwo);
+    }
+
+
+    @Test
+    public void getBestTwo2(){
+        scoreboardModel.rankProfiles(6);
         assertEquals(4, scoreboardModel.bestThree);
     }
 

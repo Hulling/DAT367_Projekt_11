@@ -27,9 +27,9 @@ public class ScoreboardModel {
 
 
         int profileScore = ps;
-        int bestOne = 8;
-        int bestTwo = 4;
-        int bestThree = 2;
+        bestOne = 8;
+        bestTwo = 4;
+        bestThree = 2;
 
         String profileName = "Pauline";
         String bestOneName = "Hanna";
