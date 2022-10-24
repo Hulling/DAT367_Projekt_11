@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/navigation_mainpage"
         android:name="com.example.dat367_projekt_11.view.MainPageView"
-        android:label="@string/title_notifications"
+        android:label="Home"
         tools:layout="@layout/fragment_mainpage" >
         <action
             android:id="@+id/action_navigation_mainpage_to_createChoreView"
